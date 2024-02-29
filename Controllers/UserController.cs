@@ -13,6 +13,7 @@ using System.Web.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using IdentityModel.OidcClient;
+using System.Web;
 
 
 
@@ -84,13 +85,18 @@ namespace cash_server.Controllers
 
                 var key = Encoding.ASCII.GetBytes(jwtSecret);
                 var tokenHandler = new JwtSecurityTokenHandler();
+                
+                //para poder enlazar el token del usuario con el nombre
+                var claimsIdentity = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.Mail),
+                    new Claim("Mail", user.Mail),
+                });
+
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim(ClaimTypes.Name, user.Mail)
-                    }),
-                    Expires = DateTime.UtcNow.AddHours(1), //Token válido por 1 hora
+                    Subject = claimsIdentity,
+                    Expires = DateTime.UtcNow.AddHours(1), // Token válido por 1 hora
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -160,14 +166,26 @@ namespace cash_server.Controllers
 
         [HttpGet]
         [Route("getuserdata")]
-        public IHttpActionResult GetUserData(string token)
+        public IHttpActionResult GetUserData()
         {
             try
             {
-                if (string.IsNullOrEmpty(token))
+                // Obtener el token del encabezado Authorization
+                var authHeader = HttpContext.Current.Request.Headers["Authorization"];
+                if (string.IsNullOrEmpty(authHeader))
                 {
-                    return Content(HttpStatusCode.Unauthorized, new { error = "Se requiere un token de autenticación" });
+                    return Content(HttpStatusCode.Unauthorized, new { error = "Se requiere un token de autenticación en el encabezado Authorization" });
                 }
+
+                // Validar si el encabezado Authorization tiene el formato correcto (Bearer token)
+                var tokenParts = authHeader.Split(' ');
+                if (tokenParts.Length != 2 || !tokenParts[0].Equals("Bearer", StringComparison.OrdinalIgnoreCase))
+                {
+                    return Content(HttpStatusCode.Unauthorized, new { error = "Formato de token incorrecto. Debe tener el formato 'Bearer token'" });
+                }
+
+                // Obtener el token JWT
+                var token = tokenParts[1];
 
                 var jwtSecret = WebConfigurationManager.AppSettings["JwtSecret"];
                 if (string.IsNullOrEmpty(jwtSecret))
@@ -189,10 +207,17 @@ namespace cash_server.Controllers
 
                 var jwtSecurityToken = (JwtSecurityToken)validatedToken;
 
-                //usuario relacionado a ese token
-                var usuarios = _dbContext.Users.ToList();
+                var userEmail = jwtSecurityToken.Claims.FirstOrDefault(claim => claim.Type == "Mail")?.Value;
 
-                return Json(usuarios);
+                // Buscar usuario por Mail relacionado con ese token
+                var usuario = _dbContext.Users.FirstOrDefault(u => u.Mail == userEmail);
+
+                if (usuario == null)
+                {
+                    return Content(HttpStatusCode.NotFound, new { error = "No se encontró ningún usuario asociado con el token proporcionado" });
+                }
+
+                return Json(usuario);
             }
             catch (SecurityTokenException)
             {
