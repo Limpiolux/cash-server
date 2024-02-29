@@ -57,7 +57,7 @@ namespace cash_server.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("login")]
         public IHttpActionResult Login([FromBody] Models.LoginRequest request)
         {
@@ -103,6 +103,109 @@ namespace cash_server.Controllers
                 // Manejar cualquier excepción y devolver un mensaje de error genérico junto con el código de error HTTP 500
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
             }
+        }
+
+        [HttpPost]
+        [Route("validatetoken")]
+        public IHttpActionResult ValidateToken([FromBody] TokenRequest request)
+        {
+            try
+            {
+                string jwtToken = request.Token;
+
+                if (string.IsNullOrEmpty(jwtToken))
+                {
+                    return Content(HttpStatusCode.Unauthorized, new { error = "Se requiere un token de autenticación" });
+                }
+
+                //se obtiene la clave secreta JWT de la configuración
+                var jwtSecret = WebConfigurationManager.AppSettings["JwtSecret"];
+                if (string.IsNullOrEmpty(jwtSecret))
+                {
+                    return Content(HttpStatusCode.InternalServerError, new { error = "La clave secreta JWT no está configurada correctamente" });
+                }
+
+                var key = Encoding.ASCII.GetBytes(jwtSecret);
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                tokenHandler.ValidateToken(jwtToken, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                }, out var validatedToken);
+
+                var jwtSecurityToken = (JwtSecurityToken)validatedToken;
+                var decodedToken = new
+                {
+                    Issuer = jwtSecurityToken.Issuer,
+                    Subject = jwtSecurityToken.Subject,
+                    Expires = jwtSecurityToken.ValidTo
+                };
+
+                return Json(new { message = "Token válido", decoded = decodedToken });
+            }
+            catch (SecurityTokenException)
+            {
+                return Content(HttpStatusCode.Unauthorized, new { error = "Token inválido" });
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        
+        }
+
+        [HttpGet]
+        [Route("getuserdata")]
+        public IHttpActionResult GetUserData(string token)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(token))
+                {
+                    return Content(HttpStatusCode.Unauthorized, new { error = "Se requiere un token de autenticación" });
+                }
+
+                var jwtSecret = WebConfigurationManager.AppSettings["JwtSecret"];
+                if (string.IsNullOrEmpty(jwtSecret))
+                {
+                    return Content(HttpStatusCode.InternalServerError, new { error = "La clave secreta JWT no está configurada correctamente" });
+                }
+
+                var key = Encoding.ASCII.GetBytes(jwtSecret);
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                }, out var validatedToken);
+
+                var jwtSecurityToken = (JwtSecurityToken)validatedToken;
+
+                //usuario relacionado a ese token
+                var usuarios = _dbContext.Users.ToList();
+
+                return Json(usuarios);
+            }
+            catch (SecurityTokenException)
+            {
+                return Content(HttpStatusCode.Unauthorized, new { error = "Token inválido" });
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+        public class TokenRequest
+        {
+            public string Token { get; set; }
         }
 
         //en caso que se quiera liberar memoria
