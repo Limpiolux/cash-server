@@ -17,10 +17,21 @@ namespace cash_server.Data
         }
 
         public DbSet<Usuario> Users { get; set; }
+        public DbSet<Formulario> Formularios { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<SubItem> SubItems { get; set; }
+        public DbSet<Respuesta> Respuestas { get; set; }
+       
+   
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //en caso q haya relaciones se pueden conf aca
+            modelBuilder.Entity<SubItem>()
+         .HasRequired(s => s.Item)
+         .WithMany(i => i.SubItems)
+         .HasForeignKey(s => s.ItemId)
+         .WillCascadeOnDelete(false); // Especificamos que no queremos que haya eliminación en cascada
         }
     }
 }

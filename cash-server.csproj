@@ -182,6 +182,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.5.11.10\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.5.11.10\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -213,9 +219,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FormularioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\RespuestaController.cs" />
+    <Compile Include="Controllers\SubItemController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Data\ApiDbContext.cs" />
+    <Compile Include="Data\FormularioData.cs" />
+    <Compile Include="Data\ItemData.cs" />
+    <Compile Include="Data\RespuestaData.cs" />
+    <Compile Include="Data\SubItemData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,11 +239,24 @@
     <Compile Include="Migrations\202402271628499_Initial-Create.Designer.cs">
       <DependentUpon>202402271628499_Initial-Create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403041955182_FormulariosItems.cs" />
+    <Compile Include="Migrations\202403041955182_FormulariosItems.Designer.cs">
+      <DependentUpon>202403041955182_FormulariosItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403042047216_CambiosLargoYSeed.cs" />
+    <Compile Include="Migrations\202403042047216_CambiosLargoYSeed.Designer.cs">
+      <DependentUpon>202403042047216_CambiosLargoYSeed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Formulario.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\Respuesta.cs" />
+    <Compile Include="Models\SubItem.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\Encriptador.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -316,6 +343,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202402271628499_Initial-Create.resx">
       <DependentUpon>202402271628499_Initial-Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403041955182_FormulariosItems.resx">
+      <DependentUpon>202403041955182_FormulariosItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403042047216_CambiosLargoYSeed.resx">
+      <DependentUpon>202403042047216_CambiosLargoYSeed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
