@@ -37,7 +37,8 @@ namespace cash_server.Data
         {
 
             var db = new ApiDbContext();
-            var items = db.Items.ToList();
+            //var items = db.Items.ToList();
+            var items = db.Items.Include(i => i.Formulario).Include(i => i.SubItems).ToList(); //cargo el objeto form que pertenece ese item.
             return items;
 
 

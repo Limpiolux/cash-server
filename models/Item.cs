@@ -15,6 +15,7 @@ namespace cash_server.Models
     public string Descripcion { get; set; }
 
     public Formulario Formulario { get; set; }
+   
     public IList<SubItem> SubItems { get; private set; }
     }
 

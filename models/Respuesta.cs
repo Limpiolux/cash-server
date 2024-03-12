@@ -16,7 +16,7 @@ namespace cash_server.Models
         public int SubItemId { get; set; }
 
         public Item Item { get; set; }
-        public SubItem SubItem { get; set; }
+        //public SubItem SubItem { get; set; }
 
     }
 
@@ -35,12 +35,12 @@ namespace cash_server.Models
             [Column(Order = 2)]
             public int ItemId { get; set; }
             
-            [ForeignKey("SubItem")]
+            /*[ForeignKey("SubItem")]
             [Required]
             [Column(Order = 3)]
-            public int SubItemId { get; set;}
+            public int SubItemId { get; set;}*/
 
-            [StringLength(50)]
+            [StringLength(250)]
             public string Descripcion { get; set; }
 
 

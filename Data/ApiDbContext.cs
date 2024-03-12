@@ -27,11 +27,18 @@ namespace cash_server.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SubItem>()
-         .HasRequired(s => s.Item)
-         .WithMany(i => i.SubItems)
-         .HasForeignKey(s => s.ItemId)
-         .WillCascadeOnDelete(false); // Especificamos que no queremos que haya eliminación en cascada
-        }
+               modelBuilder.Entity<SubItem>()
+            .HasRequired(s => s.Item)
+            .WithMany(i => i.SubItems)
+            .HasForeignKey(s => s.ItemId)
+            .WillCascadeOnDelete(false); // Especificamos que si queremos que haya eliminación en cascada
+           }
+
+         /*   modelBuilder.Entity<SubItem>()
+        .HasRequired(s => s.Item)
+        .WithMany() // No se especifica ninguna propiedad de navegación en Item, ya que no existe
+        .HasForeignKey(s => s.ItemId)
+        .WillCascadeOnDelete(false); // Especificamos que no queremos eliminación en cascada
+        }*/
     }
 }
