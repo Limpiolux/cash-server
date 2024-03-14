@@ -240,11 +240,16 @@
     <Compile Include="Migrations\202402271628499_Initial-Create.Designer.cs">
       <DependentUpon>202402271628499_Initial-Create.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202403121553441_CreateTables.cs" />
-    <Compile Include="Migrations\202403121553441_CreateTables.Designer.cs">
-      <DependentUpon>202403121553441_CreateTables.cs</DependentUpon>
+    <Compile Include="Migrations\202403131433366_CreateTables.cs" />
+    <Compile Include="Migrations\202403131433366_CreateTables.Designer.cs">
+      <DependentUpon>202403131433366_CreateTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403132036553_CreateTableEmpleados.cs" />
+    <Compile Include="Migrations\202403132036553_CreateTableEmpleados.Designer.cs">
+      <DependentUpon>202403132036553_CreateTableEmpleados.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\LoginRequest.cs" />
@@ -253,6 +258,8 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\Encriptador.cs" />
+    <Compile Include="SharedKernel\RolEmpleado.cs" />
+    <Compile Include="SharedKernel\TipoVehiculo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -341,8 +348,11 @@
     <EmbeddedResource Include="Migrations\202402271628499_Initial-Create.resx">
       <DependentUpon>202402271628499_Initial-Create.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403121553441_CreateTables.resx">
-      <DependentUpon>202403121553441_CreateTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202403131433366_CreateTables.resx">
+      <DependentUpon>202403131433366_CreateTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403132036553_CreateTableEmpleados.resx">
+      <DependentUpon>202403132036553_CreateTableEmpleados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

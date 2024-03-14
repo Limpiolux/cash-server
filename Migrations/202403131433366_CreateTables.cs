@@ -49,7 +49,6 @@
                         Id = c.Int(nullable: false, identity: true),
                         ItemId = c.Int(nullable: false),
                         Descripcion = c.String(maxLength: 250),
-                        SubItemId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Items", t => t.ItemId, cascadeDelete: true)

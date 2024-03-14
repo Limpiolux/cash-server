@@ -5,46 +5,46 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace cash_server.Data
 {
-    public class RespuestaData : IRepository<Respuesta>
+    public class EmpleadoData : IRepository<Empleado>
     {
-
         public void Delete(int id)
         {
             var db = new ApiDbContext();
-            Respuesta respuesta = db.Respuestas.Find(id);
-            db.Respuestas.Remove(respuesta);
+            Empleado empleado = db.Empleados.Find(id);
+            db.Empleados.Remove(empleado);
             db.SaveChanges();
 
         }
 
-        public Respuesta GetById(int id)
+        public Empleado GetById(int id)
         {
             var db = new ApiDbContext();
-            return db.Respuestas.Find(id);
+            return db.Empleados.Find(id);
 
         }
 
-        public void Insert(Respuesta entity)
+        public void Insert(Empleado entity)
         {
             var db = new ApiDbContext();
-            db.Respuestas.Add(entity);
+            db.Empleados.Add(entity);
             db.SaveChanges();
         }
 
-        public IEnumerable<Respuesta> List()
+        public IEnumerable<Empleado> List()
         {
 
             var db = new ApiDbContext();
-            var respuestas = db.Respuestas.ToList();
-            return respuestas;
+            var empleados = db.Empleados.ToList();
+            return empleados;
 
 
         }
 
-        public void Update(Respuesta entity)
+        public void Update(Empleado entity)
         {
             var db = new ApiDbContext();
             db.Entry(entity).State = EntityState.Modified;

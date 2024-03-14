@@ -17,7 +17,7 @@ namespace cash_server.Controllers
         {
             _itemData = new ItemData();
         }
-
+        //dado idForm pasado como parámetro devuelve los items, formulario, y subitems pertenecientes a ese Formulario.
         [HttpGet]
         [Route("getitemsbyformid/{formId}")]
         public IHttpActionResult GetItemsByFormId(int formId)

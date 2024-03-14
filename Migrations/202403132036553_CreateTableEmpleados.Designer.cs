@@ -7,13 +7,13 @@ namespace cash_server.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CreateTables : IMigrationMetadata
+    public sealed partial class CreateTableEmpleados : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTableEmpleados));
         
         string IMigrationMetadata.Id
         {
-            get { return "202403121553441_CreateTables"; }
+            get { return "202403132036553_CreateTableEmpleados"; }
         }
         
         string IMigrationMetadata.Source

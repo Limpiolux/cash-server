@@ -15,14 +15,16 @@ namespace cash_server.Controllers
     using System.Web.Http;
     public class HomeController : ApiController
     {
-        //se accede URL/home
         [HttpGet]
-        [Route("home")]
+        //[Route("home")]
+        [Route("~/")]
         public IHttpActionResult Index()
         {
            
             return Ok(new { mensaje = "¡Bienvenido a la API!" });
         }
+
+
 
         
     }

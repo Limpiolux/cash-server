@@ -42,9 +42,9 @@ namespace cash_server.Models
             public string Descripcion { get; set; }
 
             [StringLength(250)]
-            public string Comentario { get; set; }
+            public string Comentario { get; set; } = null;  //public string? Comentario { get; set; } funciona de la version .net 8 en adelante
 
-          
+
         }
 
     }

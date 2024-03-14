@@ -1,14 +1,18 @@
 ﻿namespace cash_server.Migrations
 {
+    using Antlr.Runtime.Misc;
     using cash_server.Models;
+    using cash_server.SharedKernel;
     using Microsoft.Win32;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
     using System.Data.Entity.Migrations;
     using System.Diagnostics;
     using System.Linq;
     using System.Security.Cryptography;
+    using System.Web.Helpers;
     using System.Web.Services.Description;
     using System.Web.UI;
     using System.Web.UI.WebControls;
@@ -114,6 +118,7 @@
 
             };
 
+            //se utiliza FormId y Descripcion como elementos para comparar contra otro elemento en la bd, para q no se guarden repetidos
             foreach (var item in items)
             {
                 context.Items.AddOrUpdate(i => new { i.FormId, i.Descripcion }, item);
@@ -501,21 +506,47 @@
                 new Respuesta { ItemId = 20, Descripcion = "Malo" }
 
 
-
-
-
-
-
             };
 
             foreach (var respuesta in respuestas)
-            {
-                context.Respuestas.AddOrUpdate(r => new { r.ItemId, r.SubItemId }, respuesta);
+            {   //busca en la db itemID y descripcion que no se repiran
+                context.Respuestas.AddOrUpdate(r => new {r.ItemId, r.Descripcion}, respuesta);
             }
 
             // Guardar cambios
             context.SaveChanges();
 
+            //voy a cargar los preventores (que son empleados)
+            var empleados = new List<Empleado>()
+            {
+                new Empleado { Nombre = "Juárez María De los Ángeles", Email = "maar_juarez@hotmail.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Miriam Betancourt", Email = "miriam.betancourt@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Gastón Storani", Email = "gastonstorani@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Cynthia Dayana Alcaraz Blanco", Email = "Alcaraz105@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Hernán Ingrassia", Email = "heringrassia@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Maria Laura Barreto", Email = "mlauri126@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Mariela Alegre", Email = "mariela.alegre@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Julio Delgado", Email = "juliodelgado1@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Jesica Sanabria", Email = "jesica.sanabria@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Vanesa Gomez", Email = "vanesagtorres24@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Adolfo Rafael Ariza Lucena", Email = "arizalucena.ar@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Julieta Perales", Email = "jperales-ext@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Eduardo Ibiza", Email = "h.eduardoibiza@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Maximiliano Siñeriz", Email = "delfinfiel@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "María Luz Irassar", Email = "luz_irassar@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Yamila Guerrero", Email = "yamiguerrero2008@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Sebastian Lescano", Email = "sebastianlesscano28@gmail.com", Rol = RolEmpleado.Preventor, Activo = true }
+
+
+            };
+
+            //se usa email para comparar si existe otro registro en la db con ese mail
+            foreach (var empleado in empleados)
+            {
+                context.Empleados.AddOrUpdate(e => e.Email, empleado);
+            }
+
+            context.SaveChanges();
 
         }
 
