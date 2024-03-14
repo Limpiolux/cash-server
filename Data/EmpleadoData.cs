@@ -43,6 +43,23 @@ namespace cash_server.Data
 
 
         }
+        /*dejo por las dudas si se necesita tener dos listas separadas
+         pero en realidad se debe llamar a List() y ahi en el resultado de los
+        datos se filtra por preventor o supervisor
+        public IEnumerable<Empleado> ListPreventores()
+        {
+            var db = new ApiDbContext();
+            var preventores = db.Empleados.Where(e => e.Rol == RolEmpleado.Preventor).ToList();
+            return preventores;
+        }
+
+        public IEnumerable<Empleado> ListSupervisores()
+        {
+            var db = new ApiDbContext();
+            var supervisores = db.Empleados.Where(e => e.Rol == RolEmpleado.Supervisor).ToList();
+            return supervisores;
+        }
+         */
 
         public void Update(Empleado entity)
         {

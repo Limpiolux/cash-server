@@ -220,6 +220,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\FormularioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Controllers\SubItemController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Data\ApiDbContext.cs" />
+    <Compile Include="Data\EmpleadoData.cs" />
     <Compile Include="Data\FormularioData.cs" />
     <Compile Include="Data\ItemData.cs" />
     <Compile Include="Data\RespuestaData.cs" />
