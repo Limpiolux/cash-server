@@ -11,7 +11,7 @@ namespace cash_server
         {
             // Configuración y servicios de Web API
 
-            // Rutas de Web API
+            config.EnableCors();
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
