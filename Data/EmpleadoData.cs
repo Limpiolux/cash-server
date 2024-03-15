@@ -1,5 +1,6 @@
 ﻿using cash_server.Interfaces;
 using cash_server.Models;
+using cash_server.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -26,12 +27,34 @@ namespace cash_server.Data
             return db.Empleados.Find(id);
 
         }
+        //verifica si existe un empleado (supervisor) con email y si esta activo, si existe, retorna el empleado
+        public Empleado GetByEmailAndActivoTrue(string email)
+        {
+            var db = new ApiDbContext();
+            return db.Empleados.FirstOrDefault(e => e.Email == email && e.Activo && e.Rol == RolEmpleado.Supervisor);
+        }
 
         public void Insert(Empleado entity)
         {
             var db = new ApiDbContext();
-            db.Empleados.Add(entity);
-            db.SaveChanges();
+            var nuevoEmpleado = new Empleado();
+            //si la entidad viene con Id (porque viene de un endpoint de datos, en este caso del endpoint de supervisores
+            //armo un nueva entidad con solo las propiedades que necesito, el Id no lo necesito
+            if (entity.Id != 0){
+                nuevoEmpleado.Nombre = entity.Nombre;
+                nuevoEmpleado.Email = entity.Email;
+                nuevoEmpleado.Rol = entity.Rol;
+                nuevoEmpleado.Activo = entity.Activo;
+                db.Empleados.Add(nuevoEmpleado);
+                db.SaveChanges();
+            }
+            else
+            {
+                //si no sigue el flujo normal de inserción
+                db.Empleados.Add(entity);
+                db.SaveChanges();
+            }
+
         }
 
         public IEnumerable<Empleado> List()
