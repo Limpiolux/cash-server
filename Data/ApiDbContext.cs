@@ -23,9 +23,14 @@ namespace cash_server.Data
         public DbSet<SubItem> SubItems { get; set; }
         public DbSet<Respuesta> Respuestas { get; set; }
         public DbSet<Empleado> Empleados { get; set; }
-       
-   
-        
+
+        public DbSet<VisitaServicio> VisitaServicios  { get; set; }
+        public DbSet<VisitaServicioForm> VisitaServicioForms { get; set; }
+
+
+
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
