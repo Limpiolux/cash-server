@@ -34,32 +34,6 @@ namespace cash_server.Controllers
             _encryptionService = new EncryptionService();
         }
 
-        /*[HttpPost]
-        [Route("register")]*/
-        /*public IHttpActionResult RegistrarUsuario([FromBody] Usuario user)
-        {
-            try
-            {
-                var existingUser = _dbContext.Users.FirstOrDefault(u => u.Mail == user.Mail);
-                if (existingUser != null)
-                {
-                    return Content(HttpStatusCode.BadRequest, new { error = "El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico." });
-                }
-
-                var hashedPassword = _encryptionService.EncryptPassword(user.Password);
-                user.Password = hashedPassword;
-
-                _dbContext.Users.Add(user);
-                _dbContext.SaveChanges();
-
-                return Json(new { message = "Registro exitoso" });
-            }
-            catch (Exception ex)
-            {
-                //Manejar cualquier excepción y devolver un mensaje de error genérico junto con el código de error HTTP 500
-                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
-            }
-        }*/
         [HttpPost]
         [Route("register")]
         public IHttpActionResult RegistrarUsuario([FromBody] Usuario user)
