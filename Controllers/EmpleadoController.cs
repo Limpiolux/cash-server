@@ -74,6 +74,7 @@ namespace cash_server.Controllers
                         {
                             supervisor.Rol = RolEmpleado.Supervisor;
                             supervisor.Activo = true;
+                            supervisor.Usuario = null;
                             
                             //puse esto porque si no viene con email, tira error en la insercion, pincha el programa, ya que mail es obligatorio
                             //entonces con el chatch capturo la excepcion para que no se pare el programa

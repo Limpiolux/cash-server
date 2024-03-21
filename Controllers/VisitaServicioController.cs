@@ -53,9 +53,9 @@ namespace cash_server.Controllers
                 _visitaServicioData.Insert(visitaServicio);
                 return Ok(new { id = visitaServicio.Id });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + Convert.ToString(ex.Message) });
             }
         }
     }

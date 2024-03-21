@@ -15,6 +15,8 @@ using Microsoft.IdentityModel.Tokens;
 using IdentityModel.OidcClient;
 using System.Web;
 using System.Web.Http.Cors;
+using System.Collections.Generic;
+using cash_server.SharedKernel;
 
 
 namespace cash_server.Controllers
@@ -32,9 +34,9 @@ namespace cash_server.Controllers
             _encryptionService = new EncryptionService();
         }
 
-        [HttpPost]
-        [Route("register")]
-        public IHttpActionResult RegistrarUsuario([FromBody] Usuario user)
+        /*[HttpPost]
+        [Route("register")]*/
+        /*public IHttpActionResult RegistrarUsuario([FromBody] Usuario user)
         {
             try
             {
@@ -56,6 +58,51 @@ namespace cash_server.Controllers
             {
                 //Manejar cualquier excepción y devolver un mensaje de error genérico junto con el código de error HTTP 500
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }*/
+        [HttpPost]
+        [Route("register")]
+        public IHttpActionResult RegistrarUsuario([FromBody] Usuario user)
+        {
+            try
+            {
+                //campos obligatoirios
+                if (string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.Mail) || string.IsNullOrEmpty(user.Password))
+                {
+                    return Content(HttpStatusCode.BadRequest, new { error = "Todos los campos (Nombre, Correo electrónico, Contraseña) son obligatorios." });
+                }
+                //el rol debe ser valido es decir Preventor o Adminstrador
+                if (!Enum.IsDefined(typeof(RolUsuario), user.Rol))
+                {
+                    return Content(HttpStatusCode.BadRequest, new { error = "Rol de usuario inválido. Los roles válidos son 'Preventor' (1) y 'Administrador' (2)." });
+                }
+
+                var existingUser = _dbContext.Users.FirstOrDefault(u => u.Mail == user.Mail);
+                if (existingUser != null)
+                {
+                    return Content(HttpStatusCode.BadRequest, new { error = "El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico." });
+                }
+
+                var hashedPassword = _encryptionService.EncryptPassword(user.Password);
+
+                // Crear un nuevo usuario
+                var nuevoUsuario = new Usuario
+                {
+                    Name = user.Name,
+                    Mail = user.Mail,
+                    Password = hashedPassword,
+                    Rol = user.Rol //el rol tiene que venir en el objeto user
+                };
+
+                _dbContext.Users.Add(nuevoUsuario); 
+                _dbContext.SaveChanges(); 
+
+                return Json(new { message = "Registro exitoso" });
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción y devolver un mensaje de error genérico junto con el código de error HTTP 500
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: "+ Convert.ToString(ex.Message) });
             }
         }
 
@@ -229,6 +276,16 @@ namespace cash_server.Controllers
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
             }
         }
+    
+     
+        [HttpGet]
+        [Route("listroles")]
+        public IHttpActionResult ListarRoles()
+        {
+            var roles = Enum.GetNames(typeof(RolUsuario));
+            return Json(roles);
+        }
+      
         public class TokenRequest
         {
             public string Token { get; set; }

@@ -21,7 +21,7 @@ namespace cash_server.Controllers
         public IHttpActionResult Index()
         {
            
-            return Ok(new { mensaje = "¡Bienvenido a la API!" });
+            return Ok(new { mensaje = "¡Bienvenido a la API de Cash-Server!" });
         }
 
 

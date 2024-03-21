@@ -274,6 +274,22 @@
     <Compile Include="Migrations\202403191935304_CambiosvisitasUltimo.Designer.cs">
       <DependentUpon>202403191935304_CambiosvisitasUltimo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403201445484_ModifUsuarioROles.cs" />
+    <Compile Include="Migrations\202403201445484_ModifUsuarioROles.Designer.cs">
+      <DependentUpon>202403201445484_ModifUsuarioROles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403201452191_ModModeloEmpleado.cs" />
+    <Compile Include="Migrations\202403201452191_ModModeloEmpleado.Designer.cs">
+      <DependentUpon>202403201452191_ModModeloEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403201803120_CambioTableUser.cs" />
+    <Compile Include="Migrations\202403201803120_CambioTableUser.Designer.cs">
+      <DependentUpon>202403201803120_CambioTableUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403201850592_CambioTableUser2.cs" />
+    <Compile Include="Migrations\202403201850592_CambioTableUser2.Designer.cs">
+      <DependentUpon>202403201850592_CambioTableUser2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
@@ -288,6 +304,7 @@
     <Compile Include="Servicios\Encriptador.cs" />
     <Compile Include="Servicios\HttpService.cs" />
     <Compile Include="SharedKernel\RolEmpleado.cs" />
+    <Compile Include="SharedKernel\RolUsuario.cs" />
     <Compile Include="SharedKernel\TipoVehiculo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -391,6 +408,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403191935304_CambiosvisitasUltimo.resx">
       <DependentUpon>202403191935304_CambiosvisitasUltimo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403201445484_ModifUsuarioROles.resx">
+      <DependentUpon>202403201445484_ModifUsuarioROles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403201452191_ModModeloEmpleado.resx">
+      <DependentUpon>202403201452191_ModModeloEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403201803120_CambioTableUser.resx">
+      <DependentUpon>202403201803120_CambioTableUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403201850592_CambioTableUser2.resx">
+      <DependentUpon>202403201850592_CambioTableUser2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

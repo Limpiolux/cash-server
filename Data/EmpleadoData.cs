@@ -45,6 +45,7 @@ namespace cash_server.Data
                 nuevoEmpleado.Email = entity.Email;
                 nuevoEmpleado.Rol = entity.Rol;
                 nuevoEmpleado.Activo = entity.Activo;
+                nuevoEmpleado.Usuario = null;
                 db.Empleados.Add(nuevoEmpleado);
                 db.SaveChanges();
             }

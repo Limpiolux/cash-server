@@ -22,7 +22,11 @@ namespace cash_server.Models
         public string Email { get; set; }
         [Required]
         public RolEmpleado Rol { get; set; }
+
+        //este creo que no sería obligatorio
+        public Usuario Usuario { get; set; } = null;
         [Required]
         public bool Activo { get; set; } = false;
+  
     }
 }
