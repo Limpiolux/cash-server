@@ -9,9 +9,8 @@ using cash_server.Interfaces;
 
 namespace cash_server.Models
 {
-    public class Empleado : IEntity
-    {
-        //les puse requeridas porque los supervisores se van a cargar de un endpoint
+    public partial class Empleado : IEntity
+    {    //les puse requeridas porque los supervisores se van a cargar de un endpoint
         [Key]
         [Required]
         [Column(Order = 1)]
@@ -25,8 +24,12 @@ namespace cash_server.Models
 
         //este creo que no sería obligatorio
         public Usuario Usuario { get; set; } = null;
+
+        [ForeignKey("Usuario")]
+        public int? Usuario_id { get; set; }
         [Required]
         public bool Activo { get; set; } = false;
-  
+
     }
+
 }

@@ -27,24 +27,40 @@ namespace cash_server.Controllers
     {
         private readonly ApiDbContext _dbContext;
         private readonly EncryptionService _encryptionService;
+        private readonly EmpleadoData _empleadoData;
 
         public UserController()
         {
             _dbContext = new ApiDbContext();
             _encryptionService = new EncryptionService();
+            _empleadoData = new EmpleadoData();
+
         }
 
         [HttpPost]
         [Route("register")]
         public IHttpActionResult RegistrarUsuario([FromBody] Usuario user)
         {
+            /*el usuario tiene, si es preventor:
+            Name: se saca del select del preventor, tomando el nombre (el select preventor se rellena con un endpoint con los datos del preventor)
+            Mail: se saca del select del preventor, tomando el mail. En el select de preventor se debe concatenar email - nombre
+            Password: se saca del campo de texto 
+            Rol se saca del selec de Rol, a Rol se le pasa el texto Preventor, proveniente del select
+
+            si es Administrador, el usuario va a tener:
+            Name: se saca del cuadro de texto donde se escribe Nombre y apellido
+            Email: se saca del texto donde se escribe el Email
+            Password: Se saca del campo de texto donde se escribe el pass
+            Rol: se saca del select, se le pasaría el texto del select en este caso Administrador
+            */
             try
             {
-                //campos obligatoirios
-                if (string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.Mail) || string.IsNullOrEmpty(user.Password))
+                // Verificar si el rol es válido
+                /*if (user.Rol != RolUsuario.Preventor && user.Rol != RolUsuario.Administrador)
                 {
-                    return Content(HttpStatusCode.BadRequest, new { error = "Todos los campos (Nombre, Correo electrónico, Contraseña) son obligatorios." });
-                }
+                    return Content(HttpStatusCode.BadRequest, new { error = "Rol de usuario inválido. Los roles válidos son 'Preventor' y 'Administrador'." });
+                }*/
+
                 //el rol debe ser valido es decir Preventor o Adminstrador
                 if (!Enum.IsDefined(typeof(RolUsuario), user.Rol))
                 {
@@ -57,28 +73,58 @@ namespace cash_server.Controllers
                     return Content(HttpStatusCode.BadRequest, new { error = "El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico." });
                 }
 
-                var hashedPassword = _encryptionService.EncryptPassword(user.Password);
+                // Validar campos obligatorios comunes a ambos roles
+                if (string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.Mail) || string.IsNullOrEmpty(user.Password))
+                {
+                    return Content(HttpStatusCode.BadRequest, new { error = "Todos los campos (Nombre, Correo electrónico, Contraseña) son obligatorios." });
+                }
 
-                // Crear un nuevo usuario
                 var nuevoUsuario = new Usuario
                 {
                     Name = user.Name,
                     Mail = user.Mail,
-                    Password = hashedPassword,
-                    Rol = user.Rol //el rol tiene que venir en el objeto user
+                    Password = _encryptionService.EncryptPassword(user.Password),
+                    Rol = user.Rol
                 };
 
-                _dbContext.Users.Add(nuevoUsuario); 
-                _dbContext.SaveChanges(); 
+                // Si el rol es Preventor, cargar datos de Empleado
+                if (user.Rol == RolUsuario.Preventor)
+                {
+                    //busca en la tabla ese email y que el rol sea preventor
+                    var preventor = _dbContext.Empleados.FirstOrDefault(e => e.Email == user.Mail && e.Rol == RolEmpleado.Preventor);
+                    if (preventor == null)
+                    {
+                        return Content(HttpStatusCode.BadRequest, new { error = "No se encontró un preventor con el correo electrónico proporcionado." });
+                    }
+                    //se asgnan los datos del preventor al usuario
+                    nuevoUsuario.Mail = preventor.Email;
+                    nuevoUsuario.Name = preventor.Nombre;
+                }
+
+                //Si el rol es Administrador guardo el usuario y no tengo que hacer mas nada
+                _dbContext.Users.Add(nuevoUsuario);
+                _dbContext.SaveChanges(); //VER ACA SI ABAJO CUANDO NO SE PUEDE ACTUALIZAR EL ID_ISUARIO EN LA TABLA EMPLEADOS, VER SI SE PUEDE HACER UN ROLLBACK PARA QUE NO INSERTE NINGUN USUARIO
+
+                //guardar en la tabla Empleados y relaciona el Prevendor con el usuario (IdUsuario)
+                if (user.Rol == RolUsuario.Preventor)
+                {
+
+                    var preventor = _dbContext.Empleados.FirstOrDefault(e => e.Email == user.Mail && e.Rol == RolEmpleado.Preventor);
+                    if (preventor != null)
+                    {
+                        preventor.Usuario_id = nuevoUsuario.Id;
+                        _empleadoData.Update(preventor);
+                    }
+                }
 
                 return Json(new { message = "Registro exitoso" });
             }
             catch (Exception ex)
             {
-                // Manejar cualquier excepción y devolver un mensaje de error genérico junto con el código de error HTTP 500
-                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: "+ Convert.ToString(ex.Message) });
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + Convert.ToString(ex.Message) });
             }
         }
+
 
         [HttpPost]
         [Route("login")]

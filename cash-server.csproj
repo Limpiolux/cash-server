@@ -290,6 +290,14 @@
     <Compile Include="Migrations\202403201850592_CambioTableUser2.Designer.cs">
       <DependentUpon>202403201850592_CambioTableUser2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403212014199_CambiosEMpleados.cs" />
+    <Compile Include="Migrations\202403212014199_CambiosEMpleados.Designer.cs">
+      <DependentUpon>202403212014199_CambiosEMpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403212028451_CambiosEMpleado222.cs" />
+    <Compile Include="Migrations\202403212028451_CambiosEMpleado222.Designer.cs">
+      <DependentUpon>202403212028451_CambiosEMpleado222.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
@@ -420,6 +428,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403201850592_CambioTableUser2.resx">
       <DependentUpon>202403201850592_CambioTableUser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403212014199_CambiosEMpleados.resx">
+      <DependentUpon>202403212014199_CambiosEMpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403212028451_CambiosEMpleado222.resx">
+      <DependentUpon>202403212028451_CambiosEMpleado222.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
