@@ -9,7 +9,7 @@ using System.Web;
 
 namespace cash_server.Models
 {
-    public class Usuario: IEntity
+    public class Usuario : IEntity
     {
         [Key]
         [Required]
@@ -22,6 +22,8 @@ namespace cash_server.Models
         [Required]
         public string Password { get; set; }
         [Required]
-        public RolUsuario Rol { get; set; } 
+        public RolUsuario Rol { get; set; }
+        //Activo = 1 esta activo, habilitado... Activo = 0 usuario dado de baja
+        public bool Activo { get; set; } = true;
     }
 }

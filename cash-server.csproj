@@ -243,6 +243,7 @@
     <Compile Include="Data\ItemData.cs" />
     <Compile Include="Data\RespuestaData.cs" />
     <Compile Include="Data\SubItemData.cs" />
+    <Compile Include="Data\UsuarioData.cs" />
     <Compile Include="Data\VisitaServicioData.cs" />
     <Compile Include="Data\VisitaServicioFormData.cs" />
     <Compile Include="Global.asax.cs">
@@ -297,6 +298,14 @@
     <Compile Include="Migrations\202403212028451_CambiosEMpleado222.cs" />
     <Compile Include="Migrations\202403212028451_CambiosEMpleado222.Designer.cs">
       <DependentUpon>202403212028451_CambiosEMpleado222.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403221427223_CambiosTableUsuario.cs" />
+    <Compile Include="Migrations\202403221427223_CambiosTableUsuario.Designer.cs">
+      <DependentUpon>202403221427223_CambiosTableUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403221431032_CambiosTableUsuario2.cs" />
+    <Compile Include="Migrations\202403221431032_CambiosTableUsuario2.Designer.cs">
+      <DependentUpon>202403221431032_CambiosTableUsuario2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -434,6 +443,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403212028451_CambiosEMpleado222.resx">
       <DependentUpon>202403212028451_CambiosEMpleado222.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403221427223_CambiosTableUsuario.resx">
+      <DependentUpon>202403221427223_CambiosTableUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403221431032_CambiosTableUsuario2.resx">
+      <DependentUpon>202403221431032_CambiosTableUsuario2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

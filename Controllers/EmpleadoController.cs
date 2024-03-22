@@ -32,7 +32,7 @@ namespace cash_server.Controllers
             try
             {
                 var empleados = _empleadoData.List();
-                var preventores = empleados.Where(e => e.Rol == RolEmpleado.Preventor).ToList();
+                var preventores = empleados.Where(e => e.Rol == RolEmpleado.Preventor && e.Activo == true).ToList();
 
                 if (preventores.Any())
                 {
@@ -68,7 +68,7 @@ namespace cash_server.Controllers
                     foreach (var supervisor in supervisores)
                     {
                         // Verificar si el supervisor ya existe en la base de datos con ese Email, si esta Activo, y si Rol=2
-                        var existente = _empleadoData.GetByEmailAndActivoTrue(supervisor.Email);
+                        var existente = _empleadoData.GetByEmailAndActivoSupervisor(supervisor.Email);
 
                         if (existente == null)
                         {

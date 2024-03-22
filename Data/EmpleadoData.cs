@@ -28,7 +28,13 @@ namespace cash_server.Data
 
         }
         //verifica si existe un empleado (supervisor) con email y si esta activo, si existe, retorna el empleado
-        public Empleado GetByEmailAndActivoTrue(string email)
+        public Empleado GetByEmailAndActivoSupervisor(string email)
+        {
+            var db = new ApiDbContext();
+            return db.Empleados.FirstOrDefault(e => e.Email == email && e.Activo && e.Rol == RolEmpleado.Supervisor);
+        }
+
+        public Empleado GetByEmailAndActivoPreventor(string email)
         {
             var db = new ApiDbContext();
             return db.Empleados.FirstOrDefault(e => e.Email == email && e.Activo && e.Rol == RolEmpleado.Supervisor);

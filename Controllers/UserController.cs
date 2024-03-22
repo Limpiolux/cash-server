@@ -28,12 +28,14 @@ namespace cash_server.Controllers
         private readonly ApiDbContext _dbContext;
         private readonly EncryptionService _encryptionService;
         private readonly EmpleadoData _empleadoData;
+        private readonly UsuarioData _usuarioData;
 
         public UserController()
         {
             _dbContext = new ApiDbContext();
             _encryptionService = new EncryptionService();
             _empleadoData = new EmpleadoData();
+            _usuarioData = new UsuarioData();
 
         }
 
@@ -67,10 +69,13 @@ namespace cash_server.Controllers
                     return Content(HttpStatusCode.BadRequest, new { error = "Rol de usuario inválido. Los roles válidos son 'Preventor' (1) y 'Administrador' (2)." });
                 }
 
-                var existingUser = _dbContext.Users.FirstOrDefault(u => u.Mail == user.Mail);
+                //aca se chequea que si ya hay un usuario con ese mail y que esté activo, no te deberia dejar ingresar el nuevo user
+                //si el mail ya esta pero esta Inactivo,es decir Activo= false, ahi si podrias ingresar el usuario
+                var existingUser = _dbContext.Users.FirstOrDefault(u => u.Mail == user.Mail && u.Activo);
+
                 if (existingUser != null)
                 {
-                    return Content(HttpStatusCode.BadRequest, new { error = "El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico." });
+                    return Content(HttpStatusCode.BadRequest, new { error = "El Email ya está registrado y el usuario asociado está activo. Por favor, utilice otro Email." });
                 }
 
                 // Validar campos obligatorios comunes a ambos roles
@@ -305,7 +310,70 @@ namespace cash_server.Controllers
             var roles = Enum.GetNames(typeof(RolUsuario));
             return Json(roles);
         }
-      
+
+        //trae todos los usuarios activos
+        [HttpGet]
+        [Route("activeusers")]
+        public IHttpActionResult GetActiveUsers()
+        {
+            try
+            {
+                var activeUsers = _usuarioData.List().Where(u => u.Activo).ToList();
+
+                if (activeUsers.Any())
+                {
+                    return Json(activeUsers);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron usuarios activos." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+        }
+        //put porque voy a modificar un recurso
+        [HttpPut]
+        [Route("delete/{userId}")]
+        public IHttpActionResult DeactivateUser(int userId)
+        {
+            try
+            {
+                var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
+
+                if (user == null)
+                {
+                    return Content(HttpStatusCode.NotFound, new { error = "No se encontró ningún usuario con el ID proporcionado." });
+                }
+
+                //desactivo el usuario
+                user.Activo = false;
+                _dbContext.SaveChanges();
+
+                //Si el usuario es un preventor, buscar ese Empleado (preventor) y desasociar el usuario tambien, porque ese usuario no va a estar mas activo
+                if (user.Rol == RolUsuario.Preventor)
+                {
+                    var empleado = _dbContext.Empleados.FirstOrDefault(e => e.Usuario_id == userId);
+                    
+                    if (empleado != null)
+                    {
+                        empleado.Usuario_id = null;
+                        _dbContext.SaveChanges();
+                    }
+                }
+
+              
+                return Json(new { message = $"El usuario con ID {userId} ha sido dado de baja exitosamente." });
+            }
+            catch (Exception ex)
+            {
+               
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+        }
+
         public class TokenRequest
         {
             public string Token { get; set; }
