@@ -374,6 +374,125 @@ namespace cash_server.Controllers
             }
         }
 
+        //siempre se le pasan todos los datos completos, con las mopdificaciones o los mismos datos que no se cambian
+        //password se le pasa, pero nunca se va a modificar
+        [HttpPut]
+        [Route("edit/{userId}")]
+        public IHttpActionResult EditUser(int userId, [FromBody] Usuario user)
+        {
+            /*DATOS A ENVIAR
+                {
+                   "Name": "Hernan Ingrassia",
+                   "Mail": "heringrassia@gmail.com",
+                   "Password": "1234",
+                   "Rol": "Preventor"
+                }
+
+            */
+            try
+            {
+                // Validar que se haya proporcionado un objeto Usuario en el cuerpo de la solicitud
+                if (user == null)
+                {
+                    return Content(HttpStatusCode.BadRequest, new { error = "Se requiere un objeto Usuario en el cuerpo de la solicitud." });
+                }
+
+                // Validar campos obligatorios del objeto Usuario
+                if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Mail) || string.IsNullOrWhiteSpace(user.Password) || user.Rol == 0)
+                {
+                    return Content(HttpStatusCode.BadRequest, new { error = "Todos los campos (Nombre, Email, Password, Rol) son obligatorios." });
+                }
+
+                //verificar si el usuario existe y está activo
+                var existingUser = _dbContext.Users.FirstOrDefault(u => u.Id == userId && u.Activo);
+                if (existingUser == null)
+                {
+                    return Content(HttpStatusCode.NotFound, new { error = "No se encontró ningún usuario activo con el ID proporcionado" });
+                }
+
+                //1) Verificar si se intenta cambiar el rol a preventor
+                if (existingUser.Rol == RolUsuario.Administrador && user.Rol == RolUsuario.Preventor)
+                {
+                    //Insertar en la tabla Empleados
+                    var nuevoEmpleado = new Empleado
+                    {
+                        Nombre = user.Name,
+                        Email = user.Mail,
+                        Rol = RolEmpleado.Preventor,
+                        Activo = true,
+                        Usuario_id = existingUser.Id //asocio al usuario admin, al cual le estoy cambiando el rol a preventor
+                    };
+                    _empleadoData.Insert(nuevoEmpleado);
+
+                    // Actualizar datos en la tabla Usuarios
+                    existingUser.Name = user.Name;
+                    existingUser.Mail = user.Mail;
+                    existingUser.Rol = user.Rol; //preventor
+                    _usuarioData.Update(existingUser);
+
+                    return Json(new { message = "Usuario actualizado correctamente." });
+                }
+                //2) Verificar si se intenta cambiar el rol a Administrador 
+                else if (existingUser.Rol == RolUsuario.Preventor && user.Rol == RolUsuario.Administrador)
+                {
+                    //Desasociar el usuario de la tabla Empleados
+                    var empleado = _dbContext.Empleados.FirstOrDefault(e => e.Usuario_id == userId && e.Activo);
+                    if (empleado != null)
+                    {
+                        empleado.Usuario_id = null;
+                        _dbContext.SaveChanges();
+                    }
+
+                    //Actualizar datos en la tabla Usuarios
+                    existingUser.Name = user.Name;
+                    existingUser.Mail = user.Mail;
+                    existingUser.Rol = user.Rol; //administrador
+                    _usuarioData.Update(existingUser);
+
+                    return Json(new { message = "Usuario actualizado correctamente." });
+                }
+                //3) el rol de admin se mantiene solo actualizo usuarios
+                else if (existingUser.Rol == RolUsuario.Administrador && user.Rol == RolUsuario.Administrador)
+                {
+                    //Actualizar datos en la tabla Usuarios
+                    existingUser.Name = user.Name;
+                    existingUser.Mail = user.Mail;
+                    existingUser.Rol = user.Rol; //administrador
+                    _usuarioData.Update(existingUser);
+
+                    return Json(new { message = "Usuario actualizado correctamente." });
+                }
+                //4)preventor de usuarios se mantiene como preventor.
+                else if (existingUser.Rol == RolUsuario.Preventor && user.Rol == RolUsuario.Preventor)
+                {
+                    //Actualizar datos en la tabla Usuarios
+                    existingUser.Name = user.Name;
+                    existingUser.Mail = user.Mail;
+                    existingUser.Rol = user.Rol; //preventor
+                    _usuarioData.Update(existingUser);
+
+                    //aca quizas habria que actualizar el preventor en la tabla Empleados revisar!!
+
+                    return Content(HttpStatusCode.BadRequest, new { error = "No tienes permiso para modificar los datos de este usuario." });
+                }
+                
+                //en cualquier otro caso que no cubra los anteriores
+                else
+                {
+                    
+                    return Content(HttpStatusCode.BadRequest, new { error = "Error! o No tienes permiso para modificar los datos de este usuario." });
+                    
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+        }
+
+
         public class TokenRequest
         {
             public string Token { get; set; }
