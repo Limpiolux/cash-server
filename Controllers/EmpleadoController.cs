@@ -10,11 +10,13 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Razor.Text;
 
 namespace cash_server.Controllers
 {
     [RoutePrefix("empleado")]
+    [EnableCors(origins: "http://localhost:5173", headers: "*", methods: "*")]
     public class EmpleadoController : ApiController
     {
        private readonly EmpleadoData _empleadoData;

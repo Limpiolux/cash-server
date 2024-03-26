@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace cash_server.Controllers
 {
     [RoutePrefix("visitaservicioform")]
+    [EnableCors(origins: "http://localhost:5173", headers: "*", methods: "*")]
     public class VisitaServicioFormController:ApiController
     {
         private readonly VisitaServicioFormData _visitaServicioFormData;
