@@ -17,6 +17,9 @@ using System.Web;
 using System.Web.Http.Cors;
 using System.Collections.Generic;
 using cash_server.SharedKernel;
+using Antlr.Runtime.Misc;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Web.Helpers;
 
 
 namespace cash_server.Controllers
@@ -348,6 +351,15 @@ namespace cash_server.Controllers
                     return Content(HttpStatusCode.NotFound, new { error = "No se encontró ningún usuario con el ID proporcionado." });
                 }
 
+                // Verificar si el usuario tiene visitas asociadas
+                var hasVisits = _dbContext.VisitaServicios.Any(v => v.UsuarioId == userId);
+
+                if (hasVisits)
+                {
+                    return Content(HttpStatusCode.BadRequest, new { error = "No se puede eliminar el usuario porque tiene visitas asociadas." });
+                }
+
+
                 //desactivo el usuario
                 user.Activo = false;
                 _dbContext.SaveChanges();
@@ -385,7 +397,7 @@ namespace cash_server.Controllers
                    "Name": "Hernan Ingrassia",
                    "Mail": "heringrassia@gmail.com",
                    "Password": "1234",
-                   "Rol": "Preventor"
+                   "Rol": "Preventor" / "Administrador"
                 }
 
             */
@@ -413,6 +425,20 @@ namespace cash_server.Controllers
                 //1) Verificar si se intenta cambiar el rol a preventor
                 if (existingUser.Rol == RolUsuario.Administrador && user.Rol == RolUsuario.Preventor)
                 {
+                    //antes de insertar un empleado, revisa en la tabla si hay algun registro con similares caracteristicas
+                    // y si haylo desactiva.
+                    var empleadosSimilares = _dbContext.Empleados.Where(e => e.Email.Contains(user.Mail) &&
+                                                          e.Nombre.Contains(user.Name) &&
+                                                          e.Activo &&
+                                                          e.Rol == RolEmpleado.Preventor).ToList();
+
+                    // Iterar sobre los empleados encontrados y desactivarlos
+                    foreach (var empleado in empleadosSimilares)
+                    {
+                        empleado.Activo = false;
+                        _empleadoData.Update(empleado);
+                    }
+
                     //Insertar en la tabla Empleados
                     var nuevoEmpleado = new Empleado
                     {
@@ -471,9 +497,17 @@ namespace cash_server.Controllers
                     existingUser.Rol = user.Rol; //preventor
                     _usuarioData.Update(existingUser);
 
-                    //aca quizas habria que actualizar el preventor en la tabla Empleados revisar!!
+                    //Actualizo datos del del user preventor en la tabla empleados para que machee los datos del user con los del preventor
+                    var empleado = _dbContext.Empleados.FirstOrDefault(e => e.Usuario_id == userId && e.Activo);
+                    
+                    empleado.Nombre = user.Name;
+                    empleado.Email = user.Mail;
+                    empleado.Rol = RolEmpleado.Preventor; //sigue siendo preventor porque no se le cambio
+                    empleado.Activo = true;
+                    empleado.Usuario_id = userId; //mismo idUser
+                    _empleadoData.Update(empleado);
 
-                    return Content(HttpStatusCode.BadRequest, new { error = "No tienes permiso para modificar los datos de este usuario." });
+                    return Json(new { message = "Usuario y preventor actualizados correctamente." });
                 }
                 
                 //en cualquier otro caso que no cubra los anteriores
