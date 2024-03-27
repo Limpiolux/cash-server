@@ -24,9 +24,9 @@ namespace cash_server.Models
         public string Proveedor { get; set; } = null;
         
         public int SupervisorId { get; set; }
-        public int PreventorId { get; set; }
+        //public int PreventorId { get; set; }
         public Empleado Supervisor { get; set; }
-        public Empleado Preventor { get; set; }
+        //public Empleado Preventor { get; set; }
 
         public int UsuarioId { get; set; }
       
@@ -75,10 +75,10 @@ namespace cash_server.Models
             [Column(Order = 2)]
             public Empleado Supervisor { get; set; }
 
-            [ForeignKey("PreventorId")]
+            /*[ForeignKey("PreventorId")]
             [Required]
             [Column(Order = 3)]
-            public Empleado Preventor { get; set; }
+            public Empleado Preventor { get; set; }*/
 
             [ForeignKey("Usuario")]
             [Column(Order = 4)]

@@ -307,6 +307,10 @@
     <Compile Include="Migrations\202403221431032_CambiosTableUsuario2.Designer.cs">
       <DependentUpon>202403221431032_CambiosTableUsuario2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403271820425_ModtableVisitaServicio.cs" />
+    <Compile Include="Migrations\202403271820425_ModtableVisitaServicio.Designer.cs">
+      <DependentUpon>202403271820425_ModtableVisitaServicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
@@ -449,6 +453,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403221431032_CambiosTableUsuario2.resx">
       <DependentUpon>202403221431032_CambiosTableUsuario2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403271820425_ModtableVisitaServicio.resx">
+      <DependentUpon>202403271820425_ModtableVisitaServicio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -42,7 +42,8 @@ namespace cash_server.Data
                     throw new Exception($"El Supervisor con Id {entity.SupervisorId} no fue encontrado en la base de datos o no tiene el rol correcto.");
                 }
 
-                var preventor = db.Empleados.FirstOrDefault(e => e.Id == entity.PreventorId && e.Rol == RolEmpleado.Preventor);
+                //el preventor se comenta porque ya no pertenece mas al modelo Visita
+                /*var preventor = db.Empleados.FirstOrDefault(e => e.Id == entity.PreventorId && e.Rol == RolEmpleado.Preventor);
                 if (preventor != null)
                 {
                     entity.Preventor = preventor;
@@ -50,7 +51,7 @@ namespace cash_server.Data
                 else
                 {
                     throw new Exception($"El Preventor con Id {entity.PreventorId} no fue encontrado en la base de datos o no tiene el rol correcto.");
-                }
+                }*/
 
                 var usuario = db.Users.FirstOrDefault(u => u.Id == entity.UsuarioId);
                 if (usuario != null)

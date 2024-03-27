@@ -33,7 +33,6 @@ namespace cash_server.Controllers
             "Dominio": "ABC123",
             "Proveedor": "Taller Mecánico XYZ",
             "SupervisorId": 264,
-            "PreventorId": 1,
             "UsuarioId": 3
         }
           ModeloVehiculo,Conductor,TipoVehiculoId, Dominio, Proveedor pueden ir en null si
