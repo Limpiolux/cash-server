@@ -304,14 +304,17 @@ namespace cash_server.Controllers
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
             }
         }
-    
-     
+
+
         [HttpGet]
         [Route("listroles")]
-        public IHttpActionResult ListarRoles()
+        public IHttpActionResult ListarRolesUsuario()
         {
-            var roles = Enum.GetNames(typeof(RolUsuario));
-            return Json(roles);
+            var rolesUsuario = Enum.GetValues(typeof(RolUsuario))
+                                   .Cast<RolUsuario>()
+                                   .Select(r => new { Id = (int)r, Rol = r.ToString() })
+                                   .ToList();
+            return Json(rolesUsuario);
         }
 
         //trae todos los usuarios activos
