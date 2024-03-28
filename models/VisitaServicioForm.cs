@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace cash_server.Models
@@ -17,9 +18,9 @@ namespace cash_server.Models
         public string SubItem { get; set; }
         public string Comentario { get; set; }
         public string Respuesta { get; set; }
-
+        [IgnoreDataMember] //para que no muestre cuando traigo todas las visitas... no me muestre en la respuesta del json
         public VisitaServicio VisitaServicio { get; set; }
-
+        [IgnoreDataMember]
         public Formulario Formulario { get; set; }
 
     }

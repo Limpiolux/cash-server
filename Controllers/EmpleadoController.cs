@@ -65,7 +65,7 @@ namespace cash_server.Controllers
 
                 if (supervisores != null && supervisores.Any())
                 {
-                    
+
                     //PROCESO PARA INSERCION EN LA TABLA EMPLEADOS (SUPERVISORES)
                     foreach (var supervisor in supervisores)
                     {
@@ -77,15 +77,15 @@ namespace cash_server.Controllers
                             supervisor.Rol = RolEmpleado.Supervisor;
                             supervisor.Activo = true;
                             supervisor.Usuario = null;
-                            
+
                             //puse esto porque si no viene con email, tira error en la insercion, pincha el programa, ya que mail es obligatorio
                             //entonces con el chatch capturo la excepcion para que no se pare el programa
                             try
                             {
                                 //if (!string.IsNullOrWhiteSpace(supervisor.Email))
                                 //{
-                                    _empleadoData.Insert(supervisor);
-                              
+                                _empleadoData.Insert(supervisor);
+
                                 //}
 
                             }
@@ -102,7 +102,7 @@ namespace cash_server.Controllers
                                 }
                             }
 
-                          
+
                         }
                     }
 
@@ -121,7 +121,29 @@ namespace cash_server.Controllers
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
             }
 
+        }
 
+        [HttpGet]
+        [Route("getsupervisoremail/{idSupervisor}")]
+        public IHttpActionResult GetSupervisorEmail(int idSupervisor)
+        {
+            try
+            {
+                var supervisor = _empleadoData.GetById(idSupervisor);
+
+                if (supervisor != null && supervisor.Rol == RolEmpleado.Supervisor)
+                {
+                    return Json(new { email = supervisor.Email });
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontró ningún supervisor con el ID proporcionado." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
         }
 
     }

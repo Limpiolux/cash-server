@@ -86,12 +86,22 @@ namespace cash_server.Data
         public IEnumerable<VisitaServicio> List()
         {
 
-            var db = new ApiDbContext();
+            /*var db = new ApiDbContext();
             var VisitaServicios = db.VisitaServicios.ToList();
-            return VisitaServicios;
+            return VisitaServicios;*/
 
+            var db = new ApiDbContext();
+            var visitasServicio = db.VisitaServicios
+                .Include(v => v.Usuario)
+                .Include(v => v.Formularios)
+                .Include(v => v.Supervisor)
+                .ToList();
 
+            return visitasServicio;
         }
+
+
+    
 
         public void Update(VisitaServicio entity)
         {

@@ -529,6 +529,29 @@ namespace cash_server.Controllers
             }
         }
 
+        //dado un userId devuelve el Rol de ese user
+        [HttpGet]
+        [Route("getuserrole/{userId}")]
+        public IHttpActionResult GetUserRole(int userId)
+        {
+            try
+            {
+                var user = _usuarioData.List().FirstOrDefault(u => u.Id == userId && u.Activo);
+
+                if (user == null)
+                {
+                    return Content(HttpStatusCode.NotFound, new { error = "No se encontró ningún usuario activo con el ID proporcionado." });
+                }
+
+                var userRole = user.Rol.ToString();
+                return Json(new { Rol = userRole });
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+        }
+
 
         public class TokenRequest
         {

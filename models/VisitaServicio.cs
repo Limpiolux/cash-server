@@ -32,7 +32,7 @@ namespace cash_server.Models
       
 
         public Usuario Usuario { get; set; }
-        //public List<VisitaServicioForm> Formularios { get; set; }
+        public List<VisitaServicioForm> Formularios { get; set; }
     }
 
 
