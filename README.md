@@ -10,13 +10,15 @@ La API proporciona endpoints para realizar operaciones relacionadas con empleado
 2. [Obtener Todos los Supervisores](#2-obtener-todos-los-supervisores)
 3. [Obtener Correo Electrónico del Supervisor por ID](#3-obtener-correo-electrónico-del-supervisor-por-id)
 
+## Controlador EmpleadoController
+
 ## Endpoints
 
 ### 1. Obtener Todos los Preventores
 
 - **Método HTTP:** GET
 - **Ruta:** /empleado/getallpreventores
-- **Descripción:** Este endpoint devuelve una lista de preventores activos.
+- **Descripción:** Este endpoint devuelve una lista de preventores activos, es decir los empleados que son preventores que tienen RolEmpleado, Preventor= 1
 - **Respuestas:**
   - 200 OK: La solicitud fue exitosa y se devolvió la lista de preventores.
   - 404 Not Found: No se encontraron preventores activos.
@@ -26,7 +28,7 @@ La API proporciona endpoints para realizar operaciones relacionadas con empleado
 
 - **Método HTTP:** GET
 - **Ruta:** /empleado/getallsupervisores
-- **Descripción:** Este endpoint obtiene los supervisores de otro endpoint, les carga el campo supervisor y activo = true, y luego los devuelve para ser leídos posteriormente por el cliente.
+- **Descripción:** Este endpoint obtiene los supervisores de otro endpoint, verifica que los supervisores no esten en la tabla, si no están les carga el campo supervisor y activo = true y luego los devuelve para ser leídos posteriormente por el cliente.
 - **Respuestas:**
   - 200 OK: La solicitud fue exitosa y se devolvieron los supervisores actualizados.
   - 404 Not Found: No se encontraron supervisores.
