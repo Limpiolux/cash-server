@@ -51,6 +51,8 @@ La API proporciona endpoints para realizar operaciones relacionadas con empleado
  
 ## Controlador FormularioController
 
+## Endpoints
+
 ### 4. Obtener Todos los Formularios
 
 - **Método HTTP:** GET
