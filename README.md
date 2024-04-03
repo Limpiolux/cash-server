@@ -175,7 +175,7 @@ Rol: se saca del select, se le pasaría el texto del select en este caso Adminis
 - 404 Not Found: Usuario no encontrado.
 - 500 Internal Server Error: Error interno del servidor.
 
-  ### 11. Validar Token
+### 11. Validar Token
   
 - **Método HTTP:** POST
 - **Ruta:** /user/validatetoken
@@ -183,14 +183,29 @@ Rol: se saca del select, se le pasaría el texto del select en este caso Adminis
 - **Cuerpo de la Solicitud (JSON):**
   ```json
  {
-   "Token": "Token JWT a validar"
+   "Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImRmZ0BleGFtcGxlLmNvbSIsIk1haWwiOiJkZmdAZXhhbXBsZS5jb20iLCJuYmYiOjE3MTEwMzgwNDcsImV4cCI6MTcxMTA0MTY0NywiaWF0IjoxNzExMDM4MDQ3fQ.zOgNg5Njvsx9dQ009AAVLrbS_gbk0arGxF0hKIAvr3E"
 }
 - **Respuestas:**
 - 200 OK: Token válido.
 - 401 Unauthorized: Se requiere un token de autenticación / Token inválido
 - 500 Internal Server Error: Error interno del servidor.
 
-  ### 12. Obtener Datos de Usuario
+### 12. Obtener Datos de Usuario
+
+- **Método HTTP:** GET
+- **Ruta:** /user/getuserdata
+- **Descripción:**  Este endpoint permite obtener los datos de un usuario autenticado.
+- **Headers:**
+  Key: Authorization
+  Value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im1sYXVyaTEyNkBnbWFpbC5jb20iLCJNYWlsIjoibWxhdXJpMTI2QGdtYWlsLmNvbSIsIm5iZiI6MTcxMTExOTE2MywiZXhwIjoxNzExMTIyNzYzLCJpYXQiOjE3MTExMTkxNjN9.JqBdZJ2JgzG0N_WuJ5HgNiqYix-e7AcLYDdybSryBg4
+- **Respuestas:**
+- 200 OK: Datos del usuario.
+- 401 Unauthorized: Token de autenticación no proporcionado o inválido.
+- 404 Not Found: No se encontró ningún usuario asociado con el token proporcionado.
+- 500 Internal Server Error: Error interno del servidor.
+
+### 13. Listar Roles de Usuario
+
   
 
   
