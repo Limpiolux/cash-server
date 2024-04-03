@@ -158,6 +158,7 @@ Rol: se saca del select, se le pasaría el texto del select en este caso Adminis
 - 500 Internal Server Error: Error interno del servidor.
 
 ### 10. Iniciar Sesión
+
 - **Método HTTP:** POST
 - **Ruta:** /user/login
 - **Descripción:** Este endpoint permite iniciar sesión en el sistema.
