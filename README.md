@@ -9,6 +9,11 @@ La API proporciona endpoints para realizar operaciones relacionadas con empleado
 1. [Obtener Todos los Preventores](#1-obtener-todos-los-preventores)
 2. [Obtener Todos los Supervisores](#2-obtener-todos-los-supervisores)
 3. [Obtener Correo Electrónico del Supervisor por ID](#3-obtener-correo-electrónico-del-supervisor-por-id)
+4. sdfsf
+5. sdfsf
+6. fsfds
+7. fsdf
+8. sfsfd
 
 ## Controlador EmpleadoController
 
@@ -43,3 +48,26 @@ La API proporciona endpoints para realizar operaciones relacionadas con empleado
   - 200 OK: La solicitud fue exitosa y se devolvió el correo electrónico del supervisor.
   - 404 Not Found: No se encontró ningún supervisor con el ID proporcionado.
   - 500 Internal Server Error: Error interno del servidor.
+ 
+## Controlador FormularioController
+
+### 4. Obtener Todos los Formularios
+
+- **Método HTTP:** GET
+- **Ruta:** /formulario/getallformularios
+- **Descripción:** Este endpoint devuelve una lista de todos los formularios disponibles.
+- **Respuestas:**
+  - 200 OK: La solicitud fue exitosa y se devolvió la lista de formularios.
+  - 404 Not Found: No se encontraron formularios.
+  - 500 Internal Server Error: Error interno del servidor.
+
+### 5. Listar Tipos de Vehículos
+
+- **Método HTTP:** GET
+- **Ruta:** /formulario/listatipovehiculos
+- **Descripción:** Este endpoint devuelve una lista de los tipos de vehículos disponibles, Flota = 1, Alquilado=2
+- **Respuestas:**
+  - 200 OK: La solicitud fue exitosa y se devolvió la lista de tipos de vehículos.
+  - 500 Internal Server Error: Error interno del servidor.
+ 
+  
