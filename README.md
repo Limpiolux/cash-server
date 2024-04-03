@@ -1,8 +1,8 @@
-# Documentación de la API
+# Documentación de la API - Cash Server
 
 ## Descripción General
 
-La API proporciona endpoints para realizar operaciones relacionadas con empleados (supervisores y preventores), formularios, visitas de servicios etc.
+La API proporciona endpoints para realizar operaciones relacionadas con gestión de empleados (supervisores y preventores), gestión de formularios, items, subitems, respuestas, gestión de usuarios y visitas de servicios.
 
 ## Tabla de Contenidos
 
@@ -44,6 +44,8 @@ La API proporciona endpoints para realizar operaciones relacionadas con empleado
 - **Método HTTP:** GET
 - **Ruta:** /empleado/getsupervisoremail/{idSupervisor}
 - **Descripción:** Este endpoint devuelve el correo electrónico de un supervisor por su ID.
+- - **Parámetros:**
+  - `idSupervisor`: ID del supervisor del que se desea obtener el correo electrónico
 - **Respuestas:**
   - 200 OK: La solicitud fue exitosa y se devolvió el correo electrónico del supervisor.
   - 404 Not Found: No se encontró ningún supervisor con el ID proporcionado.
@@ -71,5 +73,97 @@ La API proporciona endpoints para realizar operaciones relacionadas con empleado
 - **Respuestas:**
   - 200 OK: La solicitud fue exitosa y se devolvió la lista de tipos de vehículos.
   - 500 Internal Server Error: Error interno del servidor.
+ 
+## Controlador ItemController
+
+## Endpoints
+
+### 6. Obtener Items por ID de Formulario
+
+- **Método HTTP:** GET
+- **Ruta:** /item/getitemsbyformid/{formId}
+- **Descripción:** Este endpoint devuelve una lista de items pertenecientes a un formulario específico identificado por su ID.
+- **Parámetros:**
+  - `formId`: ID del formulario del que se desean obtener los items.
+- **Respuestas:**
+  - 200 OK: La solicitud fue exitosa y se devolvieron los items del formulario especificado.
+  - 404 Not Found: No se encontraron items para el formulario especificado.
+  - 500 Internal Server Error: Error interno del servidor.
+ 
+## Controlador RespuestaController
+
+## Endpoints
+
+### 7. Obtener Respuestas por ID de Item
+
+- **Método HTTP:** GET
+- **Ruta:** /respuesta/getrespuestasbyitemid/{itemId}
+- **Descripción:** Este endpoint devuelve una lista de respuestas pertenecientes a un item específico identificado por su ID.
+- **Parámetros:**
+  - `itemId`: ID del item del que se desean obtener las respuestas.
+- **Respuestas:**
+  - 200 OK: La solicitud fue exitosa y se devolvieron las respuestas del item especificado.
+  - 404 Not Found: No se encontraron respuestas para el item especificado.
+  - 500 Internal Server Error: Error interno del servidor.
+ 
+## Controlador SubItemController
+
+## Endpoints
+
+### 8. Obtener Subítems por ID de Item
+
+- **Método HTTP:** GET
+- **Ruta:** /subitem/getsubitemsbyitemid/{itemId}
+- **Descripción:** Este endpoint devuelve una lista de subítems pertenecientes a un item específico identificado por su ID.
+- **Parámetros:**
+  - `itemId`: ID del item del que se desean obtener los subítems.
+- **Respuestas:**
+  - 200 OK: La solicitud fue exitosa y se devolvieron los subítems del item especificado.
+  - 404 Not Found: No se encontraron subítems para el item especificado.
+  - 500 Internal Server Error: Error interno del servidor.
+
+ ## Controlador UserController
+
+ ## Endpoints
+
+### 9. Registrar Usuario
+Notas: 
+El usuario tiene, si es preventor:
+Name: se saca del select del preventor, tomando el nombre (el select preventor se rellena con un endpoint con los datos del preventor)
+Mail: se saca del select del preventor, tomando el mail. En el select de preventor se debe concatenar email - nombre
+Password: se saca del campo de texto 
+Rol: se saca del select de Rol, a Rol se le pasa el texto Preventor, proveniente del select.
+
+El Usuario si es Administrador, va a tener:
+Name: se saca del cuadro de texto donde se escribe Nombre y apellido
+Email: se saca del texto donde se escribe el Email
+Password: se saca del campo de texto donde se escribe el pass
+Rol: se saca del select, se le pasaría el texto del select en este caso Administrador.
+
+- **Método HTTP:** POST
+- **Ruta:** /user/register
+- **Descripción:** Este endpoint permite registrar un nuevo usuario en el sistema.
+- **Cuerpo de la Solicitud (JSON):**
+  ```json
+  {
+     "Name": "Nombre del usuario",
+     "Mail": "Correo electrónico del usuario",
+     "Password": "Contraseña del usuario",
+     "Rol": "Rol del usuario (Preventor o Administrador)"
+  }
+- **Respuestas:**
+200 OK: Registro exitoso.
+400 Bad Request: Error en los datos de entrada.
+404 Not Found: No se encontró un preventor con el correo electrónico proporcionado (en caso de rol de preventor).
+500 Internal Server Error: Error interno del servidor.
+
+
+ 
+
+
+ 
+    
+ 
+  
  
   
