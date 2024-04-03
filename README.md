@@ -146,16 +146,32 @@ Rol: se saca del select, se le pasaría el texto del select en este caso Adminis
 - **Cuerpo de la Solicitud (JSON):**
   ```json
   {
-     "Name": "Nombre del usuario",
-     "Mail": "Correo electrónico del usuario",
-     "Password": "Contraseña del usuario",
-     "Rol": "Rol del usuario (Preventor o Administrador)"
-  }
+    "Name": "Hernán Ingrassia",
+    "Mail": "heringrassia@gmail.com",
+    "Password": "1234",
+    "Rol": "Preventor o Administrador"
+}
 - **Respuestas:**
-200 OK: Registro exitoso.
-400 Bad Request: Error en los datos de entrada.
-404 Not Found: No se encontró un preventor con el correo electrónico proporcionado (en caso de rol de preventor).
-500 Internal Server Error: Error interno del servidor.
+- 200 OK: Registro exitoso.
+- 400 Bad Request: Error en los datos de entrada (errores de validaciones).
+- 404 Not Found: No se encontró un preventor con el correo electrónico proporcionado (en caso de rol de preventor).
+- 500 Internal Server Error: Error interno del servidor.
+
+### 10. Iniciar Sesión
+- **Método HTTP:** POST
+- **Ruta:** /user/login
+- **Descripción:** Este endpoint permite iniciar sesión en el sistema.
+- **Cuerpo de la Solicitud (JSON):**
+ ```json
+{
+    "Mail": "mlauri126@gmail.com",
+    "Password": "1234"
+}
+- **Respuestas:**
+- 200 OK: Inicio de sesión exitoso. Retorna un token JWT.
+- 401 Unauthorized: Credenciales incorrectas.
+- 404 Not Found: Usuario no encontrado.
+- 500 Internal Server Error: Error interno del servidor.
 
 
  
