@@ -29,10 +29,12 @@ namespace cash_server.Models
         //public Empleado Preventor { get; set; }
 
         public int UsuarioId { get; set; }
-      
 
         public Usuario Usuario { get; set; }
+
+        public DateTime Fecha_operacion { get; set; } = DateTime.Today;
         public List<VisitaServicioForm> Formularios { get; set; }
+
     }
 
 
@@ -83,6 +85,9 @@ namespace cash_server.Models
             [ForeignKey("Usuario")]
             [Column(Order = 4)]
             public int UsuarioId { get; set; }
+
+            [Required]
+            public DateTime Fecha_operacion { get; set; } = DateTime.Today;
 
 
         }

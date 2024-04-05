@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Swashbuckle.Application;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,19 @@ namespace cash_server
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-           
             // Configurar Json.NET para ignorar las referencias circulares
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+            // Habilitar Swagger
+            /*GlobalConfiguration.Configuration
+                .EnableSwagger(c =>
+                {
+                    c.SingleApiVersion("v1", "Nombre de tu API");
+                    c.IncludeXmlComments(System.AppDomain.CurrentDomain.BaseDirectory + "\\TuProyecto.XML");
+                })
+                .EnableSwaggerUi();*/
         }
+    
     }
 
         

@@ -15,10 +15,12 @@ namespace cash_server.Controllers
     public class VisitaServicioFormController:ApiController
     {
         private readonly VisitaServicioFormData _visitaServicioFormData;
+        private readonly VisitaServicioData _visitaServicioData;
 
         public VisitaServicioFormController()
         {
             _visitaServicioFormData = new VisitaServicioFormData();
+            _visitaServicioData = new VisitaServicioData();
         }
         /*datos a enviar
         [
@@ -66,5 +68,32 @@ namespace cash_server.Controllers
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
             }
         }
+
+        [HttpGet]
+        [Route("obtenerformulariosByIdVisita/{idVisita}")]
+        public IHttpActionResult ObtenerFormulariosPorVisita(int idVisita)
+        {
+            try
+            {   // Verificar si la visita existe
+                var visitaExistente = _visitaServicioData.GetById(idVisita);
+                if (visitaExistente == null)
+                {
+                    return BadRequest($"La visita con ID {idVisita} no existe.");
+                }
+
+
+                // Obtener formularios relacionados con la visita especificada
+                var formularios = _visitaServicioFormData.List()
+                                    .Where(f => f.VisitaId == idVisita)
+                                    .ToList();
+
+                return Ok(formularios);
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+
     }
 }

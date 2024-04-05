@@ -1,10 +1,17 @@
-﻿using cash_server.Data;
+﻿using App.Metrics.Formatters.Prometheus;
+using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
+using cash_server.Data;
 using cash_server.Models;
 using cash_server.Servicios;
 using cash_server.SharedKernel;
+using Prometheus;
+using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Data.Services.Client;
+using System.IdentityModel.Metadata;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -17,6 +24,9 @@ namespace cash_server.Controllers
 {
     [RoutePrefix("empleado")]
     [EnableCors(origins: "http://localhost:5173", headers: "*", methods: "*")]
+    /// <summary>
+    /// Controlador para operaciones relacionadas con supervisores.
+    /// </summary>
     public class EmpleadoController : ApiController
     {
        private readonly EmpleadoData _empleadoData;
@@ -29,6 +39,8 @@ namespace cash_server.Controllers
 
         [HttpGet]
         [Route("getallpreventores")]
+        [SwaggerOperation("GetAllValues")]
+        [SwaggerResponse(HttpStatusCode.OK, "OK", typeof(IEnumerable<string>))]
         public IHttpActionResult GetAllPreventores()
         {
             try
@@ -122,9 +134,21 @@ namespace cash_server.Controllers
             }
 
         }
-
+        //esto lo hice para probar
+        /// <summary>
+        /// Obtiene el correo electrónico de un supervisor por su ID.
+        /// </summary>
+        /// <param name="idSupervisor">ID del supervisor.</param>
+        /// <returns>Correo electrónico del supervisor.</returns>
+        /// /// <remarks>
+        /// Este método obtiene el correo electrónico de un supervisor utilizando su ID.
+        /// </remarks>
         [HttpGet]
         [Route("getsupervisoremail/{idSupervisor}")]
+        //[SwaggerOperation(Descriptor = "Obtiene el correo electrónico de un supervisor por su ID.")]
+        [SwaggerResponse(HttpStatusCode.OK, "Correo electrónico del supervisor obtenido correctamente.", typeof(string))]
+        [SwaggerResponse(HttpStatusCode.NotFound, "No se encontró ningún supervisor con el ID proporcionado.")]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, "Error interno del servidor.")]
         public IHttpActionResult GetSupervisorEmail(int idSupervisor)
         {
             try

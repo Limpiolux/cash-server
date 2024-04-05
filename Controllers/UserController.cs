@@ -52,6 +52,13 @@ namespace cash_server.Controllers
             Password: se saca del campo de texto 
             Rol se saca del selec de Rol, a Rol se le pasa el texto Preventor, proveniente del select
 
+            {
+                "Name": "Hernán Ingrassia",
+                "Mail": "heringrassia@gmail.com",
+                "Password": "1234",
+                "Rol": "Preventor"
+            }
+
             si es Administrador, el usuario va a tener:
             Name: se saca del cuadro de texto donde se escribe Nombre y apellido
             Email: se saca del texto donde se escribe el Email
