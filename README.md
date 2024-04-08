@@ -206,6 +206,118 @@ Rol: se saca del select, se le pasaría el texto del select en este caso Adminis
 
 ### 13. Listar Roles de Usuario
 
+- **Método HTTP:** GET
+- **Ruta:** /user/listroles
+- **Descripción:** Este endpoint permite obtener una lista de roles de usuario válidos.
+- **Respuestas:**
+- 200 OK: Lista de roles de usuario.
+
+### 14. Obtener Rol de Usuario por ID
+
+- **Método HTTP:** GET
+- **Ruta:** /user/getuserrole/{userId}
+- **Descripción:** Este endpoint permite obtener el rol de un usuario por su ID.
+- **Parámetros:**
+  - `userId`: ID del usuario.
+- **Respuestas:**
+- 200 OK: Rol del usuario.
+- 404 Not Found: No se encontró ningún usuario activo con el ID proporcionado.
+- 500 Internal Server Error: Error interno del servidor.
+
+### 15. Listar Usuarios Activos
+
+- **Método HTTP:** GET
+- **Ruta:**  /user/activeusers
+- **Descripción:** Este endpoint permite obtener una lista de todos los usuarios activos en el sistema.
+- **Respuestas:**
+- 200 OK: Lista de usuarios activos.
+- 404 Not Found: No se encontraron usuarios activos.
+- 500 Internal Server Error: Error interno del servidor.
+
+### 16. Desactivar Usuario
+
+- **Método HTTP:** PUT
+- **Ruta:**  /user/delete/{userId}
+- **Descripción:** Este endpoint permite desactivar un usuario existente en el sistema.
+- **Parámetros:**
+- `userId`: ID del usuario a desactivar.
+- **Respuestas:**
+- 200 OK: Usuario desactivado correctamente.
+- 400 Bad Request: No se puede eliminar el usuario porque tiene visitas asociadas.
+- 404 Not Found: No se encontró ningún usuario con el ID proporcionado.
+- 500 Internal Server Error: Error interno del servidor.
+
+### 17. Editar Usuario
+
+- **Método HTTP:** PUT
+- **Ruta:** /user/edit/{userId}
+- **Descripción:**  Este endpoint permite editar los datos de un usuario existente en el sistema.
+- **Parámetros:**
+- `userId`: ID del usuario a editar.
+- - **Cuerpo de la Solicitud (JSON):**
+  ```json
+{
+   "Name": "Hernan Ingrassia",
+   "Mail": "heringrassia@gmail.com",
+   "Password": "1234",
+   "Rol": "Preventor" / "Administrador"
+}
+- **Respuestas:**
+- 200 OK: Usuario actualizado correctamente.
+- 400 Bad Request: Error en los datos de entrada.
+- 404 Not Found: No se encontró ningún usuario activo con el ID proporcionado.
+- 500 Internal Server Error: Error interno del servidor.
+
+
+## Controlador VisitaServicioController
+
+ ## Endpoints
+
+### 18. Crear Visita de Servicio
+
+- **Método HTTP:** POST
+- **Ruta:** /visitaservicio/crear
+- **Descripción:**  Este endpoint permite crear una nueva visita de servicio.
+- **Parámetros:**
+- `userId`: ID del usuario a editar.
+- - **Cuerpo de la Solicitud (JSON):**
+  ```json
+   {
+    "ServicioPrestado": "Reparación de equipo",
+    "Cliente": "Empresa ABC",
+    "UnidadNegocio": "Sucursal 123",
+    "FechaVisita": "2024-03-13T10:00:00",
+    "ModeloVehiculo": "Toyota Corolla",
+    "Conductor": "Juan Pérez",
+    "TipoVehiculoId": 1,
+    "Dominio": "ABC123",
+    "Proveedor": "Taller Mecánico XYZ",
+    "SupervisorId": 264,
+    "UsuarioId": 3
+}
+Nota: ModeloVehiculo,Conductor,TipoVehiculoId, Dominio, Proveedor pueden ir en null si si no se está en el formulario de vehiculos.
+
+- **Respuestas:**
+- 200 OK: Visita de servicio creada exitosamente. Retorna el ID de la visita.
+- 400 Bad Request: El cuerpo de la solicitud no puede estar vacío.
+- 500 Internal Server Error: Error interno del servidor.
+
+  ### 19. Obtener Todas las Visitas
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+
   
 
   
