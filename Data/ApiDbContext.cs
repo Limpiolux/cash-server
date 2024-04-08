@@ -27,8 +27,9 @@ namespace cash_server.Data
         public DbSet<VisitaServicio> VisitaServicios  { get; set; }
         public DbSet<VisitaServicioForm> VisitaServicioForms { get; set; }
 
+        public DbSet<UnidadNegocio> UnidadesNegocios { get; set; }
 
-
+        public DbSet<ServicioPrestado> ServiciosPrestados { get; set; }
 
 
 

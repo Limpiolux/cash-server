@@ -355,7 +355,9 @@
     <Compile Include="Data\FormularioData.cs" />
     <Compile Include="Data\ItemData.cs" />
     <Compile Include="Data\RespuestaData.cs" />
+    <Compile Include="Data\ServicioPrestadoData.cs" />
     <Compile Include="Data\SubItemData.cs" />
+    <Compile Include="Data\UnidadNegocioData.cs" />
     <Compile Include="Data\UsuarioData.cs" />
     <Compile Include="Data\VisitaServicioData.cs" />
     <Compile Include="Data\VisitaServicioFormData.cs" />
@@ -440,13 +442,19 @@
     <Compile Include="Migrations\202404051446178_VisitaCambioOrden.Designer.cs">
       <DependentUpon>202404051446178_VisitaCambioOrden.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404081558440_CreaciondeUniNegocioYServPrestado.cs" />
+    <Compile Include="Migrations\202404081558440_CreaciondeUniNegocioYServPrestado.Designer.cs">
+      <DependentUpon>202404081558440_CreaciondeUniNegocioYServPrestado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\Respuesta.cs" />
+    <Compile Include="Models\ServicioPrestado.cs" />
     <Compile Include="Models\SubItem.cs" />
+    <Compile Include="Models\UnidadNegocio.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\VisitaServicio.cs" />
     <Compile Include="Models\VisitaServicioForm.cs" />
@@ -597,6 +605,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404051446178_VisitaCambioOrden.resx">
       <DependentUpon>202404051446178_VisitaCambioOrden.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404081558440_CreaciondeUniNegocioYServPrestado.resx">
+      <DependentUpon>202404081558440_CreaciondeUniNegocioYServPrestado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

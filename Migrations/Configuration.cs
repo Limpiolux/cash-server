@@ -68,7 +68,7 @@
                 Numero = 7,
                 Nombre = "Control del Vehículo"
             });
-           
+
 
             foreach (Formulario formulario in formularios)
             {
@@ -126,7 +126,7 @@
 
             context.SaveChanges();
 
-           
+
             //carga de subItems
 
             var subItems = new List<SubItem>()
@@ -370,7 +370,7 @@
                      new SubItem { ItemId =20, Descripcion = "Rueda de Auxilio", Comentario = null },
                      new SubItem { ItemId =20, Descripcion = "Luces", Comentario = null },
                      new SubItem { ItemId =20, Descripcion = "Cinturón de Seguridad", Comentario = null },
-                  
+
 
             };
 
@@ -510,7 +510,7 @@
 
             foreach (var respuesta in respuestas)
             {   //busca en la db itemID y descripcion que no se repiran
-                context.Respuestas.AddOrUpdate(r => new {r.ItemId, r.Descripcion}, respuesta);
+                context.Respuestas.AddOrUpdate(r => new { r.ItemId, r.Descripcion }, respuesta);
             }
 
             // Guardar cambios
@@ -548,9 +548,35 @@
 
             context.SaveChanges();
 
+            //cargo las unidades de negocio 
+
+            IList<UnidadNegocio> unidadesNegocio = new List<UnidadNegocio>();
+
+            unidadesNegocio.Add(new UnidadNegocio()
+            {
+                Nombre = "LIMPIOLUX S.A.",
+                Cuit = "30540984626",
+                Activo = true,
+
+            });
+
+            unidadesNegocio.Add(new UnidadNegocio()
+            {
+                Nombre = "FBM S.A.",
+                Cuit = null,
+                Activo = true,
+
+            });
+
+            foreach (var unidadNegocio in unidadesNegocio)
+            {
+                context.UnidadesNegocios.AddOrUpdate(un => un.Nombre, unidadNegocio);
+            }
+           
+            context.SaveChanges();
+
+
         }
-
-
 
     }
 }
