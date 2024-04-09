@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreaciondeUniNegocioYServPrestado : DbMigration
+    public partial class unidadNegocioYServicioPrestado : DbMigration
     {
         public override void Up()
         {
@@ -13,8 +13,10 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         UnidadNegocioId = c.Int(nullable: false),
-                        CasaNro = c.Int(nullable: false),
-                        Nombre = c.String(nullable: false),
+                        ClienteNro = c.Int(nullable: false),
+                        ClienteNombre = c.String(nullable: false),
+                        CasaNro = c.String(),
+                        CasaNombre = c.String(),
                         Activo = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

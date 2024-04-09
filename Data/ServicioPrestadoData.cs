@@ -1,5 +1,6 @@
 ﻿using cash_server.Interfaces;
 using cash_server.Models;
+using cash_server.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -25,7 +26,13 @@ namespace cash_server.Data
             return db.ServiciosPrestados.Find(id);
 
         }
-
+        //verifica si existe existe una casa (servicio prestado) con el mismo nombre y nrodecasa y que este activo
+        public ServicioPrestado GetByCasaNroyNombre(ServicioPrestado casa)
+        {
+            var db = new ApiDbContext();
+            return db.ServiciosPrestados.
+                FirstOrDefault(c => c.CasaNro == casa.CasaNro && c.Activo && casa.ClienteNombre == c.ClienteNombre && casa.CasaNombre == c.CasaNombre );
+        }
         public void Insert(ServicioPrestado entity)
         {
             var db = new ApiDbContext();
@@ -37,7 +44,7 @@ namespace cash_server.Data
         {
 
             var db = new ApiDbContext();
-            var serviciosPrestados = db.ServiciosPrestados.ToList();
+            var serviciosPrestados = db.ServiciosPrestados.Include(sp => sp.UnidadNegocio).ToList();
             return serviciosPrestados;
 
 

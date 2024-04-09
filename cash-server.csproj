@@ -346,7 +346,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\RespuestaController.cs" />
+    <Compile Include="Controllers\ServicioPrestadoController.cs" />
     <Compile Include="Controllers\SubItemController.cs" />
+    <Compile Include="Controllers\UnidadNegocioController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VisitaServicioController.cs" />
     <Compile Include="Controllers\VisitaServicioFormController.cs" />
@@ -442,9 +444,9 @@
     <Compile Include="Migrations\202404051446178_VisitaCambioOrden.Designer.cs">
       <DependentUpon>202404051446178_VisitaCambioOrden.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202404081558440_CreaciondeUniNegocioYServPrestado.cs" />
-    <Compile Include="Migrations\202404081558440_CreaciondeUniNegocioYServPrestado.Designer.cs">
-      <DependentUpon>202404081558440_CreaciondeUniNegocioYServPrestado.cs</DependentUpon>
+    <Compile Include="Migrations\202404091919392_unidadNegocioYServicioPrestado.cs" />
+    <Compile Include="Migrations\202404091919392_unidadNegocioYServicioPrestado.Designer.cs">
+      <DependentUpon>202404091919392_unidadNegocioYServicioPrestado.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -606,8 +608,8 @@
     <EmbeddedResource Include="Migrations\202404051446178_VisitaCambioOrden.resx">
       <DependentUpon>202404051446178_VisitaCambioOrden.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404081558440_CreaciondeUniNegocioYServPrestado.resx">
-      <DependentUpon>202404081558440_CreaciondeUniNegocioYServPrestado.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202404091919392_unidadNegocioYServicioPrestado.resx">
+      <DependentUpon>202404091919392_unidadNegocioYServicioPrestado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
