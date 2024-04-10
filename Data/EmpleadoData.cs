@@ -43,24 +43,9 @@ namespace cash_server.Data
         public void Insert(Empleado entity)
         {
             var db = new ApiDbContext();
-            var nuevoEmpleado = new Empleado();
-            //si la entidad viene con Id (porque viene de un endpoint de datos, en este caso del endpoint de supervisores
-            //armo un nueva entidad con solo las propiedades que necesito, el Id no lo necesito
-            if (entity.Id != 0){
-                nuevoEmpleado.Nombre = entity.Nombre;
-                nuevoEmpleado.Email = entity.Email;
-                nuevoEmpleado.Rol = entity.Rol;
-                nuevoEmpleado.Activo = entity.Activo;
-                nuevoEmpleado.Usuario = null;
-                db.Empleados.Add(nuevoEmpleado);
-                db.SaveChanges();
-            }
-            else
-            {
-                //si no sigue el flujo normal de inserción
-                db.Empleados.Add(entity);
-                db.SaveChanges();
-            }
+            db.Empleados.Add(entity);
+            db.SaveChanges();
+           
 
         }
 

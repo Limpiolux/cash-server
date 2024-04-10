@@ -86,9 +86,13 @@ namespace cash_server.Controllers
 
                         if (existente == null)
                         {
-                            supervisor.Rol = RolEmpleado.Supervisor;
-                            supervisor.Activo = true;
-                            supervisor.Usuario = null;
+                            Empleado superv = new Empleado();
+                            superv.Rol = RolEmpleado.Supervisor;
+                            superv.Activo = true;
+                            superv.Usuario = null;
+                            superv.Nombre = supervisor.Nombre;
+                            superv.Email = supervisor.Email;
+                            superv.Usuario = null;
 
                             //puse esto porque si no viene con email, tira error en la insercion, pincha el programa, ya que mail es obligatorio
                             //entonces con el chatch capturo la excepcion para que no se pare el programa
@@ -96,7 +100,7 @@ namespace cash_server.Controllers
                             {
                                 //if (!string.IsNullOrWhiteSpace(supervisor.Email))
                                 //{
-                                _empleadoData.Insert(supervisor);
+                                _empleadoData.Insert(superv);
 
                                 //}
 
