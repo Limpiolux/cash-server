@@ -120,6 +120,8 @@ namespace cash_server.Data
                 .Include(v => v.Usuario)
                 .Include(v => v.Formularios)
                 .Include(v => v.Supervisor)
+                .Include(v=> v.UnidadNegocio)
+                .Include(v => v.ServicioPrestado)
                 .ToList();
 
             return visitasServicio;

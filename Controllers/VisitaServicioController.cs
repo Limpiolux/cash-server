@@ -75,20 +75,18 @@ namespace cash_server.Controllers
             {
                 var visitas = _visitaServicioData.List();
 
-                foreach (var visita in visitas)
-                {
-                    var formularios = _visitaServicioFormData.List().Where(f => f.VisitaId == visita.Id).ToList();
-                    
-                    visita.Formularios = formularios;
-                }
-
                 if (visitas.Any())
                 {
+                    foreach (var visita in visitas)
+                    {
+                        var formularios = _visitaServicioFormData.List().Where(f => f.VisitaId == visita.Id).ToList();
+                        visita.Formularios = formularios;
+                    }
                     return Ok(visitas);
                 }
                 else
                 {
-                    return Content(HttpStatusCode.NoContent, "No hay visitas cargadas!");
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron visitas" });
                 }
             }
             catch (Exception)

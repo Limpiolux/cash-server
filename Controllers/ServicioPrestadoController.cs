@@ -136,7 +136,7 @@ namespace cash_server.Controllers
                             serPres.CasaNro = clienteCasaFBM.CasaNro;
                             serPres.CasaNombre = clienteCasaFBM.CasaNombre; 
                             serPres.UnidadNegocioId = unidadNegocio.Id;
-                            serPres.Localidad = clienteCasaFBM.Localidad;
+                            serPres.Localidad = string.IsNullOrEmpty(clienteCasaFBM.Localidad) ? null : clienteCasaFBM.Localidad;
                             serPres.Activo = true;
 
                             try
@@ -157,7 +157,7 @@ namespace cash_server.Controllers
                             }
                         }
                     }
-                    //aca debo discriminar y traer solo los clientes de FBM
+                    //aca debo discriminar y traer solo los clientes de FBM ser
                     var nuevosServiciosCasas = _servicioPrestadoData.List().Where(sp => sp.UnidadNegocioId == unidadNegocio.Id && sp.UnidadNegocioId == 2).ToList();
                     return Json(nuevosServiciosCasas); // Retornar la lista para el cliente
                 }
