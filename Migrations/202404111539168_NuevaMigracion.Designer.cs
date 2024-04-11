@@ -7,13 +7,13 @@ namespace cash_server.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CambioTableUser2 : IMigrationMetadata
+    public sealed partial class NuevaMigracion : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CambioTableUser2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NuevaMigracion));
         
         string IMigrationMetadata.Id
         {
-            get { return "202403201850592_CambioTableUser2"; }
+            get { return "202404111539168_NuevaMigracion"; }
         }
         
         string IMigrationMetadata.Source

@@ -64,6 +64,31 @@ namespace cash_server.Data
                     throw new Exception($"El Usuario con Id {entity.UsuarioId} no fue encontrado en la base de datos.");
                 }
 
+                //cargo el servivicio prestado
+                var servicioPrestado = db.ServiciosPrestados.FirstOrDefault(s => s.Id == entity.ServicioPrestadoId);
+                if (servicioPrestado != null)
+                {
+                    entity.ServicioPrestado = servicioPrestado;
+                    db.Entry(entity.ServicioPrestado).State = EntityState.Unchanged;
+                }
+                else
+                {
+                    throw new Exception($"El Servicio Prestado con Id {entity.ServicioPrestadoId} no fue encontrado en la base de datos.");
+                }
+
+                //cargo ela unidad de negocio
+                var unidadNegocio = db.UnidadesNegocios.FirstOrDefault(u => u.Id == entity.UnidadNegocioId);
+                if (unidadNegocio != null)
+                {
+                    entity.UnidadNegocio = unidadNegocio;
+                    db.Entry(entity.UnidadNegocio).State = EntityState.Unchanged;
+                }
+                else
+                {
+                    throw new Exception($"El Unidad de Negocio con Id {entity.UnidadNegocioId} no fue encontrado en la base de datos.");
+                }
+
+
                 // Agregar formulario (si existen) esto ver si se cargan desp
                 //esta lista en el modelo la comente
                 /*if (entity.Formularios != null && entity.Formularios.Any())

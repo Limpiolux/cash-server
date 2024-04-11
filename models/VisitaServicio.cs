@@ -13,9 +13,13 @@ namespace cash_server.Models
     public partial class VisitaServicio : IEntity
     {
         public int Id { get; set; }
-        public string ServicioPrestado { get; set; }
+        public ServicioPrestado ServicioPrestado { get; set; }
+        public int ServicioPrestadoId { get; set; }
+        //quien entrevista
         public string Cliente { get; set; }
-        public string UnidadNegocio { get; set; }
+        public UnidadNegocio UnidadNegocio { get; set; }
+
+        public int UnidadNegocioId { get; set; }
         public DateTime FechaVisita { get; set; }
         public string ModeloVehiculo { get; set; } = null;
         public string Conductor { get; set; } = null;
@@ -47,17 +51,18 @@ namespace cash_server.Models
             [Column(Order = 1)]
             public int Id { get; set; }
 
-            [Required]
-            [StringLength(50)]
-            public string ServicioPrestado { get; set; }
+            [ForeignKey("UnidadNegocio")]
+            [Column(Order = 2)]
+            public int UnidadNegocioId { get; set; }
 
+            [ForeignKey("ServicioPrestado")]
+            [Column(Order = 3)]
+            public int ServicioPrestadoId { get;set;}
+
+            //quien entrevista
             [Required]
             [StringLength(50)]
             public string Cliente { get; set; }
-
-            [Required]
-            [StringLength(50)]
-            public string UnidadNegocio { get; set; }
 
             [Required]
             public DateTime FechaVisita { get; set; }
@@ -74,16 +79,17 @@ namespace cash_server.Models
 
             //Propiedades de navegación para las relaciones con Empleado
             [ForeignKey("SupervisorId")]
-            [Column(Order = 2)]
+            [Column(Order =4 )]
             public Empleado Supervisor { get; set; }
 
             /*[ForeignKey("PreventorId")]
             [Required]
             [Column(Order = 3)]
             public Empleado Preventor { get; set; }*/
+          
 
             [ForeignKey("Usuario")]
-            [Column(Order = 4)]
+            [Column(Order = 5)]
             public int UsuarioId { get; set; }
 
             [Required]

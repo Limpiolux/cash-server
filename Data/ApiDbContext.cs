@@ -54,6 +54,16 @@ namespace cash_server.Data
             .IsRequired()
             .HasColumnType("int")
             .HasColumnAnnotation("EnumType", typeof(RolEmpleado));
+
+            modelBuilder.Entity<VisitaServicio>()
+           .HasRequired(v => v.UnidadNegocio)
+           .WithMany()
+           .HasForeignKey(v => v.UnidadNegocioId)
+           .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+
+
         }
     }
 }

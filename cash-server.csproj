@@ -368,97 +368,9 @@
     </Compile>
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Migrations\202402271628499_Initial-Create.cs" />
-    <Compile Include="Migrations\202402271628499_Initial-Create.Designer.cs">
-      <DependentUpon>202402271628499_Initial-Create.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403131433366_CreateTables.cs" />
-    <Compile Include="Migrations\202403131433366_CreateTables.Designer.cs">
-      <DependentUpon>202403131433366_CreateTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403132036553_CreateTableEmpleados.cs" />
-    <Compile Include="Migrations\202403132036553_CreateTableEmpleados.Designer.cs">
-      <DependentUpon>202403132036553_CreateTableEmpleados.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403191351064_CratetablesVisitas.cs" />
-    <Compile Include="Migrations\202403191351064_CratetablesVisitas.Designer.cs">
-      <DependentUpon>202403191351064_CratetablesVisitas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403191631323_ModTableVisitas.cs" />
-    <Compile Include="Migrations\202403191631323_ModTableVisitas.Designer.cs">
-      <DependentUpon>202403191631323_ModTableVisitas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403191935304_CambiosvisitasUltimo.cs" />
-    <Compile Include="Migrations\202403191935304_CambiosvisitasUltimo.Designer.cs">
-      <DependentUpon>202403191935304_CambiosvisitasUltimo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403201445484_ModifUsuarioROles.cs" />
-    <Compile Include="Migrations\202403201445484_ModifUsuarioROles.Designer.cs">
-      <DependentUpon>202403201445484_ModifUsuarioROles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403201452191_ModModeloEmpleado.cs" />
-    <Compile Include="Migrations\202403201452191_ModModeloEmpleado.Designer.cs">
-      <DependentUpon>202403201452191_ModModeloEmpleado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403201803120_CambioTableUser.cs" />
-    <Compile Include="Migrations\202403201803120_CambioTableUser.Designer.cs">
-      <DependentUpon>202403201803120_CambioTableUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403201850592_CambioTableUser2.cs" />
-    <Compile Include="Migrations\202403201850592_CambioTableUser2.Designer.cs">
-      <DependentUpon>202403201850592_CambioTableUser2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403212014199_CambiosEMpleados.cs" />
-    <Compile Include="Migrations\202403212014199_CambiosEMpleados.Designer.cs">
-      <DependentUpon>202403212014199_CambiosEMpleados.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403212028451_CambiosEMpleado222.cs" />
-    <Compile Include="Migrations\202403212028451_CambiosEMpleado222.Designer.cs">
-      <DependentUpon>202403212028451_CambiosEMpleado222.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403221427223_CambiosTableUsuario.cs" />
-    <Compile Include="Migrations\202403221427223_CambiosTableUsuario.Designer.cs">
-      <DependentUpon>202403221427223_CambiosTableUsuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403221431032_CambiosTableUsuario2.cs" />
-    <Compile Include="Migrations\202403221431032_CambiosTableUsuario2.Designer.cs">
-      <DependentUpon>202403221431032_CambiosTableUsuario2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202403271820425_ModtableVisitaServicio.cs" />
-    <Compile Include="Migrations\202403271820425_ModtableVisitaServicio.Designer.cs">
-      <DependentUpon>202403271820425_ModtableVisitaServicio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404051405222_CambiosUltimos.cs" />
-    <Compile Include="Migrations\202404051405222_CambiosUltimos.Designer.cs">
-      <DependentUpon>202404051405222_CambiosUltimos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404051426352_CambiosVisServicios.cs" />
-    <Compile Include="Migrations\202404051426352_CambiosVisServicios.Designer.cs">
-      <DependentUpon>202404051426352_CambiosVisServicios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404051427574_visiserFech.cs" />
-    <Compile Include="Migrations\202404051427574_visiserFech.Designer.cs">
-      <DependentUpon>202404051427574_visiserFech.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404051446178_VisitaCambioOrden.cs" />
-    <Compile Include="Migrations\202404051446178_VisitaCambioOrden.Designer.cs">
-      <DependentUpon>202404051446178_VisitaCambioOrden.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404091919392_unidadNegocioYServicioPrestado.cs" />
-    <Compile Include="Migrations\202404091919392_unidadNegocioYServicioPrestado.Designer.cs">
-      <DependentUpon>202404091919392_unidadNegocioYServicioPrestado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404101818287_cambiosModeloServPrestado.cs" />
-    <Compile Include="Migrations\202404101818287_cambiosModeloServPrestado.Designer.cs">
-      <DependentUpon>202404101818287_cambiosModeloServPrestado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404101905490_cambiosModeloServPrestado2.cs" />
-    <Compile Include="Migrations\202404101905490_cambiosModeloServPrestado2.Designer.cs">
-      <DependentUpon>202404101905490_cambiosModeloServPrestado2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404101909095_cambiosModeloServPrestado222.cs" />
-    <Compile Include="Migrations\202404101909095_cambiosModeloServPrestado222.Designer.cs">
-      <DependentUpon>202404101909095_cambiosModeloServPrestado222.cs</DependentUpon>
+    <Compile Include="Migrations\202404111539168_NuevaMigracion.cs" />
+    <Compile Include="Migrations\202404111539168_NuevaMigracion.Designer.cs">
+      <DependentUpon>202404111539168_NuevaMigracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -563,79 +475,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202402271628499_Initial-Create.resx">
-      <DependentUpon>202402271628499_Initial-Create.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403131433366_CreateTables.resx">
-      <DependentUpon>202403131433366_CreateTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403132036553_CreateTableEmpleados.resx">
-      <DependentUpon>202403132036553_CreateTableEmpleados.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403191351064_CratetablesVisitas.resx">
-      <DependentUpon>202403191351064_CratetablesVisitas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403191631323_ModTableVisitas.resx">
-      <DependentUpon>202403191631323_ModTableVisitas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403191935304_CambiosvisitasUltimo.resx">
-      <DependentUpon>202403191935304_CambiosvisitasUltimo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403201445484_ModifUsuarioROles.resx">
-      <DependentUpon>202403201445484_ModifUsuarioROles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403201452191_ModModeloEmpleado.resx">
-      <DependentUpon>202403201452191_ModModeloEmpleado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403201803120_CambioTableUser.resx">
-      <DependentUpon>202403201803120_CambioTableUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403201850592_CambioTableUser2.resx">
-      <DependentUpon>202403201850592_CambioTableUser2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403212014199_CambiosEMpleados.resx">
-      <DependentUpon>202403212014199_CambiosEMpleados.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403212028451_CambiosEMpleado222.resx">
-      <DependentUpon>202403212028451_CambiosEMpleado222.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403221427223_CambiosTableUsuario.resx">
-      <DependentUpon>202403221427223_CambiosTableUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403221431032_CambiosTableUsuario2.resx">
-      <DependentUpon>202403221431032_CambiosTableUsuario2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202403271820425_ModtableVisitaServicio.resx">
-      <DependentUpon>202403271820425_ModtableVisitaServicio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404051405222_CambiosUltimos.resx">
-      <DependentUpon>202404051405222_CambiosUltimos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404051426352_CambiosVisServicios.resx">
-      <DependentUpon>202404051426352_CambiosVisServicios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404051427574_visiserFech.resx">
-      <DependentUpon>202404051427574_visiserFech.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404051446178_VisitaCambioOrden.resx">
-      <DependentUpon>202404051446178_VisitaCambioOrden.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404091919392_unidadNegocioYServicioPrestado.resx">
-      <DependentUpon>202404091919392_unidadNegocioYServicioPrestado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404101818287_cambiosModeloServPrestado.resx">
-      <DependentUpon>202404101818287_cambiosModeloServPrestado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404101905490_cambiosModeloServPrestado2.resx">
-      <DependentUpon>202404101905490_cambiosModeloServPrestado2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404101909095_cambiosModeloServPrestado222.resx">
-      <DependentUpon>202404101909095_cambiosModeloServPrestado222.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202404111539168_NuevaMigracion.resx">
+      <DependentUpon>202404111539168_NuevaMigracion.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

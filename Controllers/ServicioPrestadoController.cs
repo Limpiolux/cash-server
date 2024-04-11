@@ -85,8 +85,9 @@ namespace cash_server.Controllers
                             }
                         }
                     }
+                    //aca debo discriminar y traer solo los clientes de Limpiolux
+                    var nuevosServiciosCasas = _servicioPrestadoData.List().Where(sp => sp.UnidadNegocioId == unidadNegocio.Id && sp.UnidadNegocioId==1).ToList();
 
-                    var nuevosServiciosCasas = _servicioPrestadoData.List();
                     return Json(nuevosServiciosCasas); //Retornar la lista para el cliente
                 }
                 else
@@ -135,6 +136,7 @@ namespace cash_server.Controllers
                             serPres.CasaNro = clienteCasaFBM.CasaNro;
                             serPres.CasaNombre = clienteCasaFBM.CasaNombre; 
                             serPres.UnidadNegocioId = unidadNegocio.Id;
+                            serPres.Localidad = clienteCasaFBM.Localidad;
                             serPres.Activo = true;
 
                             try
@@ -155,9 +157,9 @@ namespace cash_server.Controllers
                             }
                         }
                     }
-
-                    var nuevosClientesCasa = _servicioPrestadoData.List();
-                    return Json(nuevosClientesCasa); // Retornar la lista para el cliente
+                    //aca debo discriminar y traer solo los clientes de FBM
+                    var nuevosServiciosCasas = _servicioPrestadoData.List().Where(sp => sp.UnidadNegocioId == unidadNegocio.Id && sp.UnidadNegocioId == 2).ToList();
+                    return Json(nuevosServiciosCasas); // Retornar la lista para el cliente
                 }
                 else
                 {

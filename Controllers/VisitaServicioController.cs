@@ -28,9 +28,9 @@ namespace cash_server.Controllers
         //se le envia un json con los datos en el body
         /*
          {
-            "ServicioPrestado": "Reparación de equipo",
+            "ServicioPrestadoId": "1",
             "Cliente": "Empresa ABC",
-            "UnidadNegocio": "Sucursal 123",
+            "UnidadNegocioId": "1",
             "FechaVisita": "2024-03-13T10:00:00",
             "ModeloVehiculo": "Toyota Corolla",
             "Conductor": "Juan Pérez",
