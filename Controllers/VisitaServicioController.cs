@@ -132,6 +132,49 @@ namespace cash_server.Controllers
             }
         }
 
+        //endpoint para filtro fecha
+        [HttpGet]
+        [Route("visitasfiltro")]
+        public IHttpActionResult ObtenerVisitasPorFechas(DateTime? fechaInicio, DateTime? fechaFin)
+        {
+            try
+            {
+                var visitas = _visitaServicioData.List().ToList(); // Convertimos IQueryable a List
+
+                if (fechaInicio != null && fechaFin != null)
+                {
+                    visitas = visitas.Where(v => v.FechaVisita >= fechaInicio && v.FechaVisita <= fechaFin).ToList();
+                }
+                else if (fechaInicio != null)
+                {
+                    visitas = visitas.Where(v => v.FechaVisita >= fechaInicio).ToList();
+                }
+                else if (fechaFin != null)
+                {
+                    visitas = visitas.Where(v => v.FechaVisita <= fechaFin).ToList();
+                }
+
+                if (visitas.Any())
+                {
+                    foreach (var visita in visitas)
+                    {
+                        var formularios = _visitaServicioFormData.List().Where(f => f.VisitaId == visita.Id).ToList();
+                        visita.Formularios = formularios;
+                    }
+                    return Ok(visitas);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NoContent, "No hay visitas en el rango de fechas proporcionado.");
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+
+
     }
 
 }
