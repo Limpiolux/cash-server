@@ -31,7 +31,7 @@ namespace cash_server.Data
         {
             var db = new ApiDbContext();
             return db.ServiciosPrestados.
-                FirstOrDefault(c => c.CasaNro == casa.CasaNro && c.Activo && casa.ClienteNombre == c.ClienteNombre && casa.CasaNombre == c.CasaNombre );
+                FirstOrDefault(c => c.CasaNro == casa.CasaNro && c.Activo && casa.CasaNombre == c.CasaNombre );
         }
         public void Insert(ServicioPrestado entity)
         {

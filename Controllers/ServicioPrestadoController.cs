@@ -99,5 +99,75 @@ namespace cash_server.Controllers
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
             }
         }
+
+        [HttpGet]
+        [Route("getallclientescasaFBM/{unidadNegocioId}")]
+        public async Task<IHttpActionResult> GetClientesCasaFBM(int unidadNegocioId)
+        {
+            try
+            {
+                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://localhost:44362");
+                var clientesCasaFBM = await httpService.GetAsync("/clientecasaFBM/sharepointclientescasaFBM");
+
+                if (clientesCasaFBM != null && clientesCasaFBM.Any())
+                {
+                    //Obtener datos de la unidad de negocio FBM
+                    var unidadNegocio = _unidadNegocioData.List()
+                        .FirstOrDefault(u => u.Id == unidadNegocioId && unidadNegocioId == 2 && u.Nombre == "FBM S.A." && u.Activo);
+
+                    if (unidadNegocio == null)
+                    {
+                        return Content(HttpStatusCode.NotFound, new { message = "No se encontró la unidad de negocio FBM" });
+                    }
+
+                    //Proceso para inserción en la tabla
+                    foreach (var clienteCasaFBM in clientesCasaFBM)
+                    {
+                        
+                        var existe = _servicioPrestadoData.GetByCasaNroyNombre(clienteCasaFBM);
+
+                        if (existe == null)
+                        {
+                            ServicioPrestado serPres = new ServicioPrestado();
+                            //serPres.ClienteNro = clienteCasaFBM.casa; //estos no hace falta poner, en estos casos en FBM no existen en las listas
+                            //estos datos, asi que quedan comentados y se cargan con null.
+                            //serPres.ClienteNombre = clienteCasaFBM.Nombre; 
+                            serPres.CasaNro = clienteCasaFBM.CasaNro;
+                            serPres.CasaNombre = clienteCasaFBM.CasaNombre; 
+                            serPres.UnidadNegocioId = unidadNegocio.Id;
+                            serPres.Activo = true;
+
+                            try
+                            {
+                                _servicioPrestadoData.Insert(serPres);
+                            }
+                            catch (DbEntityValidationException ex)
+                            {
+                                // Manejar la excepción de validación
+                                foreach (var validationErrors in ex.EntityValidationErrors)
+                                {
+                                    foreach (var validationError in validationErrors.ValidationErrors)
+                                    {
+                                        // Registrar los detalles del error de validación
+                                        Console.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    var nuevosClientesCasa = _servicioPrestadoData.List();
+                    return Json(nuevosClientesCasa); // Retornar la lista para el cliente
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron clientes de casa FBM" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+        }
     }
 }

@@ -15,14 +15,17 @@ namespace cash_server.Models
         [Required]
         [Column(Order = 1)]
         public int Id { get; set; }
-        [Required]
-        public int ClienteNro {  get; set; } 
-        [Required]
-        public string ClienteNombre { get; set; }
-        //no obligatorio por las dudas, de todas formas este campo a nosotros no nos ingfluye
+        //este no va a hacer obligatorio porque no es comun en ambas listas
+        public int? ClienteNro { get; set; }
+        //este no va a hacer obligatorio porque no es comun en ambas listas
+        public string ClienteNombre { get; set; } = null;
+
         //le pongo string a este campo porue desde el otro sistema lo trae como string si no pincha
+        [Required]
         public string CasaNro { get; set; }
+        [Required]
         public string CasaNombre { get; set; }
+        public string Localidad { get; set; } = null;
         public UnidadNegocio UnidadNegocio { get; set; }
         
         [ForeignKey("UnidadNegocio")]

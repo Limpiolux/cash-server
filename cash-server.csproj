@@ -448,6 +448,18 @@
     <Compile Include="Migrations\202404091919392_unidadNegocioYServicioPrestado.Designer.cs">
       <DependentUpon>202404091919392_unidadNegocioYServicioPrestado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404101818287_cambiosModeloServPrestado.cs" />
+    <Compile Include="Migrations\202404101818287_cambiosModeloServPrestado.Designer.cs">
+      <DependentUpon>202404101818287_cambiosModeloServPrestado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404101905490_cambiosModeloServPrestado2.cs" />
+    <Compile Include="Migrations\202404101905490_cambiosModeloServPrestado2.Designer.cs">
+      <DependentUpon>202404101905490_cambiosModeloServPrestado2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404101909095_cambiosModeloServPrestado222.cs" />
+    <Compile Include="Migrations\202404101909095_cambiosModeloServPrestado222.Designer.cs">
+      <DependentUpon>202404101909095_cambiosModeloServPrestado222.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
@@ -610,6 +622,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404091919392_unidadNegocioYServicioPrestado.resx">
       <DependentUpon>202404091919392_unidadNegocioYServicioPrestado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404101818287_cambiosModeloServPrestado.resx">
+      <DependentUpon>202404101818287_cambiosModeloServPrestado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404101905490_cambiosModeloServPrestado2.resx">
+      <DependentUpon>202404101905490_cambiosModeloServPrestado2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404101909095_cambiosModeloServPrestado222.resx">
+      <DependentUpon>202404101909095_cambiosModeloServPrestado222.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
