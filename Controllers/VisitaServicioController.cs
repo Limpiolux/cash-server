@@ -397,6 +397,31 @@ namespace cash_server.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("obtenerVisitaPorId/{id}")]
+        public IHttpActionResult ObtenerVisitaPorId(int id)
+        {
+            try
+            {
+                var visita = _visitaServicioData.GetById(id);
+
+                if (visita == null)
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "La visita con el Id proporcionado no se encontró." });
+                }
+
+                var formularios = _visitaServicioFormData.List().Where(f => f.VisitaId == visita.Id).ToList();
+                visita.Formularios = formularios;
+
+                return Ok(visita);
+            }
+            catch (Exception ex)
+            {
+                // Si hay un error interno del servidor, devuelve un error 500 Internal Server Error
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+        }
+
 
 
     }

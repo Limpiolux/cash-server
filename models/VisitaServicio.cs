@@ -93,7 +93,7 @@ namespace cash_server.Models
             public int UsuarioId { get; set; }
 
             [Required]
-            public DateTime Fecha_operacion { get; set; } = DateTime.Today;
+            public DateTime Fecha_operacion { get; set; } = DateTime.Now;
 
 
         }

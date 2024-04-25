@@ -23,7 +23,13 @@ namespace cash_server.Data
         public VisitaServicio GetById(int id)
         {
             var db = new ApiDbContext();
-            return db.VisitaServicios.Find(id);
+            return db.VisitaServicios
+                .Include(v => v.Usuario)
+                .Include(v => v.Formularios)
+                .Include(v => v.Supervisor)
+                .Include(v => v.UnidadNegocio)
+                .Include(v => v.ServicioPrestado)
+                .FirstOrDefault(v => v.Id == id);
 
         }
 
@@ -126,9 +132,6 @@ namespace cash_server.Data
 
             return visitasServicio;
         }
-
-
-    
 
         public void Update(VisitaServicio entity)
         {
