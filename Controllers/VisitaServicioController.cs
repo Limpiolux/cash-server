@@ -409,7 +409,7 @@ namespace cash_server.Controllers
                 {
                     return Content(HttpStatusCode.NotFound, new { message = "La visita con el Id proporcionado no se encontró." });
                 }
-
+                
                 var formularios = _visitaServicioFormData.List().Where(f => f.VisitaId == visita.Id).ToList();
                 visita.Formularios = formularios;
 
