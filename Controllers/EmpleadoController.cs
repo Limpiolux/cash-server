@@ -98,22 +98,21 @@ namespace cash_server.Controllers
                             //entonces con el chatch capturo la excepcion para que no se pare el programa
                             try
                             {
-                                //if (!string.IsNullOrWhiteSpace(supervisor.Email))
-                                //{
-                                _empleadoData.Insert(superv);
+                                if (!string.IsNullOrWhiteSpace(supervisor.Email))
+                                {
+                                    _empleadoData.Insert(superv);
 
-                                //}
+                                }
 
                             }
                             catch (DbEntityValidationException ex)
                             {
-                                // Manejar la excepción de validación y para que no pinche el programa
-                                foreach (var validationErrors in ex.EntityValidationErrors)
+                                foreach (var validationError in ex.EntityValidationErrors)
                                 {
-                                    foreach (var validationError in validationErrors.ValidationErrors)
+                                    Console.WriteLine($"Entidad de tipo {validationError.Entry.Entity.GetType().Name} tiene los siguientes errores de validación:");
+                                    foreach (var error in validationError.ValidationErrors)
                                     {
-                                        // Registrar los detalles del error de validación
-                                        Console.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                                        Console.WriteLine($"- Propiedad: {error.PropertyName}, Error: {error.ErrorMessage}");
                                     }
                                 }
                             }

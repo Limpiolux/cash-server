@@ -407,10 +407,16 @@ namespace cash_server.Controllers
                    "Name": "Hernan Ingrassia",
                    "Mail": "heringrassia@gmail.com",
                    "Password": "1234",
-                   "Rol": "Preventor" / "Administrador"
+                   "Rol": "1" / "2"
                 }
 
             */
+            /*
+                si el usuario no desea cambiar la contraseña, el campo viene vacío
+                no hago nada no actualizo la contraseña
+                si el campo viene != de vacio, la encripto y actualizo el campo
+             
+             */
             try
             {
                 // Validar que se haya proporcionado un objeto Usuario en el cuerpo de la solicitud
@@ -420,9 +426,10 @@ namespace cash_server.Controllers
                 }
 
                 // Validar campos obligatorios del objeto Usuario
-                if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Mail) || string.IsNullOrWhiteSpace(user.Password) || user.Rol == 0)
+                //el password no necesariamente es obligatorio que llegue desde el form
+                if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Mail) || user.Rol == 0 || !Enum.IsDefined(typeof(RolUsuario), user.Rol))
                 {
-                    return Content(HttpStatusCode.BadRequest, new { error = "Todos los campos (Nombre, Email, Password, Rol) son obligatorios." });
+                    return Content(HttpStatusCode.BadRequest, new { error = "Los campos Nombre, Email y Rol son obligatorios." });
                 }
 
                 //verificar si el usuario existe y está activo
@@ -460,10 +467,16 @@ namespace cash_server.Controllers
                     };
                     _empleadoData.Insert(nuevoEmpleado);
 
+
                     // Actualizar datos en la tabla Usuarios
                     existingUser.Name = user.Name;
                     existingUser.Mail = user.Mail;
                     existingUser.Rol = user.Rol; //preventor
+                    if (!string.IsNullOrWhiteSpace(user.Password))
+                    {
+                        existingUser.Password = _encryptionService.EncryptPassword(user.Password);
+                    }
+
                     _usuarioData.Update(existingUser);
 
                     return Json(new { message = "Usuario actualizado correctamente." });
@@ -483,6 +496,10 @@ namespace cash_server.Controllers
                     existingUser.Name = user.Name;
                     existingUser.Mail = user.Mail;
                     existingUser.Rol = user.Rol; //administrador
+                    if (!string.IsNullOrWhiteSpace(user.Password))
+                    {
+                        existingUser.Password = _encryptionService.EncryptPassword(user.Password);
+                    }
                     _usuarioData.Update(existingUser);
 
                     return Json(new { message = "Usuario actualizado correctamente." });
@@ -494,6 +511,10 @@ namespace cash_server.Controllers
                     existingUser.Name = user.Name;
                     existingUser.Mail = user.Mail;
                     existingUser.Rol = user.Rol; //administrador
+                    if (!string.IsNullOrWhiteSpace(user.Password))
+                    {
+                        existingUser.Password = _encryptionService.EncryptPassword(user.Password);
+                    }
                     _usuarioData.Update(existingUser);
 
                     return Json(new { message = "Usuario actualizado correctamente." });
@@ -505,6 +526,10 @@ namespace cash_server.Controllers
                     existingUser.Name = user.Name;
                     existingUser.Mail = user.Mail;
                     existingUser.Rol = user.Rol; //preventor
+                    if (!string.IsNullOrWhiteSpace(user.Password))
+                    {
+                        existingUser.Password = _encryptionService.EncryptPassword(user.Password);
+                    }
                     _usuarioData.Update(existingUser);
 
                     //Actualizo datos del del user preventor en la tabla empleados para que machee los datos del user con los del preventor
