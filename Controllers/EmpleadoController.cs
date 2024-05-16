@@ -1,4 +1,5 @@
 ﻿using App.Metrics.Formatters.Prometheus;
+using BenchmarkDotNet.Portability;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using cash_server.Data;
@@ -89,7 +90,6 @@ namespace cash_server.Controllers
                             Empleado superv = new Empleado();
                             superv.Rol = RolEmpleado.Supervisor;
                             superv.Activo = true;
-                            superv.Usuario = null;
                             superv.Nombre = supervisor.Nombre;
                             superv.Email = supervisor.Email;
                             superv.Usuario = null;
@@ -118,6 +118,40 @@ namespace cash_server.Controllers
                             }
 
 
+                        }
+                        else
+                        {
+                            //puse esto porque si no viene con email, tira error en la insercion, pincha el programa, ya que mail es obligatorio
+                            //entonces con el chatch capturo la excepcion para que no se pare el programa
+                            try
+                            {
+                                    //superUdate.Usuario no le cargo nada lo dejo como esta
+                                    Empleado superUpdate = new Empleado();
+                                    superUpdate.Rol = RolEmpleado.Supervisor;
+                                    superUpdate.Activo = true;
+                                    superUpdate.Nombre = supervisor.Nombre;
+                                    superUpdate.Email = supervisor.Email;
+                                    superUpdate.Id = existente.Id;
+
+
+                                if (!string.IsNullOrWhiteSpace(supervisor.Email))
+                                {
+                                    _empleadoData.Update(superUpdate);
+
+                                }
+
+                            }
+                            catch (DbEntityValidationException ex)
+                            {
+                                foreach (var validationError in ex.EntityValidationErrors)
+                                {
+                                    Console.WriteLine($"Entidad de tipo {validationError.Entry.Entity.GetType().Name} tiene los siguientes errores de validación:");
+                                    foreach (var error in validationError.ValidationErrors)
+                                    {
+                                        Console.WriteLine($"- Propiedad: {error.PropertyName}, Error: {error.ErrorMessage}");
+                                    }
+                                }
+                            }
                         }
                     }
 

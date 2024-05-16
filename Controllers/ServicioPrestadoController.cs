@@ -84,6 +84,34 @@ namespace cash_server.Controllers
                                 }
                             }
                         }
+                        else
+                        {
+                            ServicioPrestado serPresUpdate = new ServicioPrestado();
+                            serPresUpdate.ClienteNro = servicioCasa.ClienteNro;
+                            serPresUpdate.ClienteNombre = servicioCasa.ClienteNombre;
+                            serPresUpdate.CasaNro = servicioCasa.CasaNro;
+                            serPresUpdate.CasaNombre = servicioCasa.CasaNombre;
+                            serPresUpdate.UnidadNegocioId = unidadNegocio.Id;
+                            serPresUpdate.Activo = existe.Activo; 
+                            serPresUpdate.Id = existe.Id; //este es el de mi base de datos
+
+                            try
+                            {
+                                _servicioPrestadoData.Update(serPresUpdate);
+                            }
+                            catch (DbEntityValidationException ex)
+                            {
+                                // Manejar la excepción de validación
+                                foreach (var validationErrors in ex.EntityValidationErrors)
+                                {
+                                    foreach (var validationError in validationErrors.ValidationErrors)
+                                    {
+                                        // Registrar los detalles del error de validación
+                                        Console.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                                    }
+                                }
+                            }
+                        }
                     }
                     //aca debo discriminar y traer solo los clientes de Limpiolux
                     var nuevosServiciosCasas = _servicioPrestadoData.List().Where(sp => sp.UnidadNegocioId == unidadNegocio.Id && sp.UnidadNegocioId==1).ToList();
@@ -142,6 +170,33 @@ namespace cash_server.Controllers
                             try
                             {
                                 _servicioPrestadoData.Insert(serPres);
+                            }
+                            catch (DbEntityValidationException ex)
+                            {
+                                // Manejar la excepción de validación
+                                foreach (var validationErrors in ex.EntityValidationErrors)
+                                {
+                                    foreach (var validationError in validationErrors.ValidationErrors)
+                                    {
+                                        // Registrar los detalles del error de validación
+                                        Console.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ServicioPrestado serPresUpdate = new ServicioPrestado();
+                            serPresUpdate.CasaNro = clienteCasaFBM.CasaNro;
+                            serPresUpdate.CasaNombre = clienteCasaFBM.CasaNombre;
+                            serPresUpdate.UnidadNegocioId = unidadNegocio.Id;
+                            serPresUpdate.Localidad = string.IsNullOrEmpty(clienteCasaFBM.Localidad) ? null : clienteCasaFBM.Localidad;
+                            serPresUpdate.Activo = existe.Activo;
+                            serPresUpdate.Id = existe.Id;
+
+                            try
+                            {
+                                _servicioPrestadoData.Insert(serPresUpdate);
                             }
                             catch (DbEntityValidationException ex)
                             {
