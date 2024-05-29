@@ -4,6 +4,7 @@
     using cash_server.Models;
     using cash_server.SharedKernel;
     using Microsoft.Win32;
+    using Org.BouncyCastle.Crypto.Macs;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -535,8 +536,8 @@
                 new Empleado { Nombre = "Maximiliano Siñeriz", Email = "delfinfiel@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "María Luz Irassar", Email = "luz_irassar@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Yamila Guerrero", Email = "yamiguerrero2008@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
-                new Empleado { Nombre = "Sebastian Lescano", Email = "sebastianlesscano28@gmail.com", Rol = RolEmpleado.Preventor, Activo = true }
-
+                new Empleado { Nombre = "Sebastian Lescano", Email = "sebastianlesscano28@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Juan Carlos Daniel Garay", Email = "juancarlosdanielgaray@gmail.com", Rol = RolEmpleado.Preventor, Activo = true }
 
             };
 
