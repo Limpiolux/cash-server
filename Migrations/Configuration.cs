@@ -35,39 +35,46 @@
             formularios.Add(new Formulario()
             {
                 Numero = 1,
-                Nombre = "Documentación del Servicio"
+                Nombre = "Documentación del Servicio",
+                version = 16
             });
 
             formularios.Add(new Formulario()
             {
                 Numero = 2,
-                Nombre = "Cartelería del Servicio"
+                Nombre = "Cartelería del Servicio",
+                version = 16
             });
 
             formularios.Add(new Formulario()
             {
                 Numero = 3,
-                Nombre = "Almacenamiento de Productos"
+                Nombre = "Almacenamiento de Productos",
+                version = 16
             });
             formularios.Add(new Formulario()
             {
                 Numero = 4,
-                Nombre = "Máquinas de Limpieza"
+                Nombre = "Máquinas de Limpieza",
+                version = 16
             });
             formularios.Add(new Formulario()
             {
                 Numero = 5,
-                Nombre = "Vestuarios y/o Area de Descanso o para Cambiarse"
+                Nombre = "Vestuarios y/o Area de Descanso o para Cambiarse",
+                version = 16
             });
             formularios.Add(new Formulario()
             {
                 Numero = 6,
-                Nombre = "Básico de Seguridad"
+                Nombre = "Básico de Seguridad",
+                version = 16
             });
             formularios.Add(new Formulario()
             {
                 Numero = 7,
-                Nombre = "Control del Vehículo"
+                Nombre = "Control del Vehículo",
+                version = 16
             });
 
 
@@ -327,7 +334,9 @@
                      new SubItem { ItemId =15, Descripcion = "El estado del pañol / Taller / Deposito u oficina para el personal  se encuentra en buenas condiciones", Comentario = null },
                      new SubItem { ItemId =15, Descripcion = "Todos los peligros se encuentran identificados", Comentario = null },
                      new SubItem { ItemId =15, Descripcion = "Todo impacto ambiental se encuentra identificado", Comentario = null },
-                     new SubItem { ItemId =15, Descripcion = "Los extintores del  servicio se encuentran OK (Extintor propio / Extintor cliente)", Comentario = null },
+                     new SubItem { ItemId =15, Descripcion = "Los extintores del  servicio se encuentran correctamente", Comentario = null },
+                     new SubItem { ItemId =15, Descripcion = "Extintor es propio?", Comentario = null },
+
 
                      /*formulario 6 - itemid=16 señalizacion*/
                      new SubItem { ItemId =16, Descripcion = "Se cuenta con conos o letreros de piso humedo", Comentario = null },
@@ -352,7 +361,8 @@
                      new SubItem { ItemId =18, Descripcion = "Se encuentran en el servicio los Elementos de Protección necesarios para realizar las tareas", Comentario = null },
                      new SubItem { ItemId =18, Descripcion = "Los Elementos de Proteccion se encuentran en buenas condiciones de uso", Comentario = null },
                      new SubItem { ItemId =18, Descripcion = "Existe suficiente cantidad de los Elementos de Proteccion para todo el personal que lo requiere", Comentario = null },
-                     new SubItem { ItemId =18, Descripcion = "El Botiquín de primeros auxilios en el servicio se encuentra OK (Botiquín propio / Botiquín cliente)", Comentario = null },
+                     new SubItem { ItemId =18, Descripcion = "El Botiquín de primeros auxilios en el servicio se encuentra en condiciones", Comentario = null },
+                     new SubItem { ItemId =18, Descripcion = "Botiquín es propio?", Comentario = null },
                      /*fin formulario 6*/
 
                      /*formulario 7 - itemid 19 -control de vehiculo*/
@@ -380,8 +390,25 @@
                 context.SubItems.AddOrUpdate(si => new { si.ItemId, si.Descripcion }, subItem);
             }
 
+
             // Guardar cambios
             context.SaveChanges();
+
+
+            //identifico los items a borrar - se ha borrado el siguiente
+            var itemAntiguo = context.SubItems.FirstOrDefault(i => i.Id == 153 && i.Descripcion == "Los extintores del  servicio se encuentran OK (Extintor propio / Extintor cliente)");
+            if (itemAntiguo != null)
+            {
+                context.SubItems.Remove(itemAntiguo);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo2 = context.SubItems.FirstOrDefault(i => i.Id == 171 && i.Descripcion == "El Botiquín de primeros auxilios en el servicio se encuentra OK (Botiquín propio / Botiquín cliente)");
+            if (itemAntiguo2 != null)
+            {
+                context.SubItems.Remove(itemAntiguo2);
+                context.SaveChanges();
+            }
 
             //Cargar las respuestas que pertenecen a un item
             var respuestas = new List<Respuesta>()
@@ -552,7 +579,7 @@
             //cargo las unidades de negocio 
 
             IList<UnidadNegocio> unidadesNegocio = new List<UnidadNegocio>();
-
+            //ID 1 en tabla
             unidadesNegocio.Add(new UnidadNegocio()
             {
                 Nombre = "LIMPIOLUX S.A.",
@@ -560,7 +587,7 @@
                 Activo = true,
 
             });
-
+            //ID 2
             unidadesNegocio.Add(new UnidadNegocio()
             {
                 Nombre = "FBM S.A.",
@@ -568,7 +595,23 @@
                 Activo = true,
 
             });
+            //ID 3
+            unidadesNegocio.Add(new UnidadNegocio()
+            {
+                Nombre = "T&T",
+                Cuit = null,
+                Activo = true,
 
+            });
+            //ID 4
+            unidadesNegocio.Add(new UnidadNegocio()
+            {
+                Nombre = "Dist Master",
+                Cuit = null,
+                Activo = true,
+
+            });
+            
             foreach (var unidadNegocio in unidadesNegocio)
             {
                 context.UnidadesNegocios.AddOrUpdate(un => un.Nombre, unidadNegocio);
@@ -577,6 +620,42 @@
             context.SaveChanges();
 
 
+            //cargo las dos casas (servicio prestado) ficticias para T&T y DistMaster
+            //estas no vienen de ninguna base de produccion asi que las cargo acá para que se carguen en la tabla de servicioPrestad
+
+            IList<ServicioPrestado> ServiciosPrestados = new List<ServicioPrestado>();
+
+            ServiciosPrestados.Add(new ServicioPrestado()
+            {   //T&T
+                ClienteNro = 0000, //generico
+                ClienteNombre = "T&T",
+                CasaNro = "0000", //generico
+                CasaNombre = "Casa T&T",
+                UnidadNegocioId = 3,
+                Localidad = null,
+                Activo = true
+
+            });
+
+
+            ServiciosPrestados.Add(new ServicioPrestado()
+            {   //T&T
+                ClienteNro = 0000, //generico
+                ClienteNombre = "Dist master",
+                CasaNro = "0000", //generico
+                CasaNombre = "Casa DistMaster",
+                UnidadNegocioId = 4,
+                Localidad = null,
+                Activo = true
+
+            });
+
+            foreach (var Servicio  in ServiciosPrestados)
+            {
+                context.ServiciosPrestados.AddOrUpdate(un => un.CasaNombre, Servicio);
+            }
+
+            context.SaveChanges();
         }
 
     }

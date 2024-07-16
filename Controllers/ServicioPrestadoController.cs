@@ -196,7 +196,7 @@ namespace cash_server.Controllers
 
                             try
                             {
-                                _servicioPrestadoData.Insert(serPresUpdate);
+                                _servicioPrestadoData.Update(serPresUpdate);
                             }
                             catch (DbEntityValidationException ex)
                             {
@@ -226,5 +226,32 @@ namespace cash_server.Controllers
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
             }
         }
+
+        //este trae las propias casas de t&t y DistMaster de esta misma bd y las retorna 
+        // 3 Tyt, 4 DistMaster
+        [HttpGet]
+        [Route("getallclientescasaTyTYDistMaster/{unidadNegocioId}")]
+        public IHttpActionResult GetClientesCasaTyT(int unidadNegocioId)
+        {
+            try
+            {
+                var casas = _servicioPrestadoData.List()
+                        .Where(c => c.UnidadNegocioId == unidadNegocioId && c.Activo).ToList();
+
+                if (casas.Any())
+                {
+                    return Json(casas);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron casas para la unidad de negocio seleccionada" });
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+
     }
 }

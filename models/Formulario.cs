@@ -12,5 +12,7 @@ namespace cash_server.Models
         public int Id { get; set; }
         public int Numero { get; set; }
         public string Nombre { get; set;}
+        public int version {  get; set; }
+
     }
 }

@@ -368,9 +368,41 @@
     </Compile>
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Migrations\202404111539168_NuevaMigracion.cs" />
-    <Compile Include="Migrations\202404111539168_NuevaMigracion.Designer.cs">
-      <DependentUpon>202404111539168_NuevaMigracion.cs</DependentUpon>
+    <Compile Include="Migrations\202405161601202_PrimerMIgracion.cs" />
+    <Compile Include="Migrations\202405161601202_PrimerMIgracion.Designer.cs">
+      <DependentUpon>202405161601202_PrimerMIgracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405291243046_AgregoPrev.cs" />
+    <Compile Include="Migrations\202405291243046_AgregoPrev.Designer.cs">
+      <DependentUpon>202405291243046_AgregoPrev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407151805293_AgregoDatosSeed.cs" />
+    <Compile Include="Migrations\202407151805293_AgregoDatosSeed.Designer.cs">
+      <DependentUpon>202407151805293_AgregoDatosSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407151822523_AgregoDatosSeed2.cs" />
+    <Compile Include="Migrations\202407151822523_AgregoDatosSeed2.Designer.cs">
+      <DependentUpon>202407151822523_AgregoDatosSeed2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407151921428_AgregoDatosSeed3.cs" />
+    <Compile Include="Migrations\202407151921428_AgregoDatosSeed3.Designer.cs">
+      <DependentUpon>202407151921428_AgregoDatosSeed3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407151940430_AgregoDatosSeed4.cs" />
+    <Compile Include="Migrations\202407151940430_AgregoDatosSeed4.Designer.cs">
+      <DependentUpon>202407151940430_AgregoDatosSeed4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407152033501_AgregoDatosSeed5.cs" />
+    <Compile Include="Migrations\202407152033501_AgregoDatosSeed5.Designer.cs">
+      <DependentUpon>202407152033501_AgregoDatosSeed5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407152038249_AgregoDatosSeed6.cs" />
+    <Compile Include="Migrations\202407152038249_AgregoDatosSeed6.Designer.cs">
+      <DependentUpon>202407152038249_AgregoDatosSeed6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407152059082_AgregoDatosSeed7.cs" />
+    <Compile Include="Migrations\202407152059082_AgregoDatosSeed7.Designer.cs">
+      <DependentUpon>202407152059082_AgregoDatosSeed7.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -479,8 +511,32 @@
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.3.3.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202404111539168_NuevaMigracion.resx">
-      <DependentUpon>202404111539168_NuevaMigracion.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405161601202_PrimerMIgracion.resx">
+      <DependentUpon>202405161601202_PrimerMIgracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405291243046_AgregoPrev.resx">
+      <DependentUpon>202405291243046_AgregoPrev.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407151805293_AgregoDatosSeed.resx">
+      <DependentUpon>202407151805293_AgregoDatosSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407151822523_AgregoDatosSeed2.resx">
+      <DependentUpon>202407151822523_AgregoDatosSeed2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407151921428_AgregoDatosSeed3.resx">
+      <DependentUpon>202407151921428_AgregoDatosSeed3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407151940430_AgregoDatosSeed4.resx">
+      <DependentUpon>202407151940430_AgregoDatosSeed4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407152033501_AgregoDatosSeed5.resx">
+      <DependentUpon>202407152033501_AgregoDatosSeed5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407152038249_AgregoDatosSeed6.resx">
+      <DependentUpon>202407152038249_AgregoDatosSeed6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407152059082_AgregoDatosSeed7.resx">
+      <DependentUpon>202407152059082_AgregoDatosSeed7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
