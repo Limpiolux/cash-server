@@ -58,5 +58,28 @@ namespace cash_server.Controllers
                                       .ToList();
             return Json(tipos_vehiculos);
         }
+
+        [HttpGet]
+        [Route("getformulario/{id}")]
+        public IHttpActionResult GetFormularioById(int id)
+        {
+            try
+            {
+                var formulario = _formularioData.GetById(id);
+
+                if (formulario != null)
+                {
+                    return Json(formulario);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "Formulario no encontrado" });
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
     }
 }
