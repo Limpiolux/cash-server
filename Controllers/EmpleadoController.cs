@@ -24,7 +24,7 @@ using System.Web.Razor.Text;
 namespace cash_server.Controllers
 {
     [RoutePrefix("empleado")]
-    [EnableCors(origins: "http://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
     /// <summary>
     /// Controlador para operaciones relacionadas con supervisores.
     /// </summary>

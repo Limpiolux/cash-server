@@ -15,8 +15,9 @@ namespace cash_server.Models
         public int Id { get; set; }
         public ServicioPrestado ServicioPrestado { get; set; }
         public int ServicioPrestadoId { get; set; }
-        //quien entrevista
+        //quien entrevista en el front (cliente) es quien entrevista
         public string Cliente { get; set; }
+        public string Cliente2 { get; set; }
         public UnidadNegocio UnidadNegocio { get; set; }
 
         public int UnidadNegocioId { get; set; }
@@ -59,11 +60,13 @@ namespace cash_server.Models
             [Column(Order = 3)]
             public int ServicioPrestadoId { get;set;}
 
-            //quien entrevista
+            //quien entrevista en el front cliente es el campo quien entrevista
             [Required]
             [StringLength(50)]
             public string Cliente { get; set; }
-
+          
+            [StringLength(50)]
+            public string Cliente2 { get; set; }
             [Required]
             public DateTime FechaVisita { get; set; }
 

@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 namespace cash_server.Controllers
 {
     [RoutePrefix("visitaservicioform")]
-    [EnableCors(origins: "http://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
     public class VisitaServicioFormController:ApiController
     {
         private readonly VisitaServicioFormData _visitaServicioFormData;

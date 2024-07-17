@@ -25,7 +25,7 @@ using System.Web.Helpers;
 namespace cash_server.Controllers
 {
     [RoutePrefix("user")]
-    [EnableCors(origins: "http://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
         private readonly ApiDbContext _dbContext;

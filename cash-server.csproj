@@ -404,6 +404,10 @@
     <Compile Include="Migrations\202407152059082_AgregoDatosSeed7.Designer.cs">
       <DependentUpon>202407152059082_AgregoDatosSeed7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202407161611304_AgregoCampoCLiente2.cs" />
+    <Compile Include="Migrations\202407161611304_AgregoCampoCLiente2.Designer.cs">
+      <DependentUpon>202407161611304_AgregoCampoCLiente2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
@@ -537,6 +541,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202407152059082_AgregoDatosSeed7.resx">
       <DependentUpon>202407152059082_AgregoDatosSeed7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407161611304_AgregoCampoCLiente2.resx">
+      <DependentUpon>202407161611304_AgregoCampoCLiente2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
