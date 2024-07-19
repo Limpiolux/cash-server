@@ -408,6 +408,14 @@
     <Compile Include="Migrations\202407161611304_AgregoCampoCLiente2.Designer.cs">
       <DependentUpon>202407161611304_AgregoCampoCLiente2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202407181420561_AgregoCampoVersionAVisitaForm.cs" />
+    <Compile Include="Migrations\202407181420561_AgregoCampoVersionAVisitaForm.Designer.cs">
+      <DependentUpon>202407181420561_AgregoCampoVersionAVisitaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407191340111_AgregoCampoVersionAVisitaForm2.cs" />
+    <Compile Include="Migrations\202407191340111_AgregoCampoVersionAVisitaForm2.Designer.cs">
+      <DependentUpon>202407191340111_AgregoCampoVersionAVisitaForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
@@ -544,6 +552,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202407161611304_AgregoCampoCLiente2.resx">
       <DependentUpon>202407161611304_AgregoCampoCLiente2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407181420561_AgregoCampoVersionAVisitaForm.resx">
+      <DependentUpon>202407181420561_AgregoCampoVersionAVisitaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407191340111_AgregoCampoVersionAVisitaForm2.resx">
+      <DependentUpon>202407191340111_AgregoCampoVersionAVisitaForm2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -23,6 +23,10 @@ namespace cash_server.Models
         [IgnoreDataMember]
         public Formulario Formulario { get; set; }
 
+        //se agrega este campo para saber que version del formulario completó el usuario.
+        [Required]
+        public int version { get; set; }
+
     }
 
     [MetadataType(typeof(VisitaServicioFormMetadata))]
@@ -50,6 +54,8 @@ namespace cash_server.Models
             public string Comentario { get; set; } = null;
             [Required]
             public string Respuesta { get; set; }
+            [Required]
+            public int version { get; set; }
         }
     }
 }

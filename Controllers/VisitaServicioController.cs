@@ -34,10 +34,12 @@ namespace cash_server.Controllers
         }
 
         //se le envia un json con los datos en el body
+        //Cliente2 puede ser null
         /*
          {
             "ServicioPrestadoId": "1",
             "Cliente": "Empresa ABC",
+            "Cliente2: "dasdad",
             "UnidadNegocioId": "1",
             "FechaVisita": "2024-03-13T10:00:00",
             "ModeloVehiculo": "Toyota Corolla",
