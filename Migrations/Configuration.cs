@@ -611,7 +611,15 @@
                 Activo = true,
 
             });
-            
+            //ID 5
+            unidadesNegocio.Add(new UnidadNegocio()
+            {
+                Nombre = "Otro Servicio",
+                Cuit = null,
+                Activo = true,
+
+            });
+
             foreach (var unidadNegocio in unidadesNegocio)
             {
                 context.UnidadesNegocios.AddOrUpdate(un => un.Nombre, unidadNegocio);
@@ -630,7 +638,7 @@
                 ClienteNro = 0000, //generico
                 ClienteNombre = "T&T",
                 CasaNro = "0000", //generico
-                CasaNombre = "Casa T&T",
+                CasaNombre = "T&T",
                 UnidadNegocioId = 3,
                 Localidad = null,
                 Activo = true
@@ -643,8 +651,20 @@
                 ClienteNro = 0000, //generico
                 ClienteNombre = "Dist master",
                 CasaNro = "0000", //generico
-                CasaNombre = "Casa DistMaster",
+                CasaNombre = "DistMaster",
                 UnidadNegocioId = 4,
+                Localidad = null,
+                Activo = true
+
+            });
+
+            ServiciosPrestados.Add(new ServicioPrestado()
+            {   //T&T
+                ClienteNro = 0000, //generico
+                ClienteNombre = "Otro Servicio",
+                CasaNro = "0000", //generico
+                CasaNombre = "Otro Servicio",
+                UnidadNegocioId = 5, //Unidad de negocio otro servicio
                 Localidad = null,
                 Activo = true
 
@@ -656,6 +676,21 @@
             }
 
             context.SaveChanges();
+
+            //identifico las casas a borrar - se ha borrado el siguiente
+            var casaAntigua = context.ServiciosPrestados.FirstOrDefault(c => c.Id == 2144 && c.ClienteNombre == "T&T" && c.CasaNombre == "Casa T&T");
+            if (casaAntigua != null)
+            {
+                context.ServiciosPrestados.Remove(casaAntigua);
+                context.SaveChanges();
+            }
+
+            var casaAntigua2 = context.ServiciosPrestados.FirstOrDefault(c => c.Id == 2145 && c.ClienteNombre == "Dist master" && c.CasaNombre == "Casa DistMaster");
+            if (casaAntigua2 != null)
+            {
+                context.ServiciosPrestados.Remove(casaAntigua2);
+                context.SaveChanges();
+            }
         }
 
     }

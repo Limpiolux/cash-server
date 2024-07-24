@@ -253,5 +253,31 @@ namespace cash_server.Controllers
             }
         }
 
+        //este trae las propias casa generica de Otro servicio... para completar luego el campo otro servicio
+        // 5 es unid de negocio Otro Servicio
+        [HttpGet]
+        [Route("getallclientescasaOtroServicio/{unidadNegocioId}")]
+        public IHttpActionResult GetClientesOtroServicios(int unidadNegocioId)
+        {
+            try
+            {
+                var casas = _servicioPrestadoData.List()
+                        .Where(c => c.UnidadNegocioId == unidadNegocioId && unidadNegocioId == 5 && c.Activo).ToList();
+
+                if (casas.Any())
+                {
+                    return Json(casas);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron casas para la unidad de negocio seleccionada" });
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+
     }
 }

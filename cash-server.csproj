@@ -416,6 +416,30 @@
     <Compile Include="Migrations\202407191340111_AgregoCampoVersionAVisitaForm2.Designer.cs">
       <DependentUpon>202407191340111_AgregoCampoVersionAVisitaForm2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202407221342513_agregoUnidNegocioGenericayCasaGenerica.cs" />
+    <Compile Include="Migrations\202407221342513_agregoUnidNegocioGenericayCasaGenerica.Designer.cs">
+      <DependentUpon>202407221342513_agregoUnidNegocioGenericayCasaGenerica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407221417403_agregoUnidNegocioGenericayCasaGenerica2.cs" />
+    <Compile Include="Migrations\202407221417403_agregoUnidNegocioGenericayCasaGenerica2.Designer.cs">
+      <DependentUpon>202407221417403_agregoUnidNegocioGenericayCasaGenerica2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407221440573_agregoUnidNegocioGenericayCasaGenerica3.cs" />
+    <Compile Include="Migrations\202407221440573_agregoUnidNegocioGenericayCasaGenerica3.Designer.cs">
+      <DependentUpon>202407221440573_agregoUnidNegocioGenericayCasaGenerica3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407221458331_agregoUnidNegocioGenericayCasaGenerica4.cs" />
+    <Compile Include="Migrations\202407221458331_agregoUnidNegocioGenericayCasaGenerica4.Designer.cs">
+      <DependentUpon>202407221458331_agregoUnidNegocioGenericayCasaGenerica4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407221500192_agregoUnidNegocioGenericayCasaGenerica5.cs" />
+    <Compile Include="Migrations\202407221500192_agregoUnidNegocioGenericayCasaGenerica5.Designer.cs">
+      <DependentUpon>202407221500192_agregoUnidNegocioGenericayCasaGenerica5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407231526581_agregoCampoComentarioGeneral.cs" />
+    <Compile Include="Migrations\202407231526581_agregoCampoComentarioGeneral.Designer.cs">
+      <DependentUpon>202407231526581_agregoCampoComentarioGeneral.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Formulario.cs" />
@@ -558,6 +582,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202407191340111_AgregoCampoVersionAVisitaForm2.resx">
       <DependentUpon>202407191340111_AgregoCampoVersionAVisitaForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407221342513_agregoUnidNegocioGenericayCasaGenerica.resx">
+      <DependentUpon>202407221342513_agregoUnidNegocioGenericayCasaGenerica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407221417403_agregoUnidNegocioGenericayCasaGenerica2.resx">
+      <DependentUpon>202407221417403_agregoUnidNegocioGenericayCasaGenerica2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407221440573_agregoUnidNegocioGenericayCasaGenerica3.resx">
+      <DependentUpon>202407221440573_agregoUnidNegocioGenericayCasaGenerica3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407221458331_agregoUnidNegocioGenericayCasaGenerica4.resx">
+      <DependentUpon>202407221458331_agregoUnidNegocioGenericayCasaGenerica4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407221500192_agregoUnidNegocioGenericayCasaGenerica5.resx">
+      <DependentUpon>202407221500192_agregoUnidNegocioGenericayCasaGenerica5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407231526581_agregoCampoComentarioGeneral.resx">
+      <DependentUpon>202407231526581_agregoCampoComentarioGeneral.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

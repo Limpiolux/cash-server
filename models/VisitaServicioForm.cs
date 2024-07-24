@@ -27,6 +27,8 @@ namespace cash_server.Models
         [Required]
         public int version { get; set; }
 
+        public string ComentarioGeneral { get; set; } = null;
+
     }
 
     [MetadataType(typeof(VisitaServicioFormMetadata))]
@@ -42,7 +44,7 @@ namespace cash_server.Models
             [Required]
             [Column(Order = 2)]
             public int VisitaId { get; set; }
-            
+
             [ForeignKey("Formulario")]
             [Required]
             [Column(Order = 3)]
@@ -56,6 +58,8 @@ namespace cash_server.Models
             public string Respuesta { get; set; }
             [Required]
             public int version { get; set; }
+            public string ComentarioGeneral { get; set; } = null;
+        
         }
     }
 }

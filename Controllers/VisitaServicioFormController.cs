@@ -30,7 +30,9 @@ namespace cash_server.Controllers
             "Item": "Ejemplo de item 1",
             "SubItem": "Ejemplo de subitem 1",
             "Comentario": "Ejemplo de comentario 1",
-            "Respuesta": "Ejemplo de respuesta 1"
+            "Respuesta": "Ejemplo de respuesta 1",
+            "Version": 16,
+            "ComentarioGeneral": "Ejemplo"
         },
         {
             "VisitaId": 7,
@@ -39,6 +41,8 @@ namespace cash_server.Controllers
             "SubItem": "Ejemplo de subitem 2",
             "Comentario": null,
             "Respuesta": "Ejemplo de respuesta 2"
+            "Version": 16,
+            "ComentarioGeneral": "Ejemplo"
         }
   
         ]
