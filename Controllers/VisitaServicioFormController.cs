@@ -88,13 +88,13 @@ namespace cash_server.Controllers
                 var UnidadNegocioNombre = unidadNegocio.Nombre;
                 var ServicioNombre = "";
                 //este mail hay que ponerlo abajo
-                var supervisorNombre = Visita.Supervisor.Email;
+                var supervisorEmail = Visita.Supervisor.Email;
 
                 //Generar los PDFs solo una vez por cada formulario
                 var pdfBytesList = GeneratePdfs(visitasServicioForm);
 
                 //Preparar los detalles para los adjuntos de correo electrónico
-                string toEmail = "msanchez@limpiolux.com.ar";
+                string toEmail = $"{supervisorEmail},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar";
                 string subject = "Visita Servicio Preventores";
                 string body = "Se ha registrado una visita. Se adjuntan los PDF de cada formulario cargado.";
 
