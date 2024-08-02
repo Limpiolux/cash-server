@@ -94,7 +94,7 @@ namespace cash_server.Controllers
                 var pdfBytesList = GeneratePdfs(visitasServicioForm);
 
                 //Preparar los detalles para los adjuntos de correo electrónico
-                string toEmail = "msanchez@limpiolux.com.ar";
+                string toEmail = "msanchez@limpiolux.com.ar, micaelavs@hotmail.com";
                 string subject = "Visita Servicio Preventores";
                 string body = "Se ha registrado una visita. Se adjuntan los PDF de cada formulario cargado.";
 
