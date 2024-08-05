@@ -10,7 +10,7 @@ using System.Web.Http.Cors;
 namespace cash_server.Controllers
 {
     [RoutePrefix("item")]
-    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ItemController: ApiController
     {
         private readonly ItemData _itemData;

@@ -135,7 +135,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://preventores.limpiolux.com.ar:44362/");
+                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://preventores.limpiolux.com.ar:44362");
                 var clientesCasaFBM = await httpService.GetAsync("/clientecasaFBM/sharepointclientescasaFBM");
 
                 if (clientesCasaFBM != null && clientesCasaFBM.Any())
