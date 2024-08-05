@@ -24,7 +24,7 @@ using System.Web.Razor.Text;
 namespace cash_server.Controllers
 {
     [RoutePrefix("empleado")]
-    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     /// <summary>
     /// Controlador para operaciones relacionadas con supervisores.
     /// </summary>
@@ -73,7 +73,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<Empleado>>("https://181.10.198.157:44362");
+                var httpService = new HttpService<IEnumerable<Empleado>>("https://preventores.limpiolux.com.ar:44362");
                 var supervisores = await httpService.GetAsync("/supervisor/getallsupervisores");
 
                 if (supervisores != null && supervisores.Any())

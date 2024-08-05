@@ -20,7 +20,7 @@ using Microsoft.Ajax.Utilities;
 namespace cash_server.Controllers
 {
     [RoutePrefix("visitaservicioform")]
-    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class VisitaServicioFormController:ApiController
     {
         private readonly VisitaServicioFormData _visitaServicioFormData;

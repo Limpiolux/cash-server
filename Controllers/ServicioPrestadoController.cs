@@ -16,7 +16,7 @@ using System.Web.Http.Cors;
 namespace cash_server.Controllers
 {
     [RoutePrefix("clientecasa")]
-    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ServicioPrestadoController : ApiController
     {
         private readonly ServicioPrestadoData _servicioPrestadoData;
@@ -37,7 +37,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://181.10.198.157:44362");
+                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://preventores.limpiolux.com.ar:44362");
                 var serviciosCasas = await httpService.GetAsync("/clientecasa/getallclientescasasLimpiolux");
 
                 if (serviciosCasas != null && serviciosCasas.Any())
@@ -135,7 +135,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://181.10.198.157:44362");
+                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://preventores.limpiolux.com.ar:44362/");
                 var clientesCasaFBM = await httpService.GetAsync("/clientecasaFBM/sharepointclientescasaFBM");
 
                 if (clientesCasaFBM != null && clientesCasaFBM.Any())
