@@ -450,6 +450,14 @@
     <Compile Include="Migrations\202408081345460_AgregoPreventores.Designer.cs">
       <DependentUpon>202408081345460_AgregoPreventores.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202408151743556_Agrego1preventor.cs" />
+    <Compile Include="Migrations\202408151743556_Agrego1preventor.Designer.cs">
+      <DependentUpon>202408151743556_Agrego1preventor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408151745035_Agrego1preventormas.cs" />
+    <Compile Include="Migrations\202408151745035_Agrego1preventormas.Designer.cs">
+      <DependentUpon>202408151745035_Agrego1preventormas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -616,6 +624,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202408081345460_AgregoPreventores.resx">
       <DependentUpon>202408081345460_AgregoPreventores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408151743556_Agrego1preventor.resx">
+      <DependentUpon>202408151743556_Agrego1preventor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408151745035_Agrego1preventormas.resx">
+      <DependentUpon>202408151745035_Agrego1preventormas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

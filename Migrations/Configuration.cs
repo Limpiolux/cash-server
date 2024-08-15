@@ -565,9 +565,11 @@
                 new Empleado { Nombre = "Yamila Guerrero", Email = "yamiguerrero2008@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Sebastian Lescano", Email = "sebastianlesscano28@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Juan Carlos Daniel Garay", Email = "juancarlosdanielgaray@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                /*ultimos agregados*/
                 new Empleado { Nombre = "Daiana Fabre", Email = "daianaelifabre@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Tomas Rodriguez", Email = "Hystomasrodriguez@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
-
+                new Empleado { Nombre = "Karla Briceño", Email = "karlabriceo53@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                
             };
 
             //se usa email para comparar si existe otro registro en la db con ese mail
