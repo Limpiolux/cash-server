@@ -446,6 +446,10 @@
     <Compile Include="Migrations\202407231526581_agregoCampoComentarioGeneral.Designer.cs">
       <DependentUpon>202407231526581_agregoCampoComentarioGeneral.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202408151756390_AgregoPreventores.cs" />
+    <Compile Include="Migrations\202408151756390_AgregoPreventores.Designer.cs">
+      <DependentUpon>202408151756390_AgregoPreventores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -609,6 +613,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202407231526581_agregoCampoComentarioGeneral.resx">
       <DependentUpon>202407231526581_agregoCampoComentarioGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408151756390_AgregoPreventores.resx">
+      <DependentUpon>202408151756390_AgregoPreventores.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
