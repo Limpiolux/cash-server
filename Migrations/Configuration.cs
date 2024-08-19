@@ -552,7 +552,7 @@
                 new Empleado { Nombre = "Gastón Storani", Email = "gastonstorani@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Cynthia Dayana Alcaraz Blanco", Email = "Alcaraz105@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Hernán Ingrassia", Email = "heringrassia@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
-                new Empleado { Nombre = "Maria Laura Barreto", Email = "mlauri126@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Maria Laura Barreto", Email = "maria.barreto@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true }, //maria.barreto@limpiolux.com.ar mlauri126@gmail.com
                 new Empleado { Nombre = "Mariela Alegre", Email = "mariela.alegre@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Julio Delgado", Email = "juliodelgado1@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Jesica Sanabria", Email = "jesica.sanabria@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
@@ -566,7 +566,7 @@
                 new Empleado { Nombre = "Sebastian Lescano", Email = "sebastianlesscano28@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Juan Carlos Daniel Garay", Email = "juancarlosdanielgaray@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 /*ultimos agregados*/
-                new Empleado { Nombre = "Daiana Fabre", Email = "daianaelifabre@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Daiana Fabre", Email = "dfabre-ext@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true }, // dfabre-ext@limpiolux.com.ar daianaelifabre@gmail.com
                 new Empleado { Nombre = "Tomas Rodriguez", Email = "Hystomasrodriguez@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Karla Briceño", Email = "karlabriceo53@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
 
