@@ -458,6 +458,10 @@
     <Compile Include="Migrations\202408151745035_Agrego1preventormas.Designer.cs">
       <DependentUpon>202408151745035_Agrego1preventormas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202408191448544_cambioMails.cs" />
+    <Compile Include="Migrations\202408191448544_cambioMails.Designer.cs">
+      <DependentUpon>202408191448544_cambioMails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -630,6 +634,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202408151745035_Agrego1preventormas.resx">
       <DependentUpon>202408151745035_Agrego1preventormas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408191448544_cambioMails.resx">
+      <DependentUpon>202408191448544_cambioMails.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
