@@ -566,7 +566,7 @@
                 new Empleado { Nombre = "Sebastian Lescano", Email = "sebastianlesscano28@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Juan Carlos Daniel Garay", Email = "juancarlosdanielgaray@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 /*ultimos agregados*/
-                new Empleado { Nombre = "Daiana Fabre", Email = "dfabre-ext@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true }, // dfabre-ext@limpiolux.com.ar anterior  daianaelifabre@gmail.com
+                new Empleado { Nombre = "Daiana Fabre", Email = "dfabre-ext@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true }, // dfabre-ext@limpiolux.com.ar anterior daianaelifabre@gmail.com
                 new Empleado { Nombre = "Tomas Rodriguez", Email = "Hystomasrodriguez@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Karla Briceño", Email = "karlabriceo53@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 

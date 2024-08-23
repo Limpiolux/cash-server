@@ -462,6 +462,14 @@
     <Compile Include="Migrations\202408191448544_cambioMails.Designer.cs">
       <DependentUpon>202408191448544_cambioMails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202408191500388_cambioMails222.cs" />
+    <Compile Include="Migrations\202408191500388_cambioMails222.Designer.cs">
+      <DependentUpon>202408191500388_cambioMails222.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408191508302_cambioMails222555.cs" />
+    <Compile Include="Migrations\202408191508302_cambioMails222555.Designer.cs">
+      <DependentUpon>202408191508302_cambioMails222555.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -637,6 +645,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202408191448544_cambioMails.resx">
       <DependentUpon>202408191448544_cambioMails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408191500388_cambioMails222.resx">
+      <DependentUpon>202408191500388_cambioMails222.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408191508302_cambioMails222555.resx">
+      <DependentUpon>202408191508302_cambioMails222555.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
