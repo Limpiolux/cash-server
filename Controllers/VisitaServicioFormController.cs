@@ -186,7 +186,7 @@ namespace cash_server.Controllers
                     }
 
                     doc.Add(new Paragraph($"Fecha de la Visita: {Visita.FechaVisita:dd-MM-yyyy}"));
-                    doc.Add(new Paragraph($"Supervisor: {Visita.Supervisor.Nombre}"));
+                    doc.Add(new Paragraph($"Supervisor: {Visita.Supervisor.Nombre} - {Visita.Supervisor.Email}"));
                     doc.Add(new Paragraph($"Usuario: {Visita.Usuario.Name} - ({Visita.Usuario.Rol})"));
                     var versionParagraph = new Paragraph($"RG 4.4.6-02 - Version: {firstForm.version}");
                     versionParagraph.SpacingAfter = 10f; 
