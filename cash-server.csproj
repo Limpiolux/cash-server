@@ -446,44 +446,42 @@
     <Compile Include="Migrations\202407231526581_agregoCampoComentarioGeneral.Designer.cs">
       <DependentUpon>202407231526581_agregoCampoComentarioGeneral.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Migrations\202408081345460_AgregoPreventores.cs" />
-    <Compile Include="Migrations\202408081345460_AgregoPreventores.Designer.cs">
-      <DependentUpon>202408081345460_AgregoPreventores.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408151743556_Agrego1preventor.cs" />
-    <Compile Include="Migrations\202408151743556_Agrego1preventor.Designer.cs">
-      <DependentUpon>202408151743556_Agrego1preventor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408151745035_Agrego1preventormas.cs" />
-    <Compile Include="Migrations\202408151745035_Agrego1preventormas.Designer.cs">
-      <DependentUpon>202408151745035_Agrego1preventormas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408191448544_cambioMails.cs" />
-    <Compile Include="Migrations\202408191448544_cambioMails.Designer.cs">
-      <DependentUpon>202408191448544_cambioMails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408191500388_cambioMails222.cs" />
-    <Compile Include="Migrations\202408191500388_cambioMails222.Designer.cs">
-      <DependentUpon>202408191500388_cambioMails222.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408191508302_cambioMails222555.cs" />
-    <Compile Include="Migrations\202408191508302_cambioMails222555.Designer.cs">
-      <DependentUpon>202408191508302_cambioMails222555.cs</DependentUpon>
-=======
-    <Compile Include="Migrations\202408151756390_AgregoPreventores.cs" />
-    <Compile Include="Migrations\202408151756390_AgregoPreventores.Designer.cs">
-      <DependentUpon>202408151756390_AgregoPreventores.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408151759245_CambioMailPreventores.cs" />
-    <Compile Include="Migrations\202408151759245_CambioMailPreventores.Designer.cs">
-      <DependentUpon>202408151759245_CambioMailPreventores.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202408281354216_agregoSupervisoresSeed.cs" />
-    <Compile Include="Migrations\202408281354216_agregoSupervisoresSeed.Designer.cs">
-      <DependentUpon>202408281354216_agregoSupervisoresSeed.cs</DependentUpon>
->>>>>>> ee7768748486844c51bce18460b43c3281e77d37
-    </Compile>
+	<Compile Include="Migrations\202408081345460_AgregoPreventores.cs" />
+	<Compile Include="Migrations\202408081345460_AgregoPreventores.Designer.cs">
+	  <DependentUpon>202408081345460_AgregoPreventores.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Migrations\202408151743556_Agrego1preventor.cs" />
+	<Compile Include="Migrations\202408151743556_Agrego1preventor.Designer.cs">
+	  <DependentUpon>202408151743556_Agrego1preventor.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Migrations\202408151745035_Agrego1preventormas.cs" />
+	<Compile Include="Migrations\202408151745035_Agrego1preventormas.Designer.cs">
+	  <DependentUpon>202408151745035_Agrego1preventormas.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Migrations\202408191448544_cambioMails.cs" />
+	<Compile Include="Migrations\202408191448544_cambioMails.Designer.cs">
+	  <DependentUpon>202408191448544_cambioMails.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Migrations\202408191500388_cambioMails222.cs" />
+	<Compile Include="Migrations\202408191500388_cambioMails222.Designer.cs">
+	  <DependentUpon>202408191500388_cambioMails222.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Migrations\202408191508302_cambioMails222555.cs" />
+	<Compile Include="Migrations\202408191508302_cambioMails222555.Designer.cs">
+	  <DependentUpon>202408191508302_cambioMails222555.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Migrations\202408151756390_AgregoPreventores.cs" />
+	<Compile Include="Migrations\202408151756390_AgregoPreventores.Designer.cs">
+	  <DependentUpon>202408151756390_AgregoPreventores.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Migrations\202408151759245_CambioMailPreventores.cs" />
+	<Compile Include="Migrations\202408151759245_CambioMailPreventores.Designer.cs">
+	  <DependentUpon>202408151759245_CambioMailPreventores.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Migrations\202408281354216_agregoSupervisoresSeed.cs" />
+	<Compile Include="Migrations\202408281354216_agregoSupervisoresSeed.Designer.cs">
+	  <DependentUpon>202408281354216_agregoSupervisoresSeed.cs</DependentUpon>
+	</Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -648,7 +646,6 @@
     <EmbeddedResource Include="Migrations\202407231526581_agregoCampoComentarioGeneral.resx">
       <DependentUpon>202407231526581_agregoCampoComentarioGeneral.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\202408081345460_AgregoPreventores.resx">
       <DependentUpon>202408081345460_AgregoPreventores.cs</DependentUpon>
     </EmbeddedResource>
@@ -666,7 +663,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202408191508302_cambioMails222555.resx">
       <DependentUpon>202408191508302_cambioMails222555.cs</DependentUpon>
-=======
+	</EmbeddedResource>
     <EmbeddedResource Include="Migrations\202408151756390_AgregoPreventores.resx">
       <DependentUpon>202408151756390_AgregoPreventores.cs</DependentUpon>
     </EmbeddedResource>
@@ -675,7 +672,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202408281354216_agregoSupervisoresSeed.resx">
       <DependentUpon>202408281354216_agregoSupervisoresSeed.cs</DependentUpon>
->>>>>>> ee7768748486844c51bce18460b43c3281e77d37
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
