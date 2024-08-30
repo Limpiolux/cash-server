@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 namespace cash_server.Controllers
 {
     [RoutePrefix("formulario")]
-    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class FormularioController: ApiController
     {
         private readonly FormularioData _formularioData;

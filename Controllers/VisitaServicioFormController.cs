@@ -20,7 +20,7 @@ using Microsoft.Ajax.Utilities;
 namespace cash_server.Controllers
 {
     [RoutePrefix("visitaservicioform")]
-    [EnableCors(origins: "https://localhost:5173", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class VisitaServicioFormController:ApiController
     {
         private readonly VisitaServicioFormData _visitaServicioFormData;
@@ -94,7 +94,7 @@ namespace cash_server.Controllers
                 var pdfBytesList = GeneratePdfs(visitasServicioForm);
 
                 //Preparar los detalles para los adjuntos de correo electrónico
-                string toEmail = "msanchez@limpiolux.com.ar, micaelavs@hotmail.com";
+                string toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar";
                 string subject = "Visita Servicio Preventores";
                 string body = "Se ha registrado una visita. Se adjuntan los PDF de cada formulario cargado.";
 
