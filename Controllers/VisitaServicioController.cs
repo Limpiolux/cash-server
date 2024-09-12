@@ -77,7 +77,7 @@ namespace cash_server.Controllers
 
         //obtiene todas las visitas de TODOS los usuarios (con sus respectivos form y respuestas)
         //si no hay ninguna visita retorna un array vacio
-        [HttpGet]
+        /*[HttpGet]
         [Route("visitasgetall")]
         public IHttpActionResult ObtenerTodasLasVisitas()
         {
@@ -103,7 +103,105 @@ namespace cash_server.Controllers
             {
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
             }
+        }*/
+        //todas las visitas del mes actual y el anterior
+        [HttpGet]
+        [Route("visitasgetall")]
+        public IHttpActionResult ObtenerTodasLasVisitas()
+        {
+            try
+            {
+                // Obtener la fecha actual
+                var fechaActual = DateTime.UtcNow;
+
+                var primerDiaDelMesActual = new DateTime(fechaActual.Year, fechaActual.Month, 1);
+
+                var primerDiaDelMesAnterior = primerDiaDelMesActual.AddMonths(-1);
+
+                var ultimoDiaDelMesAnterior = primerDiaDelMesActual.AddDays(-1);
+
+                var visitas = _visitaServicioData.List()
+                    .Where(v => (v.FechaVisita >= primerDiaDelMesAnterior && v.FechaVisita <= fechaActual))
+                    .ToList();
+
+                if (visitas.Any())
+                {
+                    foreach (var visita in visitas)
+                    {
+                        var formularios = _visitaServicioFormData.List()
+                            .Where(f => f.VisitaId == visita.Id)
+                            .ToList();
+                        visita.Formularios = formularios;
+                    }
+                    return Ok(visitas);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron visitas" });
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
         }
+
+
+        //el mismo que arriba pero paginado
+        /*[HttpGet]
+        [Route("visitasgetall")]
+        public IHttpActionResult ObtenerTodasLasVisitas(int pageNumber = 1, int pageSize = 10)
+        {
+            try
+            {
+                // Validar que el número de página y el tamaño de página sean válidos
+                if (pageNumber <= 0 || pageSize <= 0)
+                {
+                    return BadRequest("Número de página o tamaño de página inválido");
+                }
+
+                // Calcular los elementos que se deben saltar
+                int skipAmount = (pageNumber - 1) * pageSize;
+
+                // Obtener el total de visitas
+                var totalVisitas = _visitaServicioData.List().Count();
+
+                // Paginación de visitas
+                var visitasPaginadas = _visitaServicioData.List()
+                    .OrderByDescending(v => v.FechaVisita) // Ordenar por fecha de visita descendente
+                    .Skip(skipAmount)
+                    .Take(pageSize)
+                    .ToList();
+
+                if (visitasPaginadas.Any())
+                {
+                    foreach (var visita in visitasPaginadas)
+                    {
+                        // Solo cargar los formularios relevantes para cada visita
+                        var formularios = _visitaServicioFormData.List()
+                            .Where(f => f.VisitaId == visita.Id)
+                            .ToList();
+
+                        visita.Formularios = formularios;
+                    }
+
+                    // Devolver los resultados paginados junto con el total de visitas
+                    return Ok(new
+                    {
+                        TotalVisitas = totalVisitas,
+                        Visitas = visitasPaginadas
+                    });
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron visitas" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor", details = ex.Message });
+            }
+        }*/
 
         //este endpoint se podria usar que dado un UsuarioId preventor, traer los datos de sus visitas
         [HttpGet]

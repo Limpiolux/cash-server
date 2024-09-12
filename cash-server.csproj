@@ -458,6 +458,10 @@
     <Compile Include="Migrations\202408281354216_agregoSupervisoresSeed.Designer.cs">
       <DependentUpon>202408281354216_agregoSupervisoresSeed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202409041426596_agregoImagenesForm.cs" />
+    <Compile Include="Migrations\202409041426596_agregoImagenesForm.Designer.cs">
+      <DependentUpon>202409041426596_agregoImagenesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -630,6 +634,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202408281354216_agregoSupervisoresSeed.resx">
       <DependentUpon>202408281354216_agregoSupervisoresSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409041426596_agregoImagenesForm.resx">
+      <DependentUpon>202409041426596_agregoImagenesForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

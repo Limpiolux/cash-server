@@ -128,6 +128,7 @@ namespace cash_server.Data
                 .Include(v => v.Supervisor)
                 .Include(v=> v.UnidadNegocio)
                 .Include(v => v.ServicioPrestado)
+                .OrderByDescending(v => v.Id) 
                 .ToList();
 
             return visitasServicio;

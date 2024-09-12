@@ -16,6 +16,7 @@ using iTextSharp.text.pdf;
 using System.IO;
 using Document = iTextSharp.text.Document;
 using Microsoft.Ajax.Utilities;
+using Org.BouncyCastle.Pqc.Crypto.Lms;
 
 namespace cash_server.Controllers
 {
@@ -43,6 +44,9 @@ namespace cash_server.Controllers
         {
             "VisitaId": 7,
             "FormId": 3,
+            "Imagen1": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAA,
+            "Imagen2": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAA,
+            "Imagen3": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAA,
             "Item": "Ejemplo de item 1",
             "SubItem": "Ejemplo de subitem 1",
             "Comentario": "Ejemplo de comentario 1",
@@ -53,10 +57,13 @@ namespace cash_server.Controllers
         {
             "VisitaId": 7,
             "FormId": 2,
+            "Imagen1": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAA,
+            "Imagen2": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAA,
+            "Imagen3": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAA,
             "Item": "Ejemplo de item 2",
             "SubItem": "Ejemplo de subitem 2",
             "Comentario": null,
-            "Respuesta": "Ejemplo de respuesta 2"
+            "Respuesta": "Ejemplo de respuesta 2",
             "Version": 16,
             "ComentarioGeneral": "Ejemplo"
         }
@@ -78,10 +85,37 @@ namespace cash_server.Controllers
 
                 foreach (var visitaServicioForm in visitasServicioForm)
                 {
+                    //antes de guardar proceso las imagenes
+                    if (!string.IsNullOrEmpty(visitaServicioForm.Imagen1))
+                    {
+                        //guardarimagen guarda la imagen fisicamente y dvuelve la ruta
+                        visitaServicioForm.Imagen1 = GuardarImagen(visitaServicioForm.Imagen1, visitaServicioForm.VisitaId, "Imagen1");
+                    }
+
+                    if (!string.IsNullOrEmpty(visitaServicioForm.Imagen2))  
+                    {
+                        visitaServicioForm.Imagen2 = GuardarImagen(visitaServicioForm.Imagen2, visitaServicioForm.VisitaId, "Imagen2");
+                    }
+
+                    if (!string.IsNullOrEmpty(visitaServicioForm.Imagen3))
+                    {
+                        visitaServicioForm.Imagen3 = GuardarImagen(visitaServicioForm.Imagen3, visitaServicioForm.VisitaId, "Imagen3");
+                    }
+
                     _visitaServicioFormData.Insert(visitaServicioForm);
                 }
+                
                 var primeraVisita = visitasServicioForm.First();
                 var Visita = _visitaServicioData.GetById(primeraVisita.VisitaId);
+
+                //esta visita tiene asociados los visita Servicio Form
+                //me traigo el primero, total todos los registros tienen las mismas imagnes
+                var primerForm = Visita.Formularios.First();
+                //ruta de imagenes
+                string ruta1 = !string.IsNullOrEmpty(primerForm.Imagen1) ? primerForm.Imagen1 : null;
+                string ruta2 = !string.IsNullOrEmpty(primerForm.Imagen2) ? primerForm.Imagen2 : null;
+                string ruta3 = !string.IsNullOrEmpty(primerForm.Imagen3) ? primerForm.Imagen3 : null;
+
                 var unidadNegocio = _unidadNegocioData.GetById(Visita.UnidadNegocioId);
                 var formulario = _formularioData.GetById(primeraVisita.FormId);
 
@@ -99,8 +133,6 @@ namespace cash_server.Controllers
                 string body = "Se ha registrado una visita. Se adjuntan los PDF de cada formulario cargado.";
 
                 var attachments = new List<EmailAttachment>();
-
-                
 
                 if (Visita.UnidadNegocio.Id == 1) // limpiolux
                 {
@@ -122,6 +154,29 @@ namespace cash_server.Controllers
                         FileName = attachmentName,
                         Content = pdf.Value
                     });
+                }
+
+                //ver el tema de las imagenes para adjuntarlas al EMAIL
+                //Validar y añadir las imágenes a los adjuntos solo si existen
+                var imagePaths = new List<string> { ruta1, ruta2, ruta3 };
+                
+                foreach (var imagePath in imagePaths)
+                {
+                    if (!string.IsNullOrEmpty(imagePath))
+                    {
+                        string fullImagePath = HttpContext.Current.Server.MapPath(imagePath);
+
+                        if (File.Exists(fullImagePath))
+                        {
+                            byte[] imageBytes = File.ReadAllBytes(fullImagePath);
+
+                            attachments.Add(new EmailAttachment
+                            {
+                                FileName = Path.GetFileName(fullImagePath),
+                                Content = imageBytes
+                            });
+                        }
+                    }
                 }
 
                 _emailService.SendEmailWithAttachments(toEmail, subject, body, attachments);
@@ -278,7 +333,38 @@ namespace cash_server.Controllers
             return pdfs;
         }
 
+        private string GuardarImagen(string base64Image, int visitaId, string imageType)
+        {
+            try
+            {
+                string carpetaImagenes = HttpContext.Current.Server.MapPath("~/ImagenesVisitas/");
 
+                if (!Directory.Exists(carpetaImagenes))
+                {
+                    Directory.CreateDirectory(carpetaImagenes);
+                }
+
+                var base64String = base64Image.Contains(",") ? base64Image.Substring(base64Image.IndexOf(",") + 1) : base64Image;
+                var bytes = Convert.FromBase64String(base64String);
+
+                //Generar el nombre de archivo único
+                string fileName = $"{imageType}_{visitaId}_{Guid.NewGuid()}.jpg";
+                string filePath = Path.Combine(carpetaImagenes, fileName);
+
+                //Guardar la imagen en la carpeta del servidor
+                File.WriteAllBytes(filePath, bytes);
+
+                //Devolver la ruta de la imagen para guardarla en la base de datos
+                return $"/ImagenesVisitas/{fileName}";
+            }
+            catch (Exception ex)
+            {
+                
+                Console.WriteLine($"Error al guardar la imagen: {ex.Message}"); // Cambiar a un sistema de logging si es necesario
+                return null;
+            }
+        
+        }
         [HttpGet]
         [Route("obtenerformulariosByIdVisita/{idVisita}")]
         public IHttpActionResult ObtenerFormulariosPorVisita(int idVisita)
