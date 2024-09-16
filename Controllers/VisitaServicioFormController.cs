@@ -180,8 +180,8 @@ namespace cash_server.Controllers
                 }
 
                 _emailService.SendEmailWithAttachments(toEmail, subject, body, attachments);
-
-                return Ok("Registros insertados y PDFs enviados por correo electrónico correctamente.");
+                //no cambiar mensaje de error porque impacta en el cliente
+                return Ok("OK");
             }
             catch (Exception)
             {
