@@ -74,7 +74,38 @@ namespace cash_server.Controllers
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + Convert.ToString(ex.Message) });
             }
         }
+        [HttpPut] 
+        [Route("actualizar")]
+        public IHttpActionResult ActualizarVisitaServicio([FromBody] UpdateVisitaServicioDto model) { 
+            try
+            {
+                if (model == null)
+                {
+                    return BadRequest("El cuerpo de la solicitud no puede estar vacío.");
+                }
 
+                var visitaServicioExiste = _visitaServicioData.GetById(model.Id);
+                
+                if (visitaServicioExiste == null)
+                {
+                    return NotFound();  //404
+                }
+
+                visitaServicioExiste.Conductor = model.Conductor;
+                visitaServicioExiste.Dominio = model.Dominio;
+                visitaServicioExiste.ModeloVehiculo = model.ModeloVehiculo;
+                visitaServicioExiste.TipoVehiculoId = model.TipoVehiculoId;
+                visitaServicioExiste.Proveedor = model.Proveedor;
+
+                _visitaServicioData.Update(visitaServicioExiste);
+
+                return Ok(new { message = "Visita actualizada correctamente" });
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+        }
         //obtiene todas las visitas de TODOS los usuarios (con sus respectivos form y respuestas)
         //si no hay ninguna visita retorna un array vacio
         /*[HttpGet]

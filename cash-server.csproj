@@ -472,6 +472,7 @@
     <Compile Include="Models\ServicioPrestado.cs" />
     <Compile Include="Models\SubItem.cs" />
     <Compile Include="Models\UnidadNegocio.cs" />
+    <Compile Include="Models\UpdateVisitaServicioDto.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\VisitaServicio.cs" />
     <Compile Include="Models\VisitaServicioForm.cs" />
