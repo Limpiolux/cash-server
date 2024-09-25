@@ -459,6 +459,7 @@
                 new Respuesta { ItemId = 8, Descripcion = "No aplica" },
 
                 /*indique cantidad de las maquinas*/
+                new Respuesta { ItemId = 9, Descripcion = "Cantidad: 0" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 1" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 2" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 3" },
@@ -471,6 +472,7 @@
                 new Respuesta { ItemId = 9, Descripcion = "Más de 10" },
                 
                 //cantidad de maquinas Fbm
+                new Respuesta { ItemId = 10, Descripcion = "Cantidad: 0" },
                 new Respuesta { ItemId = 10, Descripcion = "Cantidad: 1" },
                 new Respuesta { ItemId = 10, Descripcion = "Cantidad: 2" },
                 new Respuesta { ItemId = 10, Descripcion = "Cantidad: 3" },
