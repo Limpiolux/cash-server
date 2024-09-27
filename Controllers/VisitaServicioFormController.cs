@@ -127,7 +127,7 @@ namespace cash_server.Controllers
                 //Generar los PDFs solo una vez por cada formulario
                 var pdfBytesList = GeneratePdfs(visitasServicioForm);
                 //Preparar los detalles para los adjuntos de correo electrónico
-                string toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar, msanchez@limpiolux.com.ar";
+                string toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";
                 string subject = "Visita Servicio Preventores";
                 string body = "Se ha registrado una visita. Se adjuntan los PDF de cada formulario cargado.";
 
