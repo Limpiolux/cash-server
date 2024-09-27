@@ -458,9 +458,19 @@
     <Compile Include="Migrations\202408281354216_agregoSupervisoresSeed.Designer.cs">
       <DependentUpon>202408281354216_agregoSupervisoresSeed.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\202408301530019_ultimoscambiosss.cs" />
     <Compile Include="Migrations\202408301530019_ultimoscambiosss.Designer.cs">
       <DependentUpon>202408301530019_ultimoscambiosss.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\202409041426596_agregoImagenesForm.cs" />
+    <Compile Include="Migrations\202409041426596_agregoImagenesForm.Designer.cs">
+      <DependentUpon>202409041426596_agregoImagenesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409251832543_AgregoRespuestasCantidad0.cs" />
+    <Compile Include="Migrations\202409251832543_AgregoRespuestasCantidad0.Designer.cs">
+      <DependentUpon>202409251832543_AgregoRespuestasCantidad0.cs</DependentUpon>
+>>>>>>> 4c549c15cbd79da26fc30a342afd0714eb3a3198
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
@@ -472,6 +482,7 @@
     <Compile Include="Models\ServicioPrestado.cs" />
     <Compile Include="Models\SubItem.cs" />
     <Compile Include="Models\UnidadNegocio.cs" />
+    <Compile Include="Models\UpdateVisitaServicioDto.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\VisitaServicio.cs" />
     <Compile Include="Models\VisitaServicioForm.cs" />
@@ -635,8 +646,16 @@
     <EmbeddedResource Include="Migrations\202408281354216_agregoSupervisoresSeed.resx">
       <DependentUpon>202408281354216_agregoSupervisoresSeed.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\202408301530019_ultimoscambiosss.resx">
       <DependentUpon>202408301530019_ultimoscambiosss.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\202409041426596_agregoImagenesForm.resx">
+      <DependentUpon>202409041426596_agregoImagenesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409251832543_AgregoRespuestasCantidad0.resx">
+      <DependentUpon>202409251832543_AgregoRespuestasCantidad0.cs</DependentUpon>
+>>>>>>> 4c549c15cbd79da26fc30a342afd0714eb3a3198
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

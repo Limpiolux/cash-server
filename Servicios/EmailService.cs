@@ -13,8 +13,8 @@ namespace cash_server.Servicios
     {
         private readonly string smtpHost = "smtp.office365.com";
         private readonly int smtpPort = 587;
-        private readonly string smtpUser = "infovisitasupervisores@limpiolux.com.ar"; // pautomate@limpiolux.com.ar infovisitasupervisores@limpiolux.com.ar
-        private readonly string smtpPass = "Pendrive.9274"; // Sard1na.3400 Pendrive.9274
+        private readonly string smtpUser = "visitapreventores@limpiolux.com.ar"; // pautomate@limpiolux.com.ar infovisitasupervisores@limpiolux.com.ar   //visitapreventores@limpiolux.com.ar 
+        private readonly string smtpPass = "Microsd.4921"; // Sard1na.3400 --> power    Pendrive.9274 --> infovisitas
 
         public void SendEmailWithAttachments(string toEmails, string subject, string body, List<EmailAttachment> attachments)
         {

@@ -156,7 +156,7 @@ namespace cash_server.Controllers
                     }
 
                     //una vez cargados en la tabla traigo los supervisores para retornarlos
-                    var nuevosSupervisores = _empleadoData.List().Where(e => e.Rol == RolEmpleado.Supervisor);
+                    var nuevosSupervisores = _empleadoData.List().Where(e => e.Rol == RolEmpleado.Supervisor && e.Activo == true);
 
                     return Json(nuevosSupervisores); //retorna la lista para el cliente
                 }

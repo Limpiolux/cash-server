@@ -14,9 +14,9 @@ namespace cash_server.Data
         public ApiDbContext() :
            base("DefaultConnection")
         {
-
+            this.Database.CommandTimeout = 180;
         }
-
+        
         public DbSet<Usuario> Users { get; set; }
         public DbSet<Formulario> Formularios { get; set; }
         public DbSet<Item> Items { get; set; }

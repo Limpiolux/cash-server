@@ -29,6 +29,10 @@ namespace cash_server.Models
 
         public string ComentarioGeneral { get; set; } = null;
 
+        public string Imagen1 { get; set; } = null;
+        public string Imagen2 { get; set; } = null;
+        public string Imagen3 { get; set; } = null;
+
     }
 
     [MetadataType(typeof(VisitaServicioFormMetadata))]
@@ -59,7 +63,10 @@ namespace cash_server.Models
             [Required]
             public int version { get; set; }
             public string ComentarioGeneral { get; set; } = null;
-        
+            public string Imagen1 { get; set; } = null;
+            public string Imagen2 { get; set; } = null;
+            public string Imagen3 { get; set; } = null;
+
         }
     }
 }
