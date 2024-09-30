@@ -336,7 +336,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                string carpetaImagenes = HttpContext.Current.Server.MapPath("~/Content/Images/");
+                string carpetaImagenes = HttpContext.Current.Server.MapPath("~/ImagenesVisitas/");
 
                 if (!Directory.Exists(carpetaImagenes))
                 {
@@ -354,7 +354,7 @@ namespace cash_server.Controllers
                 File.WriteAllBytes(filePath, bytes);
 
                 //Devolver la ruta de la imagen para guardarla en la base de datos
-                return $"/Images/{fileName}";
+                return $"/ImagenesVisitas/{fileName}";
             }
             catch (Exception ex)
             {
