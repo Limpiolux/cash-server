@@ -108,6 +108,7 @@ namespace cash_server.Controllers
                 //var primeraVisita = visitasServicioForm.First();
                 var primeraVisita = visitasServicioForm.FirstOrDefault(v => v.FormId == visitasServicioForm.First().FormId);
                 
+
                 var Visita = _visitaServicioData.GetById(primeraVisita.VisitaId);
 
                 //esta visita tiene asociados los visita Servicio Form
@@ -140,7 +141,6 @@ namespace cash_server.Controllers
                     toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";
                 }
 
-    
                 //Preparar los detalles para los adjuntos de correo electrónico
                 //string toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";
                 string subject = "Visita Servicio Preventores";
