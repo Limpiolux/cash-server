@@ -339,7 +339,7 @@ namespace cash_server.Controllers
             {
                 //string imagePath = HttpContext.Current.Server.MapPath("~/Content/Images/limpiolux_logo.png");
                 //"~/ImagenesVisitas/"
-                string carpetaImagenes = HttpContext.Current.Server.MapPath("~/Content/Images/");
+                string carpetaImagenes = HttpContext.Current.Server.MapPath("~/ImagenesVisitas/");
 
                 if (!Directory.Exists(carpetaImagenes))
                 {
@@ -357,7 +357,7 @@ namespace cash_server.Controllers
                 File.WriteAllBytes(filePath, bytes);
 
                 //Devolver la ruta de la imagen para guardarla en la base de datos
-                return $"/Content/Images/{fileName}";
+                return $"/ImagenesVisitas/{fileName}";
             }
             catch (Exception ex)
             {
