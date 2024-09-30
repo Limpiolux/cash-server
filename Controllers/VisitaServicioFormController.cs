@@ -104,13 +104,17 @@ namespace cash_server.Controllers
 
                     _visitaServicioFormData.Insert(visitaServicioForm);
                 }
+
+                //var primeraVisita = visitasServicioForm.First();
+                var primeraVisita = visitasServicioForm.FirstOrDefault(v => v.FormId == visitasServicioForm.First().FormId);
                 
-                var primeraVisita = visitasServicioForm.First();
                 var Visita = _visitaServicioData.GetById(primeraVisita.VisitaId);
 
                 //esta visita tiene asociados los visita Servicio Form
                 //me traigo el primero, total todos los registros tienen las mismas imagnes
-                var primerForm = Visita.Formularios.First();
+                //var primerForm = Visita.Formularios.First();
+                var primerForm = Visita.Formularios.FirstOrDefault(f => f.FormId == primeraVisita.FormId);
+
                 //ruta de imagenes
                 string ruta1 = !string.IsNullOrEmpty(primerForm.Imagen1) ? primerForm.Imagen1 : null;
                 string ruta2 = !string.IsNullOrEmpty(primerForm.Imagen2) ? primerForm.Imagen2 : null;
