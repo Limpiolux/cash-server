@@ -637,6 +637,14 @@
                 Activo = true,
 
             });
+            //ID 6
+            unidadesNegocio.Add(new UnidadNegocio()
+            {
+                Nombre = "Ceiling",
+                Cuit = null,
+                Activo = true,
+
+            });
 
             foreach (var unidadNegocio in unidadesNegocio)
             {

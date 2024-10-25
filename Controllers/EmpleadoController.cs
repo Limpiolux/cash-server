@@ -67,6 +67,7 @@ namespace cash_server.Controllers
         //trae los supervisores de otro endpoint,le carga el campo supervisor y activo= true
         //debe verificar antes que este supervisor no este en la tabla... si no esta lo inserta
         //una vez insertados los supervisores en la tabla, los devuelve para ser leidos posteriomente por el cliente
+        //LIMPIOLUX
         [HttpGet]
         [Route("getallsupervisores")]
         public async Task<IHttpActionResult> GetSupervisores()
@@ -132,6 +133,115 @@ namespace cash_server.Controllers
                                     superUpdate.Nombre = supervisor.Nombre;
                                     superUpdate.Email = supervisor.Email;
                                     superUpdate.Id = existente.Id;
+
+
+                                if (!string.IsNullOrWhiteSpace(supervisor.Email))
+                                {
+                                    _empleadoData.Update(superUpdate);
+
+                                }
+
+                            }
+                            catch (DbEntityValidationException ex)
+                            {
+                                foreach (var validationError in ex.EntityValidationErrors)
+                                {
+                                    Console.WriteLine($"Entidad de tipo {validationError.Entry.Entity.GetType().Name} tiene los siguientes errores de validación:");
+                                    foreach (var error in validationError.ValidationErrors)
+                                    {
+                                        Console.WriteLine($"- Propiedad: {error.PropertyName}, Error: {error.ErrorMessage}");
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //una vez cargados en la tabla traigo los supervisores para retornarlos
+                    var nuevosSupervisores = _empleadoData.List().Where(e => e.Rol == RolEmpleado.Supervisor && e.Activo == true);
+
+                    return Json(nuevosSupervisores); //retorna la lista para el cliente
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron supervisores" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+
+        }
+        //trae los supervisores de otro endpoint,le carga el campo supervisor y activo= true
+        //debe verificar antes que este supervisor no este en la tabla... si no esta lo inserta
+        //una vez insertados los supervisores en la tabla, los devuelve para ser leidos posteriomente por el cliente
+        //CEILING
+        //no se va a usar en principio porque son los mimos quelimpiolux
+        [HttpGet]
+        [Route("getallsupervisoresCeiling")]
+        public async Task<IHttpActionResult> GetSupervisoresCeiling()
+        {
+            try
+            {
+                var httpService = new HttpService<IEnumerable<Empleado>>("https://localhost:44303"); //ceiling
+                var supervisores = await httpService.GetAsync("/supervisor/getallsupervisores");
+
+                if (supervisores != null && supervisores.Any())
+                {
+
+                    //PROCESO PARA INSERCION EN LA TABLA EMPLEADOS (SUPERVISORES)
+                    foreach (var supervisor in supervisores)
+                    {
+                        // Verificar si el supervisor ya existe en la base de datos con ese Email, si esta Activo, y si Rol=2
+                        var existente = _empleadoData.GetByEmailAndActivoSupervisor(supervisor.Email);
+
+                        if (existente == null)
+                        {
+                            Empleado superv = new Empleado();
+                            superv.Rol = RolEmpleado.Supervisor;
+                            superv.Activo = true;
+                            superv.Nombre = supervisor.Nombre;
+                            superv.Email = supervisor.Email;
+                            superv.Usuario = null;
+
+                            //puse esto porque si no viene con email, tira error en la insercion, pincha el programa, ya que mail es obligatorio
+                            //entonces con el chatch capturo la excepcion para que no se pare el programa
+                            try
+                            {
+                                if (!string.IsNullOrWhiteSpace(supervisor.Email))
+                                {
+                                    _empleadoData.Insert(superv);
+
+                                }
+
+                            }
+                            catch (DbEntityValidationException ex)
+                            {
+                                foreach (var validationError in ex.EntityValidationErrors)
+                                {
+                                    Console.WriteLine($"Entidad de tipo {validationError.Entry.Entity.GetType().Name} tiene los siguientes errores de validación:");
+                                    foreach (var error in validationError.ValidationErrors)
+                                    {
+                                        Console.WriteLine($"- Propiedad: {error.PropertyName}, Error: {error.ErrorMessage}");
+                                    }
+                                }
+                            }
+
+
+                        }
+                        else
+                        {
+                            //puse esto porque si no viene con email, tira error en la insercion, pincha el programa, ya que mail es obligatorio
+                            //entonces con el chatch capturo la excepcion para que no se pare el programa
+                            try
+                            {
+                                //superUdate.Usuario no le cargo nada lo dejo como esta
+                                Empleado superUpdate = new Empleado();
+                                superUpdate.Rol = RolEmpleado.Supervisor;
+                                superUpdate.Activo = true;
+                                superUpdate.Nombre = supervisor.Nombre;
+                                superUpdate.Email = supervisor.Email;
+                                superUpdate.Id = existente.Id;
 
 
                                 if (!string.IsNullOrWhiteSpace(supervisor.Email))
