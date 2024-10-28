@@ -74,7 +74,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<Empleado>>("https://localhost:44362");
+                var httpService = new HttpService<IEnumerable<Empleado>>("https://preventores.limpiolux.com.ar:44362");
                 var supervisores = await httpService.GetAsync("/supervisor/getallsupervisores");
 
                 if (supervisores != null && supervisores.Any())
@@ -183,7 +183,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<Empleado>>("https://localhost:44303"); //ceiling
+                var httpService = new HttpService<IEnumerable<Empleado>>("https://serviciosceiling.limpiolux.com.ar:44303/"); //ceiling
                 var supervisores = await httpService.GetAsync("/supervisor/getallsupervisores");
 
                 if (supervisores != null && supervisores.Any())

@@ -34,7 +34,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://localhost:44362");
+                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://preventores.limpiolux.com.ar:44362");
                 var serviciosCasas = await httpService.GetAsync("/clientecasa/getallclientescasasLimpiolux");
 
                 if (serviciosCasas != null && serviciosCasas.Any())
@@ -132,7 +132,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://localhost:44362");
+                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://preventores.limpiolux.com.ar:44362");
                 var clientesCasaFBM = await httpService.GetAsync("/clientecasaFBM/sharepointclientescasaFBM");
 
                 if (clientesCasaFBM != null && clientesCasaFBM.Any())
@@ -283,7 +283,7 @@ namespace cash_server.Controllers
         {
             try
             {
-                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://localhost:44303");
+                var httpService = new HttpService<IEnumerable<ServicioPrestado>>("https://serviciosceiling.limpiolux.com.ar:44303/");
                 var serviciosCasas = await httpService.GetAsync("/clientecasa/getallclientescasasCeiling");
 
                 if (serviciosCasas != null && serviciosCasas.Any())

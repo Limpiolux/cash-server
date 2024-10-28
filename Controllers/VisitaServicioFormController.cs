@@ -133,11 +133,11 @@ namespace cash_server.Controllers
                 string toEmail = null;
                 if (supervisorNombre == "Otro servicio")
                 {
-                    toEmail = "micaelavs@hotmail.com"; //pongo lo que tiene que ir no concateno otro serv
+                    toEmail = "miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar"; //pongo lo que tiene que ir no concateno otro serv
                 }
                 else {
-                    supervisorNombre = "micaelavs@hotmail.com";
-                    toEmail = $"{supervisorNombre},msanchez@limpiolux.com.ar";
+                    
+                    toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";
                 }
 
     
