@@ -156,6 +156,10 @@ namespace cash_server.Controllers
                 {
                     ServicioNombre = $"{Visita.ServicioPrestado.CasaNro} - {Visita.ServicioPrestado.CasaNombre}";
                 }
+                else if (Visita.UnidadNegocio.Id == 6) //ceiling
+                {
+                    ServicioNombre = $"{Visita.ServicioPrestado.ClienteNombre} - {Visita.ServicioPrestado.CasaNro} - {Visita.ServicioPrestado.CasaNombre}";
+                }
 
                 //Iterar solo una vez sobre los PDFs generados para crear los adjuntos
                 foreach (var pdf in pdfBytesList)
