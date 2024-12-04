@@ -245,7 +245,7 @@ namespace cash_server.Controllers
                     else if (Visita.UnidadNegocio.Id >= 2 && Visita.UnidadNegocio.Id <= 5) // fbm - y las demas
                     {
                         doc.Add(new Paragraph($"Servicio Prestado: {Visita.ServicioPrestado.CasaNro} - {Visita.ServicioPrestado.CasaNombre}"));
-                    }else if (Visita.UnidadNegocio.Id == 6)
+                    }else if(Visita.UnidadNegocio.Id == 6)
                     {
                         doc.Add(new Paragraph($"Servicio Prestado: {Visita.ServicioPrestado.ClienteNombre} - {Visita.ServicioPrestado.CasaNro} - {Visita.ServicioPrestado.CasaNombre}"));
                     }
