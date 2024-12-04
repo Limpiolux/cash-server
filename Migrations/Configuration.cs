@@ -586,6 +586,27 @@
                 new Empleado { Nombre = "Laura Coronel", Email = "laura.coronel@tytind.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
             };
 
+            var empleadoExistente = context.Empleados.FirstOrDefault(e => e.Email.Trim().ToLower() == "diego.spagnuolo@fbmsa.com.ar".ToLower());
+
+            if (empleadoExistente != null)
+            {
+                empleadoExistente.Nombre = "Leandro duarte";  
+                empleadoExistente.Email = "lduarte@limpiolux.com.ar";
+                context.SaveChanges();
+            }
+            else
+            {
+                context.Empleados.Add(new Empleado
+                {
+                    Nombre = "Leandro duarte",
+                    Email = "lduarte@limpiolux.com.ar",
+                    Rol = RolEmpleado.Supervisor,
+                    Activo = true
+                });
+                context.SaveChanges();
+            }
+
+
             //se usa email para comparar si existe otro registro en la db con ese mail
             foreach (var empleado in empleados)
             {

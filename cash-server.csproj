@@ -470,6 +470,10 @@
     <Compile Include="Migrations\202410251351245_AgregoCeiling.Designer.cs">
       <DependentUpon>202410251351245_AgregoCeiling.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412041503278_CambioSuperFBMdspagnuolo.cs" />
+    <Compile Include="Migrations\202412041503278_CambioSuperFBMdspagnuolo.Designer.cs">
+      <DependentUpon>202412041503278_CambioSuperFBMdspagnuolo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -652,6 +656,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410251351245_AgregoCeiling.resx">
       <DependentUpon>202410251351245_AgregoCeiling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412041503278_CambioSuperFBMdspagnuolo.resx">
+      <DependentUpon>202412041503278_CambioSuperFBMdspagnuolo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
