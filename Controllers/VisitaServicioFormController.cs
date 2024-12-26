@@ -17,6 +17,9 @@ using System.IO;
 using Document = iTextSharp.text.Document;
 using Microsoft.Ajax.Utilities;
 using Org.BouncyCastle.Pqc.Crypto.Lms;
+using System.Web.UI.WebControls.WebParts;
+using System.Security.Cryptography;
+using System.Web.Services.Description;
 
 namespace cash_server.Controllers
 {
@@ -76,6 +79,10 @@ namespace cash_server.Controllers
         [Route("crear")]
         public IHttpActionResult CrearVisitaServicioForm([FromBody] List<VisitaServicioForm> visitasServicioForm)
         {
+            string imagen1UrlGlobal = string.Empty;
+            string imagen2UrlGlobal = string.Empty;
+            string imagen3UrlGlobal = string.Empty;
+
             try
             {
                 if (visitasServicioForm == null || visitasServicioForm.Count == 0)
@@ -92,7 +99,7 @@ namespace cash_server.Controllers
                         visitaServicioForm.Imagen1 = GuardarImagen(visitaServicioForm.Imagen1, visitaServicioForm.VisitaId, "Imagen1");
                     }
 
-                    if (!string.IsNullOrEmpty(visitaServicioForm.Imagen2))  
+                    if (!string.IsNullOrEmpty(visitaServicioForm.Imagen2))
                     {
                         visitaServicioForm.Imagen2 = GuardarImagen(visitaServicioForm.Imagen2, visitaServicioForm.VisitaId, "Imagen2");
                     }
@@ -107,7 +114,7 @@ namespace cash_server.Controllers
 
                 //var primeraVisita = visitasServicioForm.First();
                 var primeraVisita = visitasServicioForm.FirstOrDefault(v => v.FormId == visitasServicioForm.First().FormId);
-                
+
                 var Visita = _visitaServicioData.GetById(primeraVisita.VisitaId);
 
                 //esta visita tiene asociados los visita Servicio Form
@@ -135,12 +142,13 @@ namespace cash_server.Controllers
                 {
                     toEmail = "micaelavs@hotmail.com"; //pongo lo que tiene que ir no concateno otro serv
                 }
-                else {
+                else
+                {
                     supervisorNombre = "micaelavs@hotmail.com";
                     toEmail = $"{supervisorNombre},msanchez@limpiolux.com.ar";
                 }
 
-    
+
                 //Preparar los detalles para los adjuntos de correo electrónico
                 //string toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";
                 string subject = "Visita Servicio Preventores";
@@ -177,7 +185,7 @@ namespace cash_server.Controllers
                 //ver el tema de las imagenes para adjuntarlas al EMAIL
                 //Validar y añadir las imágenes a los adjuntos solo si existen
                 var imagePaths = new List<string> { ruta1, ruta2, ruta3 };
-                
+
                 foreach (var imagePath in imagePaths)
                 {
                     if (!string.IsNullOrEmpty(imagePath))
@@ -198,12 +206,110 @@ namespace cash_server.Controllers
                 }
 
                 _emailService.SendEmailWithAttachments(toEmail, subject, body, attachments);
+
+                var sharePointHelper = new SharePointHelper("https://limpiolux.sharepoint.com/sites/Preventores", "pautomate@limpiolux.com.ar", "Sard1na.3400");
+                //prueba https://limpiolux.sharepoint.com/sites/TestCASH
+                foreach (var visitaForm in visitasServicioForm)
+                {
+                    //tengo que agarrar las imagenes Imagen1, Imagen2, Imagen3 que se cargan en el primer registro
+                    //tomo la imagen1 del primer registro la guardo en una variable global
+                    //cando viene el proximo registro, que no tiene Imagen guardada, se la asigno a Imagen1, y así con Imagen2,Imagen3
+                    //esto es para cuando se inserten los registros en la lista de sharepoint todos tengan las imagenes cargadas
+                    if (!string.IsNullOrEmpty(visitaForm.Imagen1))
+                    {
+                        imagen1UrlGlobal = visitaForm.Imagen1;
+                    }
+                    else
+                    {
+                        visitaForm.Imagen1 = imagen1UrlGlobal;
+                    }
+
+                    if (!string.IsNullOrEmpty(visitaForm.Imagen2))
+                    {
+                        imagen2UrlGlobal = visitaForm.Imagen2;
+                    }
+                    else
+                    {
+                        visitaForm.Imagen2 = imagen2UrlGlobal;
+                    }
+
+                    if (!string.IsNullOrEmpty(visitaForm.Imagen3))
+                    {
+                        imagen3UrlGlobal = visitaForm.Imagen3;
+                    }
+                    else
+                    {
+                        visitaForm.Imagen3 = imagen3UrlGlobal;
+                    }
+
+                    // 3.Productos
+                    // 4.Máquinas de Limpieza
+                    // 5.Vestuarios y / o Area de Descanso o para Cambiarse
+                    //6. Básico de Seguridad
+                    if (visitaForm.FormId == 3 || visitaForm.FormId == 5 || visitaForm.FormId == 6)
+                    {
+                        if (visitaForm.Respuesta == "No")
+                        {
+                            sharePointHelper.InsertVisitaServicioForm(Visita, visitaForm);
+                        }
+
+                    }
+                    if (visitaForm.FormId == 4) 
+                    {
+                        if (visitaForm.Respuesta == "No" &&
+                            visitaForm.SubItem != "Existen en el servicio Escaleras (En caso de ser SI. Efectue el RG.PG.CO.18.02 CHECK LIST ESCALERAS Y ANDAMIOS)" &&
+                            visitaForm.SubItem != "Existen en el servicio Andamios (En caso de ser SI. Efectue el RG.PG.CO.18.02 CHECK LIST ESCALERAS Y ANDAMIOS)" &&
+                            visitaForm.SubItem != "Existen en el servicio autoelevadores (En caso de ser SI. Efectue el RG.PG.CASH 03.03 CHECK LIST AUTOELEVADOR)")
+                        {
+                            // Si todas las condiciones son ciertas, insertar en SharePoint
+                            sharePointHelper.InsertVisitaServicioForm(Visita, visitaForm);
+                        }
+
+                        //Subitem
+                        if (visitaForm.SubItem == "En alguna máquina se visualizan manchas de aceite o de algún fluido" && visitaForm.Respuesta == "Si" )
+                        {
+                            sharePointHelper.InsertVisitaServicioForm(Visita, visitaForm);
+                        }
+
+                    }
+                    //7.Control del Vehículo
+                    if (visitaForm.FormId == 7 )
+                    {
+                        if (visitaForm.Respuesta == "No" || visitaForm.Respuesta == "Regular" || visitaForm.Respuesta == "Malo")
+                        {
+                            sharePointHelper.InsertVisitaServicioForm(Visita, visitaForm);
+                        }
+
+                    }
+                    //2. Cartelería del Servicio
+                    if (visitaForm.FormId == 2)
+                    {
+                        if (visitaForm.Respuesta == "Requiere cambio por deterioro" || visitaForm.Respuesta == "No está presente en el servicio")
+                        {
+                            sharePointHelper.InsertVisitaServicioForm(Visita, visitaForm);
+                        }
+
+                    }
+                    //1. Documentación del Servicio
+                    if (visitaForm.FormId == 1)
+                    {
+
+                        if (visitaForm.Respuesta == "No está en el servicio" || visitaForm.Respuesta == "Está deteriorado" ||
+                            visitaForm.Respuesta == "Se encuentra deteriorado" || visitaForm.Respuesta == "No se encuentra en el servicio" || visitaForm.Respuesta == "Necesita modificaciones" || visitaForm.Respuesta == "Está completo y no concuerda con las tareas que se realizan en la práctica")
+                        {
+                            sharePointHelper.InsertVisitaServicioForm(Visita, visitaForm);
+                        }
+
+                    }
+
+                }
+
                 //no cambiar mensaje de error porque impacta en el cliente
                 return Ok("OK");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" + ex});
             }
         }
 
