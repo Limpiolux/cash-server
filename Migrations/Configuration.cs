@@ -87,6 +87,19 @@
 
             base.Seed(context);
 
+            //actualizo la version de los formularios
+            var formulariosUpdate = context.Formularios.Where(f => f.version == 16).ToList();
+
+            foreach (var formulario in formulariosUpdate)
+            {
+                formulario.version = 17;
+                context.Entry(formulario).Property(f => f.version).IsModified = true;
+            }
+
+            context.SaveChanges();
+
+            base.Seed(context);
+
             //carga de Items
             var items = new List<Item>()
             {
@@ -532,9 +545,9 @@
             if (subItemToUpdate != null)
             {
                 // Modificar la propiedad Descripcion
-                subItemToUpdate.Descripcion = "Control e Inspección de los Servicios al Cliente (Limpiolux y Ceiling ) PG 8.2.4-01 / (PG 8.2.4-02 FBM y PG 8.2.4-03 Distmaster)"; 
-
+                subItemToUpdate.Descripcion = "Control e Inspección de los Servicios al Cliente (Limpiolux y Ceiling ) PG 8.2.4-01 / (PG 8.2.4-02 FBM y PG 8.2.4-03 Distmaster)";
                 
+                context.Entry(subItemToUpdate).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -543,8 +556,9 @@
 
             if (subItemToUpdate2 != null)
             {
-                subItemToUpdate2.Descripcion = "Gestión de Sugerencias y consultas (IT 5.5.4-01)"; 
+                subItemToUpdate2.Descripcion = "Gestión de Sugerencias y consultas (IT 5.5.4-01)";
 
+                context.Entry(subItemToUpdate2).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -555,6 +569,7 @@
             {
                 subItemToUpdate3.Descripcion = "Gestión Integral de Residuos (PG 4.4.6-02)";
 
+                context.Entry(subItemToUpdate3).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -565,6 +580,7 @@
             {
                 subItemToUpdate4.Descripcion = "Procedimiento Operaciones mantenimiento integral (PG 7.5.3-03)";
 
+                context.Entry(subItemToUpdate4).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -575,6 +591,7 @@
             {
                 subItemToUpdate5.Descripcion = "Trabajos con Riesgos Especiales (PE 4.4.6-01)";
 
+                context.Entry(subItemToUpdate5).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -587,7 +604,8 @@
             if (subItemToUpdate7 != null)
             {
                 subItemToUpdate7.Descripcion = "Inspección de Servicio Supervisor (Limpiolux y Ceiling) RG 8.2.4-01 / (RG 7.5.3-16 FBM y RG 7.5.3-17 Distmaster)";
-
+                
+                context.Entry(subItemToUpdate7).State = EntityState.Modified;
                 context.SaveChanges();
             }
             //item 3
@@ -597,6 +615,7 @@
             {
                 subItemToUpdate8.Descripcion = "Matriz de Aspectos e Impactos (RG 4.3.1-01)";
 
+                context.Entry(subItemToUpdate8).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -606,6 +625,7 @@
             {
                 subItemToUpdate9.Descripcion = "Matriz de Riesgos y su Significancia (RG 4.3.1-02)";
 
+                context.Entry(subItemToUpdate9).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -615,6 +635,7 @@
             {
                 subItemToUpdate10.Descripcion = "ATS (RG 4.4.6-01)";
 
+                context.Entry(subItemToUpdate10).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -624,6 +645,7 @@
             {
                 subItemToUpdate11.Descripcion = "Listado de Sustancias (RG 4.4.6-14) FBM";
 
+                context.Entry(subItemToUpdate11).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -633,6 +655,7 @@
             {
                 subItemToUpdate12.Descripcion = "Listado de Sustancias (RG 4.4.6-14) FBM";
 
+                context.Entry(subItemToUpdate12).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -641,7 +664,8 @@
             if (subItemToUpdate13 != null)
             {
                 subItemToUpdate13.Descripcion = "El Listado de Sustancias (RG 4.4.6-14) está en el sector, visible y en buenas condiciones (Fbm)";
-
+                
+                context.Entry(subItemToUpdate13).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -650,6 +674,8 @@
             if (subItemToUpdate14 != null)
             {
                 subItemToUpdate14.Descripcion = "Existen en el servicio Escaleras (En caso de ser SI. Efectué el RG 4.4.6-05 planilla de control de equipos de seguridad para trabajos en altura)";
+                
+                context.Entry(subItemToUpdate14).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -659,6 +685,8 @@
             if (subItemToUpdate15 != null)
             {
                 subItemToUpdate15.Descripcion = "Existen en el servicio Andamios (En caso de ser SI. Efectué el RG 4.4.6-05 planilla de control de equipos de seguridad para trabajos en altura)";
+                
+                context.Entry(subItemToUpdate15).State = EntityState.Modified;
                 context.SaveChanges();
             }
 
@@ -667,6 +695,8 @@
             if (subItemToUpdate16 != null)
             {
                 subItemToUpdate16.Descripcion = "Existen en el servicio autoelevadores/ apiladores (En caso de ser SI. Efectue el RG 4.4.6-15 CHECK LIST AUTOELEVADOR/ APILADOR)";
+                
+                context.Entry(subItemToUpdate16).State = EntityState.Modified;
                 context.SaveChanges();
             }
 

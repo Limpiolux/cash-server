@@ -538,6 +538,14 @@
     <Compile Include="Migrations\202412311313307_AgregoSupervisorCroce.Designer.cs">
       <DependentUpon>202412311313307_AgregoSupervisorCroce.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501021832555_CambioVersionForm17.cs" />
+    <Compile Include="Migrations\202501021832555_CambioVersionForm17.Designer.cs">
+      <DependentUpon>202501021832555_CambioVersionForm17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501021915401_PruebaModificacionfinal.cs" />
+    <Compile Include="Migrations\202501021915401_PruebaModificacionfinal.Designer.cs">
+      <DependentUpon>202501021915401_PruebaModificacionfinal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -733,6 +741,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412311313307_AgregoSupervisorCroce.resx">
       <DependentUpon>202412311313307_AgregoSupervisorCroce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501021832555_CambioVersionForm17.resx">
+      <DependentUpon>202501021832555_CambioVersionForm17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501021915401_PruebaModificacionfinal.resx">
+      <DependentUpon>202501021915401_PruebaModificacionfinal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
