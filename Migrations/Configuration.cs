@@ -3,8 +3,10 @@
     using Antlr.Runtime.Misc;
     using cash_server.Models;
     using cash_server.SharedKernel;
+    using Microsoft.SharePoint.Client.Discovery;
     using Microsoft.Win32;
     using Org.BouncyCastle.Crypto.Macs;
+    using Org.BouncyCastle.Pqc.Crypto.Lms;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -169,7 +171,11 @@
                     new SubItem { ItemId = 1, Descripcion = "Trabajos con Tensión (IT.CASH.04) FBM", Comentario = null },
                     new SubItem { ItemId = 1, Descripcion = "Bloqueo de Instalaciones Intervenidas(IT.CASH.05) FBM", Comentario = null },
                     new SubItem { ItemId = 1, Descripcion = "Afiche ART", Comentario = null },
-                   
+
+                    //se agregan 27/12/24
+                    new SubItem { ItemId = 1, Descripcion = "Relevamiento de seguridad, salud en el trabajo y ambiente (PG 4.3.1-01)", Comentario = null },
+                    new SubItem { ItemId = 1, Descripcion = "Aspecto e impacto ambiental (PE 4.3.1-01)", Comentario = null },
+                    new SubItem { ItemId = 1, Descripcion = "Evaluación de riesgo SST (PE 4.3.1-02)", Comentario = null },
 
                     //SubItems que pertenecen al Item 2
                     new SubItem { ItemId = 2, Descripcion = "Recepción de Documentos (RG 4.2-02)", Comentario = null },
@@ -200,6 +206,11 @@
                     new SubItem { ItemId = 2, Descripcion = "Participación y Consulta (RG 5.5.3-05)", Comentario = null },
                     new SubItem { ItemId = 2, Descripcion = "Permisos de Trabajo (RG.PG.CO.18.01)", Comentario = null },
 
+                    //se agregan nuevos subitems
+                    new SubItem { ItemId = 2, Descripcion = "Permiso trabajo inicial (RG 4.4.6-06)", Comentario = null },
+                    new SubItem { ItemId = 2, Descripcion = "Permiso con trabajos especiales (RG4.4.6-12)", Comentario = null },
+                    new SubItem { ItemId = 2, Descripcion = "Mantenimiento de lavaojos portátil (RG 4.4.6-07)", Comentario = null },
+                   
                     //SubItems que pertenecen al Item 3
                     new SubItem { ItemId = 3, Descripcion = "Matriz de Aspectos e Impactos (RG 4.3.1-01 ) (Limpiolux y Ceiling)", Comentario = null },
                     new SubItem { ItemId = 3, Descripcion = "Matriz de Riesgos y su Significancia (RG 4.3.1-02 ) (Limpiolux y Ceiling)", Comentario = null },
@@ -227,6 +238,11 @@
                     new SubItem { ItemId = 3, Descripcion = "Planilla de Control de Baños (RG 7.5.3-11 ) (Limpiolux y Ceiling)", Comentario = null },
                     new SubItem { ItemId = 3, Descripcion = "Hojas de Seguridad", Comentario = null },
                     new SubItem { ItemId = 3, Descripcion = "Plan Anual de Capacitación (RG 6.2-04)", Comentario = null },
+
+                    //agrego subitems que pertenecen al Item 3
+                    new SubItem { ItemId = 3, Descripcion = "Permiso trabajo inicial (RG 4.4.6-06)", Comentario = null },
+                    new SubItem { ItemId = 3, Descripcion = "Permiso con trabajos especiales (RG4.4.6-12)", Comentario = null },
+                    new SubItem { ItemId = 3, Descripcion = "Mantenimiento de lavaojos portátil (RG 4.4.6-07)", Comentario = null },
 
                     //SubItems que pertenecen al Item 4
                     new SubItem { ItemId = 4, Descripcion = "El servicio posee documentos propios del clientes, indique cuales", Comentario = null },
@@ -278,6 +294,10 @@
                     new SubItem { ItemId = 8, Descripcion = "Existen en el servicio Andamios (En caso de ser SI. Efectue el RG.PG.CO.18.02 CHECK LIST ESCALERAS Y ANDAMIOS)", Comentario = null },
                     new SubItem { ItemId = 8, Descripcion = "Existen en el servicio autoelevadores (En caso de ser SI. Efectue el RG.PG.CASH 03.03 CHECK LIST AUTOELEVADOR)", Comentario = null },
 
+                    //agrego subitem
+                    new SubItem { ItemId = 8, Descripcion = "Todas las Máquinas tienen en buenas condiciones los cables y conectores eléctricos", Comentario = null },
+
+                    
                     //subitems que pertenecen al item2 id=9 formulario 4
                     new SubItem { ItemId = 9, Descripcion = "Lustradoras", Comentario = null },
                     new SubItem { ItemId = 9, Descripcion = "Aspiradoras", Comentario = null },
@@ -356,6 +376,10 @@
                      new SubItem { ItemId =17, Descripcion = "Los productos se encuentran almacenados en sus adecuadas bateas de contención", Comentario = null },
                      new SubItem { ItemId =17, Descripcion = "Se encuentra en el servicio el Kit Antiderrame", Comentario = null },
 
+                     //agerego subitem
+                     new SubItem { ItemId =17, Descripcion = "Se encuentra en el servicio el Lavaojos", Comentario = null },
+                     
+
                      /*formulario 6 - itemid=18 Proteccion personal*/
                      new SubItem { ItemId =18, Descripcion = "Todo el personal del servicio cuenta con el uniforme y ropa de trabajo adecuada", Comentario = null },
                      new SubItem { ItemId =18, Descripcion = "Se encuentran en el servicio los Elementos de Protección necesarios para realizar las tareas", Comentario = null },
@@ -409,6 +433,245 @@
                 context.SubItems.Remove(itemAntiguo2);
                 context.SaveChanges();
             }
+
+            //NUEVOS ITEMS A BORRAR 27/12/24
+
+            var itemAntiguo3 = context.SubItems.FirstOrDefault(i => i.Id == 13 && i.Descripcion == "Gestión de ATS (PE 4.4.6-01)");
+            if (itemAntiguo3 != null)
+            {
+                context.SubItems.Remove(itemAntiguo3);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo4 = context.SubItems.FirstOrDefault(i => i.Id == 18 && i.Descripcion == "Identificación y Evaluación de RO y AA y su Significancia (PG.CO.01) (FBM y Distmaster)");
+            if (itemAntiguo4 != null)
+            {
+                context.SubItems.Remove(itemAntiguo4);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo5 = context.SubItems.FirstOrDefault(i => i.Id == 20 && i.Descripcion == "Gestión de Residuos (PG 4.4.6-02) FBM");
+            if (itemAntiguo5 != null)
+            {
+                context.SubItems.Remove(itemAntiguo5);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo6 = context.SubItems.FirstOrDefault(i => i.Id == 21 && i.Descripcion == "Gestión de Sustancias Peligrosas (PG.CO.13) FBM");
+            if (itemAntiguo6 != null)
+            {
+                context.SubItems.Remove(itemAntiguo6);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo7 = context.SubItems.FirstOrDefault(i => i.Id == 23 && i.Descripcion == "Trabajos en Altura (IT.CASH.01) FBM");
+            if (itemAntiguo7 != null)
+            {
+                context.SubItems.Remove(itemAntiguo7);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo8 = context.SubItems.FirstOrDefault(i => i.Id == 24 && i.Descripcion == "Trabajos en Espacios Confinados (IT.CASH.02) FBM");
+            if (itemAntiguo8 != null)
+            {
+                context.SubItems.Remove(itemAntiguo8);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo9 = context.SubItems.FirstOrDefault(i => i.Id == 25 && i.Descripcion == "Trabajos en Caliente  (IT.CASH.03)  FBM");
+            if (itemAntiguo9 != null)
+            {
+                context.SubItems.Remove(itemAntiguo9);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo10 = context.SubItems.FirstOrDefault(i => i.Id == 26 && i.Descripcion == "Trabajos con Tensión (IT.CASH.04) FBM");
+            if (itemAntiguo10 != null)
+            {
+                context.SubItems.Remove(itemAntiguo10);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo11 = context.SubItems.FirstOrDefault(i => i.Id == 27 && i.Descripcion == "Bloqueo de Instalaciones Intervenidas(IT.CASH.05) FBM");
+            if (itemAntiguo11 != null)
+            {
+                context.SubItems.Remove(itemAntiguo11);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo12 = context.SubItems.FirstOrDefault(i => i.Id == 55 && i.Descripcion == "Permisos de Trabajo (RG.PG.CO.18.01)");
+            if (itemAntiguo12 != null)
+            {
+                context.SubItems.Remove(itemAntiguo12);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo13 = context.SubItems.FirstOrDefault(i => i.Id == 58 && i.Descripcion == "Listado, identificación y evaluación de AA y RO( RG.PG.CO.01.01) (FBM y Distmaster)");
+            if (itemAntiguo13 != null)
+            {
+                context.SubItems.Remove(itemAntiguo13);
+                context.SaveChanges();
+            }
+
+            var itemAntiguo14 = context.SubItems.FirstOrDefault(i => i.Id == 69 && i.Descripcion == "Permisos de Trabajo (RG.PG.CO.18.01) FBM");
+            if (itemAntiguo14 != null)
+            {
+                context.SubItems.Remove(itemAntiguo14);
+                context.SaveChanges();
+            }
+
+
+
+            /**************/
+
+            //identifico SubItems que van a ser editados 27/12/24
+            //del itemId = 1
+            var subItemToUpdate = context.SubItems
+                .FirstOrDefault(si => si.ItemId == 1 && si.Descripcion == "Control e Inspección de los Servicios al Cliente (Limpiolux y Ceiling ) PG 8.2.4-01  / (FBM y Distmaster) PG.CO.08");
+
+            if (subItemToUpdate != null)
+            {
+                // Modificar la propiedad Descripcion
+                subItemToUpdate.Descripcion = "Control e Inspección de los Servicios al Cliente (Limpiolux y Ceiling ) PG 8.2.4-01 / (PG 8.2.4-02 FBM y PG 8.2.4-03 Distmaster)"; 
+
+                
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate2 = context.SubItems
+                              .FirstOrDefault(si => si.ItemId == 1 && si.Descripcion == "Gestión de Sugerencias, Quejas y Reclamos (PG 5.5.4-01)");
+
+            if (subItemToUpdate2 != null)
+            {
+                subItemToUpdate2.Descripcion = "Gestión de Sugerencias y consultas (IT 5.5.4-01)"; 
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate3 = context.SubItems
+                              .FirstOrDefault(si => si.ItemId == 1 && si.Descripcion == "Gestión Interna de Residuos en Servicio (IT 4.4.6-03)");
+
+            if (subItemToUpdate3 != null)
+            {
+                subItemToUpdate3.Descripcion = "Gestión Integral de Residuos (PG 4.4.6-02)";
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate4 = context.SubItems
+                              .FirstOrDefault(si => si.ItemId == 1 && si.Descripcion == "Procedimiento FBM Operaciones (PG.CO.26)");
+
+            if (subItemToUpdate4 != null)
+            {
+                subItemToUpdate4.Descripcion = "Procedimiento Operaciones mantenimiento integral (PG 7.5.3-03)";
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate5 = context.SubItems
+                              .FirstOrDefault(si => si.ItemId == 1 && si.Descripcion == "Trabajos con Riesgos Especiales (PG.CO.18) FBM");
+
+            if (subItemToUpdate5 != null)
+            {
+                subItemToUpdate5.Descripcion = "Trabajos con Riesgos Especiales (PE 4.4.6-01)";
+
+                context.SaveChanges();
+            }
+
+            //identifico SubItems que van a ser editados 27/12/24
+            //del itemId = 2
+
+            var subItemToUpdate7 = context.SubItems
+                              .FirstOrDefault(si => si.ItemId == 2 && si.Descripcion == "Inspección de Servicio Supervisor (Limpiolux y Ceiling) RG 8.2.4-01 / (FBM y Distmaster) RG.PG.CO.08.01");
+
+            if (subItemToUpdate7 != null)
+            {
+                subItemToUpdate7.Descripcion = "Inspección de Servicio Supervisor (Limpiolux y Ceiling) RG 8.2.4-01 / (RG 7.5.3-16 FBM y RG 7.5.3-17 Distmaster)";
+
+                context.SaveChanges();
+            }
+            //item 3
+            var subItemToUpdate8 = context.SubItems
+                             .FirstOrDefault(si => si.ItemId == 3 && si.Descripcion == "Matriz de Aspectos e Impactos (RG 4.3.1-01 ) (Limpiolux y Ceiling)");
+            if (subItemToUpdate8 != null)
+            {
+                subItemToUpdate8.Descripcion = "Matriz de Aspectos e Impactos (RG 4.3.1-01)";
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate9 = context.SubItems
+                             .FirstOrDefault(si => si.ItemId == 3 && si.Descripcion == "Matriz de Riesgos y su Significancia (RG 4.3.1-02 ) (Limpiolux y Ceiling)");
+            if (subItemToUpdate9 != null)
+            {
+                subItemToUpdate9.Descripcion = "Matriz de Riesgos y su Significancia (RG 4.3.1-02)";
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate10 = context.SubItems
+                            .FirstOrDefault(si => si.ItemId == 3 && si.Descripcion == "ATS (RG 4.4.6-01) (Limpiolux y Ceiling)");
+            if (subItemToUpdate10 != null)
+            {
+                subItemToUpdate10.Descripcion = "ATS (RG 4.4.6-01)";
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate11 = context.SubItems
+                            .FirstOrDefault(si => si.ItemId == 3 && si.Descripcion == "Listado de Sustancias (RG.PG.CO.13.01) FBM");
+            if (subItemToUpdate11 != null)
+            {
+                subItemToUpdate11.Descripcion = "Listado de Sustancias (RG 4.4.6-14) FBM";
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate12 = context.SubItems
+                           .FirstOrDefault(si => si.ItemId == 5 && si.Descripcion == "Cartel Listado de Sustancias (RG.PG.CO.13.01) (Fbm)");
+            if (subItemToUpdate12 != null)
+            {
+                subItemToUpdate12.Descripcion = "Listado de Sustancias (RG 4.4.6-14) FBM";
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate13 = context.SubItems
+                           .FirstOrDefault(si => si.ItemId == 7 && si.Descripcion == "El Listado de Sustancias (RG.PG.CO.13.01) está en el sector, visible y en buenas condiciones (Fbm)");
+            if (subItemToUpdate13 != null)
+            {
+                subItemToUpdate13.Descripcion = "El Listado de Sustancias (RG 4.4.6-14) está en el sector, visible y en buenas condiciones (Fbm)";
+
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate14 = context.SubItems
+                           .FirstOrDefault(si => si.ItemId == 8 && si.Descripcion == "Existen en el servicio Escaleras (En caso de ser SI. Efectue el RG.PG.CO.18.02 CHECK LIST ESCALERAS Y ANDAMIOS)");
+            if (subItemToUpdate14 != null)
+            {
+                subItemToUpdate14.Descripcion = "Existen en el servicio Escaleras (En caso de ser SI. Efectué el RG 4.4.6-05 planilla de control de equipos de seguridad para trabajos en altura)";
+                context.SaveChanges();
+            }
+
+            
+            var subItemToUpdate15 = context.SubItems
+                           .FirstOrDefault(si => si.ItemId == 8 && si.Descripcion == "Existen en el servicio Andamios (En caso de ser SI. Efectue el RG.PG.CO.18.02 CHECK LIST ESCALERAS Y ANDAMIOS)");
+            if (subItemToUpdate15 != null)
+            {
+                subItemToUpdate15.Descripcion = "Existen en el servicio Andamios (En caso de ser SI. Efectué el RG 4.4.6-05 planilla de control de equipos de seguridad para trabajos en altura)";
+                context.SaveChanges();
+            }
+
+            var subItemToUpdate16 = context.SubItems
+                          .FirstOrDefault(si => si.ItemId == 8 && si.Descripcion == "Existen en el servicio autoelevadores (En caso de ser SI. Efectue el RG.PG.CASH 03.03 CHECK LIST AUTOELEVADOR)");
+            if (subItemToUpdate16 != null)
+            {
+                subItemToUpdate16.Descripcion = "Existen en el servicio autoelevadores/ apiladores (En caso de ser SI. Efectue el RG 4.4.6-15 CHECK LIST AUTOELEVADOR/ APILADOR)";
+                context.SaveChanges();
+            }
+
+
+            /*FIN de subitems a editar**/
 
             //Cargar las respuestas que pertenecen a un item
             var respuestas = new List<Respuesta>()
@@ -468,6 +731,7 @@
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 6" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 7" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 8" },
+                new Respuesta { ItemId = 9, Descripcion = "Cantidad: 9" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 10" },
                 new Respuesta { ItemId = 9, Descripcion = "Más de 10" },
                 
@@ -481,6 +745,7 @@
                 new Respuesta { ItemId = 10, Descripcion = "Cantidad: 6" },
                 new Respuesta { ItemId = 10, Descripcion = "Cantidad: 7" },
                 new Respuesta { ItemId = 10, Descripcion = "Cantidad: 8" },
+                new Respuesta { ItemId = 10, Descripcion = "Cantidad: 9" },
                 new Respuesta { ItemId = 10, Descripcion = "Cantidad: 10" },
                 new Respuesta { ItemId = 10, Descripcion = "Más de 10" },
 
@@ -578,6 +843,7 @@
 
                 /*agregamos supervisores FBM*/
                 new Empleado { Nombre = "Diego Spagnuolo", Email = "diego.spagnuolo@fbmsa.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
+                new Empleado { Nombre = "Raul Croce", Email = "raul.croce@limpiolux.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
 
                 /*supervisor generico para otros servicios*/
                 new Empleado { Nombre = "Otro servicio", Email = "Otro servicio", Rol = RolEmpleado.Supervisor, Activo = true },
