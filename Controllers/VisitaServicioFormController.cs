@@ -255,11 +255,11 @@ namespace cash_server.Controllers
 
                     }
                     if (visitaForm.FormId == 4) 
-                    {
+                    { //ezstas cambiar por lo actual
                         if (visitaForm.Respuesta == "No" &&
-                            visitaForm.SubItem != "Existen en el servicio Escaleras (En caso de ser SI. Efectue el RG.PG.CO.18.02 CHECK LIST ESCALERAS Y ANDAMIOS)" &&
-                            visitaForm.SubItem != "Existen en el servicio Andamios (En caso de ser SI. Efectue el RG.PG.CO.18.02 CHECK LIST ESCALERAS Y ANDAMIOS)" &&
-                            visitaForm.SubItem != "Existen en el servicio autoelevadores (En caso de ser SI. Efectue el RG.PG.CASH 03.03 CHECK LIST AUTOELEVADOR)")
+                            visitaForm.SubItem != "Existen en el servicio Escaleras (En caso de ser SI. Efectué el RG 4.4.6-05 planilla de control de equipos de seguridad para trabajos en altura)" &&
+                            visitaForm.SubItem != "Existen en el servicio Andamios (En caso de ser SI. Efectué el RG 4.4.6-05 planilla de control de equipos de seguridad para trabajos en altura)" &&
+                            visitaForm.SubItem != "Existen en el servicio autoelevadores/ apiladores (En caso de ser SI. Efectue el RG 4.4.6-15 CHECK LIST AUTOELEVADOR/ APILADOR)")
                         {
                             // Si todas las condiciones son ciertas, insertar en SharePoint
                             sharePointHelper.InsertVisitaServicioForm(Visita, visitaForm);
