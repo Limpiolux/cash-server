@@ -32,7 +32,7 @@
         protected override void Seed(cash_server.Data.ApiDbContext context)
         {
 
-            IList<Formulario> formularios = new List<Formulario>();
+            /*IList<Formulario> formularios = new List<Formulario>();
             //carga de formularios
             formularios.Add(new Formulario()
             {
@@ -99,9 +99,11 @@
             context.SaveChanges();
 
             base.Seed(context);
+            */
 
             //carga de Items
-            var items = new List<Item>()
+            
+            /*var items = new List<Item>()
             {
                 //formulario 1 Documentacion de servicio
                 new Item { FormId = 1, Descripcion = "Indicar el estado de los siguientes documentos que deben estar en la carpeta del Servicio" }, //itemid=1
@@ -148,11 +150,11 @@
             }
 
             context.SaveChanges();
-
+            */
 
             //carga de subItems
 
-            var subItems = new List<SubItem>()
+            /*var subItems = new List<SubItem>()
             {
                     //formulario1
                     //subitems que pertenecen al Item 1
@@ -264,7 +266,7 @@
 
                     //formulario 2 - tiene un solo itemid = 5
                     //SubItems que pertenecen al Item 1 id=5 formulario 2 
-                    new SubItem { ItemId = 5, Descripcion = "Cartel de la Política del SGI", Comentario = null },
+                   /* new SubItem { ItemId = 5, Descripcion = "Cartel de la Política del SGI", Comentario = null },
                     new SubItem { ItemId = 5, Descripcion = "Cartel Objetivos/Metas del SGI", Comentario = null },
                     new SubItem { ItemId = 5, Descripcion = "Cartel indicador del Punto de Encuentro (RG 4.4.7-05)", Comentario = null },
                     new SubItem { ItemId = 5, Descripcion = "Cartel de la ART", Comentario = null },
@@ -299,7 +301,7 @@
                     //formulario 4 - items van del itemid=8 al itemid =12
                     //subitems que pertenecen al item1 id=8 indique estado de las maquinas - formulario 4
 
-                    new SubItem { ItemId = 8, Descripcion = "Todas las Máquinas se Encuentran Rotuladas con su Nro. de Máquina", Comentario = null },
+                   /* new SubItem { ItemId = 8, Descripcion = "Todas las Máquinas se Encuentran Rotuladas con su Nro. de Máquina", Comentario = null },
                     new SubItem { ItemId = 8, Descripcion = "Todas las Máquinas tienen Visible la Etiqueta de Puesta a Tierra", Comentario = null },
                     new SubItem { ItemId = 8, Descripcion = "Todas las Máquinas se encuentran en Buen Estado de Funcionamiento", Comentario = null },
                     new SubItem { ItemId = 8, Descripcion = "En alguna máquina se visualizan manchas de aceite o de algún fluido", Comentario = null },
@@ -343,7 +345,7 @@
 
                     /*formulario 5 - unico item itemid=13*/
                     /*subitem*/
-                     new SubItem { ItemId =13, Descripcion = "El espacio para cambiarse se encuentra en buenas condiciones de conservación", Comentario = null },
+                   /*  new SubItem { ItemId =13, Descripcion = "El espacio para cambiarse se encuentra en buenas condiciones de conservación", Comentario = null },
                      new SubItem { ItemId =13, Descripcion = "Cuenta con duchas", Comentario = null },
                      new SubItem { ItemId =13, Descripcion = "Las duchas tienen agua caliente", Comentario = null },
                      new SubItem { ItemId =13, Descripcion = "Las duchas tienen cortina", Comentario = null },
@@ -355,14 +357,14 @@
 
                      /*formulario 6 - itemid=14 personal*/
                     /*subitem*/
-                     new SubItem { ItemId =14, Descripcion = "Cumple con las instrucciones de limpieza y seguridad establecidas", Comentario = null },
+                    /* new SubItem { ItemId =14, Descripcion = "Cumple con las instrucciones de limpieza y seguridad establecidas", Comentario = null },
                      new SubItem { ItemId =14, Descripcion = "Posee conocimientos sobre el Analisis de Tarea Segura", Comentario = null },
                      new SubItem { ItemId =14, Descripcion = "Sabe como proceder en caso de accidente", Comentario = null },
                      new SubItem { ItemId =14, Descripcion = "Conoce los impactos ambientales que se generan durante su trabajo", Comentario = null },
                      new SubItem { ItemId =14, Descripcion = "Utiliza los elementos de protección personal para realizar las tareas que lo requieren", Comentario = null },
 
                      /*formulario 6 - itemid=15 Ambiente de trabajo*/
-                     new SubItem { ItemId =15, Descripcion = "Las condiciones de luminosidad son adecuadas", Comentario = null },
+                    /* new SubItem { ItemId =15, Descripcion = "Las condiciones de luminosidad son adecuadas", Comentario = null },
                      new SubItem { ItemId =15, Descripcion = "El estado de los lockers es adecuado", Comentario = null },
                      new SubItem { ItemId =15, Descripcion = "El estado del pañol / Taller / Deposito u oficina para el personal  se encuentra en buenas condiciones", Comentario = null },
                      new SubItem { ItemId =15, Descripcion = "Todos los peligros se encuentran identificados", Comentario = null },
@@ -372,7 +374,7 @@
 
 
                      /*formulario 6 - itemid=16 señalizacion*/
-                     new SubItem { ItemId =16, Descripcion = "Se cuenta con conos o letreros de piso humedo", Comentario = null },
+                    /* new SubItem { ItemId =16, Descripcion = "Se cuenta con conos o letreros de piso humedo", Comentario = null },
                      new SubItem { ItemId =16, Descripcion = "Las zonas de trabajo se encuentran debidamente señalizadas o demarcadas", Comentario = null },
                      new SubItem { ItemId =16, Descripcion = "Se encuentra el Cartel de la ART presente en el pañol", Comentario = null },
                      new SubItem { ItemId =16, Descripcion = "Se encuentra el Cartel con los Nros. Telefónicos de Emergencias", Comentario = null },
@@ -383,7 +385,7 @@
 
 
                      /*formulario 6 - itemid=17 productos*/
-                     new SubItem { ItemId =17, Descripcion = "Los productos se encuentran rotulados, tapados y dentro de su apropiado medio de contencion", Comentario = null },
+                    /* new SubItem { ItemId =17, Descripcion = "Los productos se encuentran rotulados, tapados y dentro de su apropiado medio de contencion", Comentario = null },
                      new SubItem { ItemId =17, Descripcion = "Se utilizan únicamente recipientes autorizados", Comentario = null },
                      new SubItem { ItemId =17, Descripcion = "Los productos cuentan con su hoja de seguridad correspondiente", Comentario = null },
                      new SubItem { ItemId =17, Descripcion = "Los productos se encuentran almacenados en sus adecuadas bateas de contención", Comentario = null },
@@ -394,7 +396,7 @@
                      
 
                      /*formulario 6 - itemid=18 Proteccion personal*/
-                     new SubItem { ItemId =18, Descripcion = "Todo el personal del servicio cuenta con el uniforme y ropa de trabajo adecuada", Comentario = null },
+                    /* new SubItem { ItemId =18, Descripcion = "Todo el personal del servicio cuenta con el uniforme y ropa de trabajo adecuada", Comentario = null },
                      new SubItem { ItemId =18, Descripcion = "Se encuentran en el servicio los Elementos de Protección necesarios para realizar las tareas", Comentario = null },
                      new SubItem { ItemId =18, Descripcion = "Los Elementos de Proteccion se encuentran en buenas condiciones de uso", Comentario = null },
                      new SubItem { ItemId =18, Descripcion = "Existe suficiente cantidad de los Elementos de Proteccion para todo el personal que lo requiere", Comentario = null },
@@ -403,7 +405,7 @@
                      /*fin formulario 6*/
 
                      /*formulario 7 - itemid 19 -control de vehiculo*/
-                     new SubItem { ItemId =19, Descripcion = "Registro de conducir", Comentario = null },
+                   /*  new SubItem { ItemId =19, Descripcion = "Registro de conducir", Comentario = null },
                      new SubItem { ItemId =19, Descripcion = "Seguro de vehículo", Comentario = null },
                      new SubItem { ItemId =19, Descripcion = "Cédula Azul", Comentario = null },
                      new SubItem { ItemId =19, Descripcion = "VTV", Comentario = null },
@@ -412,7 +414,7 @@
                      new SubItem { ItemId =19, Descripcion = "Botiquín", Comentario = null },
 
                      /*formulario 7 - itemid 20 - elementos seguridad*/
-                     new SubItem { ItemId =20, Descripcion = "Balizas", Comentario = null },
+                    /* new SubItem { ItemId =20, Descripcion = "Balizas", Comentario = null },
                      new SubItem { ItemId =20, Descripcion = "Chaleco Reflectivo", Comentario = null },
                      new SubItem { ItemId =20, Descripcion = "Bocina", Comentario = null },
                      new SubItem { ItemId =20, Descripcion = "Rueda de Auxilio", Comentario = null },
@@ -430,10 +432,10 @@
 
             // Guardar cambios
             context.SaveChanges();
-
+            */
 
             //identifico los items a borrar - se ha borrado el siguiente
-            var itemAntiguo = context.SubItems.FirstOrDefault(i => i.Id == 153 && i.Descripcion == "Los extintores del  servicio se encuentran OK (Extintor propio / Extintor cliente)");
+            /*var itemAntiguo = context.SubItems.FirstOrDefault(i => i.Id == 153 && i.Descripcion == "Los extintores del  servicio se encuentran OK (Extintor propio / Extintor cliente)");
             if (itemAntiguo != null)
             {
                 context.SubItems.Remove(itemAntiguo);
@@ -446,10 +448,10 @@
                 context.SubItems.Remove(itemAntiguo2);
                 context.SaveChanges();
             }
-
+            */
             //NUEVOS ITEMS A BORRAR 27/12/24
 
-            var itemAntiguo3 = context.SubItems.FirstOrDefault(i => i.Id == 13 && i.Descripcion == "Gestión de ATS (PE 4.4.6-01)");
+            /*var itemAntiguo3 = context.SubItems.FirstOrDefault(i => i.Id == 13 && i.Descripcion == "Gestión de ATS (PE 4.4.6-01)");
             if (itemAntiguo3 != null)
             {
                 context.SubItems.Remove(itemAntiguo3);
@@ -532,14 +534,14 @@
                 context.SubItems.Remove(itemAntiguo14);
                 context.SaveChanges();
             }
-
+            */
 
 
             /**************/
 
             //identifico SubItems que van a ser editados 27/12/24
             //del itemId = 1
-            var subItemToUpdate = context.SubItems
+            /*var subItemToUpdate = context.SubItems
                 .FirstOrDefault(si => si.ItemId == 1 && si.Descripcion == "Control e Inspección de los Servicios al Cliente (Limpiolux y Ceiling ) PG 8.2.4-01  / (FBM y Distmaster) PG.CO.08");
 
             if (subItemToUpdate != null)
@@ -594,11 +596,11 @@
                 context.Entry(subItemToUpdate5).State = EntityState.Modified;
                 context.SaveChanges();
             }
-
+            */
             //identifico SubItems que van a ser editados 27/12/24
             //del itemId = 2
 
-            var subItemToUpdate7 = context.SubItems
+            /*var subItemToUpdate7 = context.SubItems
                               .FirstOrDefault(si => si.ItemId == 2 && si.Descripcion == "Inspección de Servicio Supervisor (Limpiolux y Ceiling) RG 8.2.4-01 / (FBM y Distmaster) RG.PG.CO.08.01");
 
             if (subItemToUpdate7 != null)
@@ -699,15 +701,15 @@
                 context.Entry(subItemToUpdate16).State = EntityState.Modified;
                 context.SaveChanges();
             }
-
+            */
 
             /*FIN de subitems a editar**/
 
             //Cargar las respuestas que pertenecen a un item
-            var respuestas = new List<Respuesta>()
+           /* var respuestas = new List<Respuesta>()
             {   
                 /*formulario 1*/
-                new Respuesta { ItemId = 1, Descripcion = "Se encuentra en buenas condiciones" },
+             /*   new Respuesta { ItemId = 1, Descripcion = "Se encuentra en buenas condiciones" },
                 new Respuesta { ItemId = 1, Descripcion = "Se encuentra deteriorado" },
                 new Respuesta { ItemId = 1, Descripcion = "No se encuentra en el servicio" },
                 new Respuesta { ItemId = 1, Descripcion = "Necesita modificaciones" },
@@ -732,13 +734,13 @@
                 new Respuesta { ItemId = 4, Descripcion = "No aplica" },
 
                 /*formulario 2*/
-                new Respuesta { ItemId = 5, Descripcion = "Está en buenas condiciones" },
+              /*  new Respuesta { ItemId = 5, Descripcion = "Está en buenas condiciones" },
                 new Respuesta { ItemId = 5, Descripcion = "Requiere cambio por deterioro" },
                 new Respuesta { ItemId = 5, Descripcion = "No está presente en el servicio" },
                 new Respuesta { ItemId = 5, Descripcion = "No aplica" },
 
                 /*formulario 3*/
-                new Respuesta { ItemId = 6, Descripcion = "Si" },
+             /*   new Respuesta { ItemId = 6, Descripcion = "Si" },
                 new Respuesta { ItemId = 6, Descripcion = "No" },
                 new Respuesta { ItemId = 6, Descripcion = "No aplica" },
 
@@ -747,12 +749,12 @@
                 new Respuesta { ItemId = 7, Descripcion = "No aplica" },
 
                 /*formulario 4 itemid 8 al 12*/
-                new Respuesta { ItemId = 8, Descripcion = "Si" },
+               /* new Respuesta { ItemId = 8, Descripcion = "Si" },
                 new Respuesta { ItemId = 8, Descripcion = "No" },
                 new Respuesta { ItemId = 8, Descripcion = "No aplica" },
 
                 /*indique cantidad de las maquinas*/
-                new Respuesta { ItemId = 9, Descripcion = "Cantidad: 0" },
+              /*  new Respuesta { ItemId = 9, Descripcion = "Cantidad: 0" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 1" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 2" },
                 new Respuesta { ItemId = 9, Descripcion = "Cantidad: 3" },
@@ -780,23 +782,23 @@
                 new Respuesta { ItemId = 10, Descripcion = "Más de 10" },
 
                 /*aspectos del Sector de Carga de Baterias*/
-                new Respuesta { ItemId = 11, Descripcion = "Si" },
+              /*  new Respuesta { ItemId = 11, Descripcion = "Si" },
                 new Respuesta { ItemId = 11, Descripcion = "No" },
                 new Respuesta { ItemId = 11, Descripcion = "No aplica" },
 
                 /*habilitacion de manejo de maquinas*/
-                new Respuesta { ItemId = 12, Descripcion = "Si" },
+              /*  new Respuesta { ItemId = 12, Descripcion = "Si" },
                 new Respuesta { ItemId = 12, Descripcion = "No" },
                 new Respuesta { ItemId = 12, Descripcion = "No aplica" },
                 /*fin formulario 4*/
 
                 /*formulario5*/
-                new Respuesta { ItemId = 13, Descripcion = "Si" },
+              /*  new Respuesta { ItemId = 13, Descripcion = "Si" },
                 new Respuesta { ItemId = 13, Descripcion = "No" },
                 new Respuesta { ItemId = 13, Descripcion = "No aplica" },
 
                 /*formulario6 del 14 al 18 itemId*/
-                new Respuesta { ItemId = 14, Descripcion = "Si" },
+              /*  new Respuesta { ItemId = 14, Descripcion = "Si" },
                 new Respuesta { ItemId = 14, Descripcion = "No" },
                 new Respuesta { ItemId = 14, Descripcion = "No se pudo verificar" },
                 new Respuesta { ItemId = 14, Descripcion = "No aplica" },
@@ -823,7 +825,7 @@
 
 
                 /*formulario 7*/
-                new Respuesta { ItemId = 19, Descripcion = "Si" },
+               /* new Respuesta { ItemId = 19, Descripcion = "Si" },
                 new Respuesta { ItemId = 19, Descripcion = "No" },
 
                 new Respuesta { ItemId = 20, Descripcion = "Bueno" },
@@ -840,9 +842,10 @@
 
             // Guardar cambios
             context.SaveChanges();
+            */
 
             //voy a cargar los preventores (que son empleados)
-            var empleados = new List<Empleado>()
+            /*var empleados = new List<Empleado>()
             {
                 new Empleado { Nombre = "Juárez María De los Ángeles", Email = "maar_juarez@hotmail.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Miriam Betancourt", Email = "miriam.betancourt@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
@@ -863,26 +866,26 @@
                 new Empleado { Nombre = "Sebastian Lescano", Email = "sebastianlesscano28@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Juan Carlos Daniel Garay", Email = "juancarlosdanielgaray@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 /*ultimos agregados*/
-                new Empleado { Nombre = "Daiana Fabre", Email = "dfabre-ext@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true }, // dfabre-ext@limpiolux.com.ar daianaelifabre@gmail.com
+               /* new Empleado { Nombre = "Daiana Fabre", Email = "dfabre-ext@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true }, // dfabre-ext@limpiolux.com.ar daianaelifabre@gmail.com
                 new Empleado { Nombre = "Tomas Rodriguez", Email = "Hystomasrodriguez@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Karla Briceño", Email = "karlabriceo53@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
 
                 /*agregamos supervisores nuevos Distmaster*/
-                new Empleado { Nombre = "Javier Soto", Email = "jsoto@limpiolux.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
+               /* new Empleado { Nombre = "Javier Soto", Email = "jsoto@limpiolux.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
                 new Empleado { Nombre = "Jose Salvatierra", Email = "jsalvatierra@distmaster.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
 
                 /*agregamos supervisores FBM*/
-                new Empleado { Nombre = "Diego Spagnuolo", Email = "diego.spagnuolo@fbmsa.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
+               /* new Empleado { Nombre = "Diego Spagnuolo", Email = "diego.spagnuolo@fbmsa.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
                 new Empleado { Nombre = "Raul Croce", Email = "raul.croce@limpiolux.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
 
                 /*supervisor generico para otros servicios*/
-                new Empleado { Nombre = "Otro servicio", Email = "Otro servicio", Rol = RolEmpleado.Supervisor, Activo = true },
+                /*new Empleado { Nombre = "Otro servicio", Email = "Otro servicio", Rol = RolEmpleado.Supervisor, Activo = true },
 
                 /*supervisores tyt*/
-                new Empleado { Nombre = "Laura Coronel", Email = "laura.coronel@tytind.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
-            };
+               // new Empleado { Nombre = "Laura Coronel", Email = "laura.coronel@tytind.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
+          /*  };*/
 
-            var empleadoExistente = context.Empleados.FirstOrDefault(e => e.Email.Trim().ToLower() == "diego.spagnuolo@fbmsa.com.ar".ToLower());
+            /*var empleadoExistente = context.Empleados.FirstOrDefault(e => e.Email.Trim().ToLower() == "diego.spagnuolo@fbmsa.com.ar".ToLower());
 
             if (empleadoExistente != null)
             {
@@ -901,15 +904,15 @@
                 });
                 context.SaveChanges();
             }
-
+            */
 
             //se usa email para comparar si existe otro registro en la db con ese mail
-            foreach (var empleado in empleados)
+            /*foreach (var empleado in empleados)
             {
                 context.Empleados.AddOrUpdate(e => e.Email, empleado);
             }
 
-            context.SaveChanges();
+            context.SaveChanges();*/
 
             //cargo las unidades de negocio 
 
