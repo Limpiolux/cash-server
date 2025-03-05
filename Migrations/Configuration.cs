@@ -845,9 +845,9 @@
             */
 
             //voy a cargar los preventores (que son empleados)
-            /*var empleados = new List<Empleado>()
+            var empleados = new List<Empleado>()
             {
-                new Empleado { Nombre = "Juárez María De los Ángeles", Email = "maar_juarez@hotmail.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
+                /*new Empleado { Nombre = "Juárez María De los Ángeles", Email = "maar_juarez@hotmail.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Miriam Betancourt", Email = "miriam.betancourt@limpiolux.com.ar", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Gastón Storani", Email = "gastonstorani@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
                 new Empleado { Nombre = "Cynthia Dayana Alcaraz Blanco", Email = "Alcaraz105@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
@@ -883,7 +883,9 @@
 
                 /*supervisores tyt*/
                // new Empleado { Nombre = "Laura Coronel", Email = "laura.coronel@tytind.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
-          /*  };*/
+                
+                new Empleado { Nombre = "Matias Bitti", Email = "mbitti@fbmsa.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
+            };
 
             /*var empleadoExistente = context.Empleados.FirstOrDefault(e => e.Email.Trim().ToLower() == "diego.spagnuolo@fbmsa.com.ar".ToLower());
 
@@ -907,12 +909,12 @@
             */
 
             //se usa email para comparar si existe otro registro en la db con ese mail
-            /*foreach (var empleado in empleados)
+            foreach (var empleado in empleados)
             {
                 context.Empleados.AddOrUpdate(e => e.Email, empleado);
             }
 
-            context.SaveChanges();*/
+            context.SaveChanges();
 
             //cargo las unidades de negocio 
 

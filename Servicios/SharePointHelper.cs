@@ -85,7 +85,28 @@ public class SharePointHelper
 
         string descripcion = visitaServicioForm.Item + " - " + visitaServicioForm.SubItem + " - Rpta: " + visitaServicioForm.Respuesta;
 
-        if (!string.IsNullOrEmpty(visitaServicioForm.Comentario))
+        //me pidieron que haga, para las respuestas que sean NO, van a tener comentario
+        //entonces, para las Respuestas que sean no, insertas el comentario de la respuesta
+        //y si no, insertas el comentario general
+
+        if (visitaServicioForm.Respuesta == "No") //va a tener comentario debajo
+        {
+            descripcion += " - Comentario:  " + visitaServicioForm.Comentario;
+        }
+        else 
+        {
+            if (!string.IsNullOrEmpty(visitaServicioForm.ComentarioGeneral))
+            {
+                descripcion += " - Comentario gral:  " + visitaServicioForm.ComentarioGeneral;
+            }
+            else
+            {
+                descripcion += " - Sin comentario general";
+            }
+        }
+
+        //se comenta a pedido del usuario
+        /*if (!string.IsNullOrEmpty(visitaServicioForm.Comentario))
         {
             descripcion += " - Comentario:  " + visitaServicioForm.Comentario; // Añades un salto de línea antes de los comentarios
         }
@@ -93,7 +114,7 @@ public class SharePointHelper
         if (!string.IsNullOrEmpty(visitaServicioForm.ComentarioGeneral))
         {
             descripcion += " - Comentario gral:  " +  visitaServicioForm.ComentarioGeneral; // Añades un salto de línea antes del comentario general
-        }
+        }*/
 
         //listItem["Descripci_x00f3_n"] = descripcion;
         listItem["Descripcion"] = descripcion;
