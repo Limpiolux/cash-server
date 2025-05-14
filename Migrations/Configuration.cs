@@ -884,7 +884,14 @@
                 /*supervisores tyt*/
                // new Empleado { Nombre = "Laura Coronel", Email = "laura.coronel@tytind.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
                 
-                new Empleado { Nombre = "Matias Bitti", Email = "mbitti@fbmsa.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },
+                /*new Empleado { Nombre = "Matias Bitti", Email = "mbitti@fbmsa.com.ar", Rol = RolEmpleado.Supervisor, Activo = true },*/
+
+                //Agrego nuevos preventores 14/05 Empleados
+                new Empleado { Nombre = "Mario López", Email = "marioglopez68@gmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Josefina Villalba", Email = "josevs8@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Nicolás Segura", Email = "nicolassegura_hys@outlook.com", Rol = RolEmpleado.Preventor, Activo = true },
+                new Empleado { Nombre = "Verónica Pérez", Email = "mendozaveronoe49@hotmail.com", Rol = RolEmpleado.Preventor, Activo = true },
+
             };
 
             /*var empleadoExistente = context.Empleados.FirstOrDefault(e => e.Email.Trim().ToLower() == "diego.spagnuolo@fbmsa.com.ar".ToLower());

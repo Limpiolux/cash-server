@@ -550,6 +550,10 @@
     <Compile Include="Migrations\202502261747562_AddSupervisormbitti.Designer.cs">
       <DependentUpon>202502261747562_AddSupervisormbitti.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505141758265_AddPreventores14_5.cs" />
+    <Compile Include="Migrations\202505141758265_AddPreventores14_5.Designer.cs">
+      <DependentUpon>202505141758265_AddPreventores14_5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -754,6 +758,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202502261747562_AddSupervisormbitti.resx">
       <DependentUpon>202502261747562_AddSupervisormbitti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505141758265_AddPreventores14_5.resx">
+      <DependentUpon>202505141758265_AddPreventores14_5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
