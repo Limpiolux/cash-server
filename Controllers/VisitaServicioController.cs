@@ -136,7 +136,7 @@ namespace cash_server.Controllers
             }
         }*/
         //todas las visitas del mes actual y el anterior
-        [HttpGet]
+        /*[HttpGet]
         [Route("visitasgetall")]
         public IHttpActionResult ObtenerTodasLasVisitas()
         {
@@ -175,7 +175,7 @@ namespace cash_server.Controllers
             {
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
             }
-        }
+        }*/
 
 
         //el mismo que arriba pero paginado
@@ -233,9 +233,36 @@ namespace cash_server.Controllers
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor", details = ex.Message });
             }
         }*/
-
-        //este endpoint se podria usar que dado un UsuarioId preventor, traer los datos de sus visitas
+        /*mismo que arriba trae todo pero optimizado*/
         [HttpGet]
+        [Route("visitasgetall")]
+        public IHttpActionResult ObtenerTodasLasVisitas()
+        {
+            try
+            {
+                var visitas = _visitaServicioData.List();
+                var formularios = _visitaServicioFormData.List();
+
+                if (!visitas.Any())
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron visitas" });
+
+                var formulariosLookup = formularios.GroupBy(f => f.VisitaId)
+                                                   .ToDictionary(g => g.Key, g => g.ToList());
+
+                foreach (var visita in visitas)
+                {
+                    visita.Formularios = formulariosLookup.TryGetValue(visita.Id, out var lista) ? lista : new List<VisitaServicioForm>();
+                }
+
+                return Ok(visitas);
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+        //este endpoint se podria usar que dado un UsuarioId preventor, traer los datos de sus visitas
+        /*[HttpGet]
         [Route("visitasgetallbyId/{usuarioId}")]
         public IHttpActionResult ObtenerTodasLasVisitas(int usuarioId)
         {
@@ -265,6 +292,36 @@ namespace cash_server.Controllers
                 {
                     return Content(HttpStatusCode.BadRequest, "No hay visitas cargadas para el Usuario dado.");
                 }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }*/
+        //como el de arriba pero mas optiomizado
+        [HttpGet]
+        [Route("visitasgetallbyId/{usuarioId}")]
+        public IHttpActionResult ObtenerTodasLasVisitas(int usuarioId)
+        {
+            try
+            {
+                var usuario = _usuarioData.List().FirstOrDefault(u => u.Id == usuarioId && u.Activo);
+                if (usuario == null)
+                    return Content(HttpStatusCode.NotFound, new { message = "El Usuario con el Id proporcionado no existe o no está activo" });
+
+                var visitas = _visitaServicioData.List().Where(v => v.UsuarioId == usuarioId).ToList();
+                var formularios = _visitaServicioFormData.List().Where(f => visitas.Select(v => v.Id).Contains(f.VisitaId)).ToList();
+
+                var formulariosLookup = formularios.GroupBy(f => f.VisitaId).ToDictionary(g => g.Key, g => g.ToList());
+                foreach (var visita in visitas)
+                {
+                    visita.Formularios = formulariosLookup.TryGetValue(visita.Id, out var lista) ? lista : new List<VisitaServicioForm>();
+                }
+
+                if (!visitas.Any())
+                    return Content(HttpStatusCode.BadRequest, "No hay visitas cargadas para el Usuario dado.");
+
+                return Ok(visitas);
             }
             catch (Exception)
             {
