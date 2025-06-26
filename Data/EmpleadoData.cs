@@ -27,11 +27,16 @@ namespace cash_server.Data
             return db.Empleados.Find(id);
 
         }
-        //verifica si existe un empleado (supervisor) con email y si esta activo, si existe, retorna el empleado
+        //verifica si existe un empleado (supervisor) con email y si esta activo, si existe, retorna el empleado de limpiolux
         public Empleado GetByEmailAndActivoSupervisor(string email)
         {
             var db = new ApiDbContext();
-            return db.Empleados.FirstOrDefault(e => e.Email == email && e.Activo && e.Rol == RolEmpleado.Supervisor);
+            return db.Empleados.FirstOrDefault(e => e.Email == email && e.Activo && e.Rol == RolEmpleado.Supervisor && e.UnidadNegocio_id == 1); //es de limpio
+        }
+        public Empleado GetByEmailAndActivoSupervisorCeiling(string email)
+        {
+            var db = new ApiDbContext();
+            return db.Empleados.FirstOrDefault(e => e.Email == email && e.Activo && e.Rol == RolEmpleado.Supervisor && e.UnidadNegocio_id == 6); //es de ceiling
         }
 
         public Empleado GetByEmailAndActivoPreventor(string email)

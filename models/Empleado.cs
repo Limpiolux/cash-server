@@ -27,6 +27,12 @@ namespace cash_server.Models
 
         [ForeignKey("Usuario")]
         public int? Usuario_id { get; set; }
+        //para saber el supervisor, a que unidad de negocio pertenece si limpio, distmaster, tyt etc
+        //para los empleados que sean preventores este campo sera null
+        public UnidadNegocio UnidadNegocio { get; set; } = null;
+        
+        [ForeignKey("UnidadNegocio")]
+        public int? UnidadNegocio_id { get; set; }
         [Required]
         public bool Activo { get; set; } = false;
 

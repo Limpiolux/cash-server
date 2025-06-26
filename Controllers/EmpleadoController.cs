@@ -15,6 +15,7 @@ using System.Data.Services.Client;
 using System.IdentityModel.Metadata;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -30,11 +31,12 @@ namespace cash_server.Controllers
     /// </summary>
     public class EmpleadoController : ApiController
     {
-       private readonly EmpleadoData _empleadoData;
-
+        private readonly EmpleadoData _empleadoData;
+        private readonly UnidadNegocioData _unidadNegocioData;
         public EmpleadoController()
         {
             _empleadoData = new EmpleadoData();
+            _unidadNegocioData = new UnidadNegocioData();
         }
 
 
@@ -72,6 +74,8 @@ namespace cash_server.Controllers
         [Route("getallsupervisores")]
         public async Task<IHttpActionResult> GetSupervisores()
         {
+            var unidadNegocio = _unidadNegocioData.List().FirstOrDefault(u => u.Nombre.ToLower().Contains("limpiolux"));
+            
             try
             {
                 var httpService = new HttpService<IEnumerable<Empleado>>("https://preventores.limpiolux.com.ar:44362");
@@ -94,7 +98,7 @@ namespace cash_server.Controllers
                             superv.Nombre = supervisor.Nombre;
                             superv.Email = supervisor.Email;
                             superv.Usuario = null;
-
+                            superv.UnidadNegocio_id = unidadNegocio.Id;
                             //puse esto porque si no viene con email, tira error en la insercion, pincha el programa, ya que mail es obligatorio
                             //entonces con el chatch capturo la excepcion para que no se pare el programa
                             try
@@ -133,6 +137,8 @@ namespace cash_server.Controllers
                                     superUpdate.Nombre = supervisor.Nombre;
                                     superUpdate.Email = supervisor.Email;
                                     superUpdate.Id = existente.Id;
+                                    //superUpdate.Usuario_id = existente.Usuario_id; //usuario no tienen los supervisores
+                                    superUpdate.UnidadNegocio_id = existente.UnidadNegocio_id;
 
 
                                 if (!string.IsNullOrWhiteSpace(supervisor.Email))
@@ -181,6 +187,12 @@ namespace cash_server.Controllers
         [Route("getallsupervisoresCeiling")]
         public async Task<IHttpActionResult> GetSupervisoresCeiling()
         {
+            
+            
+            
+            
+            
+            var unidadNegocio = _unidadNegocioData.List().FirstOrDefault(u => u.Nombre.ToLower().Contains("ceiling"));
             try
             {
                 var httpService = new HttpService<IEnumerable<Empleado>>("https://serviciosceiling.limpiolux.com.ar:44303/"); //ceiling
@@ -193,7 +205,7 @@ namespace cash_server.Controllers
                     foreach (var supervisor in supervisores)
                     {
                         // Verificar si el supervisor ya existe en la base de datos con ese Email, si esta Activo, y si Rol=2
-                        var existente = _empleadoData.GetByEmailAndActivoSupervisor(supervisor.Email);
+                        var existente = _empleadoData.GetByEmailAndActivoSupervisorCeiling(supervisor.Email);
 
                         if (existente == null)
                         {
@@ -203,6 +215,7 @@ namespace cash_server.Controllers
                             superv.Nombre = supervisor.Nombre;
                             superv.Email = supervisor.Email;
                             superv.Usuario = null;
+                            superv.UnidadNegocio_id = unidadNegocio.Id;
 
                             //puse esto porque si no viene con email, tira error en la insercion, pincha el programa, ya que mail es obligatorio
                             //entonces con el chatch capturo la excepcion para que no se pare el programa
@@ -242,7 +255,8 @@ namespace cash_server.Controllers
                                 superUpdate.Nombre = supervisor.Nombre;
                                 superUpdate.Email = supervisor.Email;
                                 superUpdate.Id = existente.Id;
-
+                                //uperUpdate.Usuario_id = existente.Usuario_id;  //esto es medio al cuete porque no teinen usuario
+                                superUpdate.UnidadNegocio_id = existente.UnidadNegocio_id;
 
                                 if (!string.IsNullOrWhiteSpace(supervisor.Email))
                                 {
@@ -314,6 +328,98 @@ namespace cash_server.Controllers
             catch (Exception ex)
             {
                 return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor: " + ex.Message });
+            }
+        }
+
+        [HttpGet]
+        [Route("getallsupervisoresFBM")]
+        public IHttpActionResult GetSupervisoresFBM()
+        {
+            try
+            {
+                var supervisoresFBM = _empleadoData.List().Where(e => e.Rol == RolEmpleado.Supervisor && e.Activo && e.UnidadNegocio_id == 2).ToList();
+
+                if (supervisoresFBM.Any())
+                {
+                    return Json(supervisoresFBM);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron supervisores" });
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+
+        [HttpGet]
+        [Route("getallsupervisoresTYT")]
+        public IHttpActionResult GetSupervisoresTYT()
+        {
+            try
+            {
+                var supervisoresTYT = _empleadoData.List().Where(e => e.Rol == RolEmpleado.Supervisor && e.Activo && e.UnidadNegocio_id == 3).ToList();
+
+                if (supervisoresTYT.Any())
+                {
+                    return Json(supervisoresTYT);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron supervisores" });
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+
+        [HttpGet]
+        [Route("getallsupervisoresDistMaster")]
+        public IHttpActionResult GetSupervisoresDistMaster()
+        {
+            try
+            {
+                var supervisoresDM = _empleadoData.List().Where(e => e.Rol == RolEmpleado.Supervisor && e.Activo && e.UnidadNegocio_id == 4).ToList();
+
+                if (supervisoresDM.Any())
+                {
+                    return Json(supervisoresDM);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron supervisores" });
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
+            }
+        }
+
+        [HttpGet]
+        [Route("getallsupervisoresOtroServicio")]
+        public IHttpActionResult GetSupervisoresOtroServicio()
+        {
+            try
+            {
+                var supervisoresOS = _empleadoData.List().Where(e => e.Rol == RolEmpleado.Supervisor && e.Activo && e.UnidadNegocio_id == 5).ToList();
+
+                if (supervisoresOS.Any())
+                {
+                    return Json(supervisoresOS);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, new { message = "No se encontraron supervisores" });
+                }
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new { error = "Error interno del servidor" });
             }
         }
 

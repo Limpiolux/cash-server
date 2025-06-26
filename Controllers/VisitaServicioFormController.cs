@@ -138,14 +138,42 @@ namespace cash_server.Controllers
                 //Generar los PDFs solo una vez por cada formulario
                 var pdfBytesList = GeneratePdfs(visitasServicioForm);
                 string toEmail = null;
-                if (supervisorNombre == "Otro servicio")
+                //preparo los datos de emails adicionales
+                string emailsAdicionales = null;
+                if (!string.IsNullOrWhiteSpace(Visita.EmailsAdicionales))
                 {
-                    toEmail = "miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar"; //pongo lo que tiene que ir no concateno otro serv
+                    emailsAdicionales = string.Join(",", Visita.EmailsAdicionales
+                        .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(e => e.Trim()));
                 }
-                else {
-                    
-                    toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";
+                
+                if (supervisorNombre == "Otro servicio")//no tenes mail de supervisor
+                {
+                    if (emailsAdicionales != null) //"correo1@mail.com,correo2@mail.com"
+                    {
+                        toEmail = $"{emailsAdicionales}, miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar"; //pongo lo que tiene que ir no concateno otro serv
+                    }
+                    else
+                    {
+                        toEmail = "miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";//pongo lo que tiene que ir no concateno otro serv
+                    }
+
                 }
+                else
+                {
+                    if (emailsAdicionales != null)
+                    {
+                        //supervisorNombre = "micaelavs@hotmail.com";
+                        toEmail = $"{emailsAdicionales},{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";
+                    }
+                    else
+                    {
+                        //supervisorNombre = "micaelavs@hotmail.com";
+                        toEmail = $"{supervisorNombre},miriam.betancourt@limpiolux.com.ar,fernando.soto@limpiolux.com.ar,pgomez@limpiolux.com.ar,abigioni@limpiolux.com.ar,marcela@ariesasociados.com.ar,operaciones@ariesasociados.com.ar,msanchez@limpiolux.com.ar";
+                    }
+
+                }
+
 
 
                 //Preparar los detalles para los adjuntos de correo electrónico
