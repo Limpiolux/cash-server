@@ -558,6 +558,10 @@
     <Compile Include="Migrations\202506131437386_AddCampoUnidadNegocioEn_Empleados.Designer.cs">
       <DependentUpon>202506131437386_AddCampoUnidadNegocioEn_Empleados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202506251807130_AddEMailsAdicionales.cs" />
+    <Compile Include="Migrations\202506251807130_AddEMailsAdicionales.Designer.cs">
+      <DependentUpon>202506251807130_AddEMailsAdicionales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmailAttachment.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -768,6 +772,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202506131437386_AddCampoUnidadNegocioEn_Empleados.resx">
       <DependentUpon>202506131437386_AddCampoUnidadNegocioEn_Empleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506251807130_AddEMailsAdicionales.resx">
+      <DependentUpon>202506251807130_AddEMailsAdicionales.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

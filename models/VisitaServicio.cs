@@ -38,6 +38,8 @@ namespace cash_server.Models
         public Usuario Usuario { get; set; }
 
         public DateTime Fecha_operacion { get; set; } = DateTime.Today;
+
+        public string EmailsAdicionales { get; set; } = null;
         public List<VisitaServicioForm> Formularios { get; set; }
 
     }
@@ -97,6 +99,9 @@ namespace cash_server.Models
 
             [Required]
             public DateTime Fecha_operacion { get; set; } = DateTime.Now;
+
+            [StringLength(500)]
+            public string EmailsAdicionales { get; set; } = null;
 
 
         }

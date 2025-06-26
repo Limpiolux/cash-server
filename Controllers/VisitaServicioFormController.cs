@@ -137,15 +137,41 @@ namespace cash_server.Controllers
 
                 //Generar los PDFs solo una vez por cada formulario
                 var pdfBytesList = GeneratePdfs(visitasServicioForm);
-                string toEmail = null;
-                if (supervisorNombre == "Otro servicio")
+
+                //preparo los datos de emails adicionales
+                string emailsAdicionales = null;
+                if (!string.IsNullOrWhiteSpace(Visita.EmailsAdicionales))
                 {
-                    toEmail = "micaelavs@hotmail.com"; //pongo lo que tiene que ir no concateno otro serv
+                    emailsAdicionales = string.Join(",", Visita.EmailsAdicionales
+                        .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(e => e.Trim()));
+                }
+                string toEmail = null;
+                if (supervisorNombre == "Otro servicio")//no tenes mail de supervisor
+                {
+                    if (emailsAdicionales!=null) //"correo1@mail.com,correo2@mail.com"
+                    {
+                        toEmail = $"{emailsAdicionales}, micaelavs@hotmail.com"; //pongo lo que tiene que ir no concateno otro serv
+                    }
+                    else
+                    {
+                        toEmail = "micaelavs@hotmail.com";//pongo lo que tiene que ir no concateno otro serv
+                    }
+                    
                 }
                 else
                 {
-                    supervisorNombre = "micaelavs@hotmail.com";
-                    toEmail = $"{supervisorNombre},msanchez@limpiolux.com.ar";
+                    if (emailsAdicionales != null)
+                    {
+                        supervisorNombre = "micaelavs@hotmail.com";
+                        toEmail = $"{emailsAdicionales},{supervisorNombre},msanchez@limpiolux.com.ar";
+                    }
+                    else
+                    {
+                        supervisorNombre = "micaelavs@hotmail.com";
+                        toEmail = $"{supervisorNombre},msanchez@limpiolux.com.ar";
+                    }
+                    
                 }
 
 
