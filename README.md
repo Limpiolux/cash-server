@@ -1,31 +1,47 @@
-# Documentación de la API - Cash Server
+# 📘 API - Cash Server
 
 ## Descripción General
 
-La API proporciona endpoints para realizar operaciones relacionadas con gestión de empleados (supervisores y preventores), gestión de formularios, items, subitems, respuestas, gestión de usuarios y visitas de servicios.
+Esta API expone endpoints para la gestión de empleados (supervisores y preventores), formularios, ítems, subítems, respuestas, usuarios y visitas de servicio.  
+Es utilizada por la aplicación de Preventores del área de Cash, cuyo cliente está desarrollado en React.
 
-## Tabla de Contenidos
+---
 
-1. [Obtener Todos los Preventores](#1-obtener-todos-los-preventores)
-2. [Obtener Todos los Supervisores](#2-obtener-todos-los-supervisores)
-3. [Obtener Correo Electrónico del Supervisor por ID](#3-obtener-correo-electrónico-del-supervisor-por-id)
-4. sdfsf
-5. sdfsf
-6. fsfds
-7. fsdf
-8. sfsfd
+## 📑 Tabla de Contenidos
 
-## Controlador EmpleadoController
+### EmpleadoController
+1. [Obtener todos los Preventores](#1-obtener-todos-los-preventores)
+2. [Obtener todos los Supervisores (LIMPIOLUX)](#2-obtener-todos-los-supervisores-limpiolux)
+3. [Obtener correo electrónico del Supervisor por ID](#3-obtener-correo-electrónico-del-supervisor-por-id)
+4. [Obtener Supervisores de Ceiling](#4-obtener-supervisores-de-ceiling)
+5. [Obtener Supervisores de FBM](#5-obtener-supervisores-de-fbm)
+6. [Obtener Supervisores de TYT](#6-obtener-supervisores-de-tyt)
+7. [Obtener Supervisores de DistMaster](#7-obtener-supervisores-de-distmaster)
+8. [Obtener Supervisores de Otro Servicio](#8-obtener-supervisores-de-otro-servicio)
+
+## 👥 EmpleadoController
+
+Controlador encargado de gestionar los empleados del sistema, incluyendo preventores y supervisores asociados a distintas unidades de negocio.
 
 ## Endpoints
 
-### 1. Obtener Todos los Preventores
+### 1. Obtener todos los Preventores
 
-- **Método HTTP:** GET
-- **Ruta:** /empleado/getallpreventores
-- **Descripción:** Este endpoint devuelve una lista de preventores activos, es decir los empleados que son preventores que tienen RolEmpleado, Preventor= 1
-- **Respuestas:**
-  - 200 OK: La solicitud fue exitosa y se devolvió la lista de preventores.
+- **Método:** `GET`
+- **URL:** `/empleado/getallpreventores`
+- **Descripción:** Devuelve una lista de empleados activos cuyo rol es **Preventor**.
+- **Respuesta exitosa (`200 OK`):**
+  ```json
+  [
+    {
+      "id": 1,
+      "nombre": "Juan Pérez",
+      "email": "juan.perez@empresa.com",
+      "rol": "Preventor",
+      "activo": true
+    }
+  ]
+  - **Errores:**
   - 404 Not Found: No se encontraron preventores activos.
   - 500 Internal Server Error: Error interno del servidor.
 
@@ -34,8 +50,18 @@ La API proporciona endpoints para realizar operaciones relacionadas con gestión
 - **Método HTTP:** GET
 - **Ruta:** /empleado/getallsupervisores
 - **Descripción:** Este endpoint obtiene los supervisores de otro endpoint, verifica que los supervisores no esten en la tabla, si no están les carga el campo supervisor y activo = true y luego los devuelve para ser leídos posteriormente por el cliente.
-- **Respuestas:**
-  - 200 OK: La solicitud fue exitosa y se devolvieron los supervisores actualizados.
+- **Respuesta exitosa (`200 OK`):**
+```json
+  [
+    {
+      "id": 1,
+      "nombre": "Juan Pérez",
+      "email": "juan.perez@empresa.com",
+      "rol": "Preventor",
+      "activo": true
+    }
+  ]
+  - **Errores:**
   - 404 Not Found: No se encontraron supervisores.
   - 500 Internal Server Error: Error interno del servidor.
 
@@ -46,7 +72,9 @@ La API proporciona endpoints para realizar operaciones relacionadas con gestión
 - **Descripción:** Este endpoint devuelve el correo electrónico de un supervisor por su ID.
 - - **Parámetros:**
   - `idSupervisor`: ID del supervisor del que se desea obtener el correo electrónico
-- **Respuestas:**
+
+- **Respuesta exitosa (`200 OK`):**
+
   - 200 OK: La solicitud fue exitosa y se devolvió el correo electrónico del supervisor.
   - 404 Not Found: No se encontró ningún supervisor con el ID proporcionado.
   - 500 Internal Server Error: Error interno del servidor.
