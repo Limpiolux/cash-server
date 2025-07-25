@@ -41,6 +41,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
       "activo": true
     }
   ]
+  ```
   - **Errores:**
   - 404 Not Found: No se encontraron preventores activos.
   - 500 Internal Server Error: Error interno del servidor.
@@ -61,23 +62,68 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
       "activo": true
     }
   ]
+```
   - **Errores:**
   - 404 Not Found: No se encontraron supervisores.
   - 500 Internal Server Error: Error interno del servidor.
 
-### 3. Obtener Correo Electrónico del Supervisor por ID
+### Obtener Supervisores (Ceiling)
 
-- **Método HTTP:** GET
-- **Ruta:** /empleado/getsupervisoremail/{idSupervisor}
-- **Descripción:** Este endpoint devuelve el correo electrónico de un supervisor por su ID.
-- - **Parámetros:**
-  - `idSupervisor`: ID del supervisor del que se desea obtener el correo electrónico
+- **Método:** `GET`
+- **URL:** `/empleado/getallsupervisoresCeiling`
+- **Descripción:** Sincroniza los supervisores desde un servicio externo de la unidad de negocio **Ceiling** (`https://localhost:44303`).  
+  Verifica si existen en la base de datos local. Si no están, los inserta. Si ya existen, los actualiza.  
+  Luego retorna la lista completa de supervisores activos de Ceiling.
 
 - **Respuesta exitosa (`200 OK`):**
+```json
+[
+  {
+    "id": 11,
+    "nombre": "Carlos Gómez",
+    "email": "carlos.gomez@ceiling.com",
+    "rol": "Supervisor",
+    "activo": true
+  }
+]
 
-  - 200 OK: La solicitud fue exitosa y se devolvió el correo electrónico del supervisor.
-  - 404 Not Found: No se encontró ningún supervisor con el ID proporcionado.
-  - 500 Internal Server Error: Error interno del servidor.
+
+
+
+
+
+
+
+
+
+
+
+### 3. Obtener correo electrónico del Supervisor por ID
+
+- **Método:** `GET`
+- **URL:** `/empleado/getsupervisoremail/{idSupervisor}`
+- **Descripción:** Devuelve el correo electrónico del supervisor correspondiente al ID proporcionado.
+
+- **Parámetros:**
+  - `idSupervisor`: ID entero del supervisor.
+
+- **Respuesta exitosa (`200 OK`):**
+ 
+  {
+    "email": "supervisor@empresa.com"
+  }
+
+  - **Errores:**
+  - 404 Not Found: No se encontró un supervisor con ese ID.
+  - 500 Internal Server Error: Error inesperado en el servidor.
+
+
+
+
+
+
+
+
  
 ## Controlador FormularioController
 
