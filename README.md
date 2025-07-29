@@ -327,7 +327,10 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 
 - **Método HTTP:** GET
 - **Ruta:**  /clientecasa/getallservicioscasasLimpiolux/{unidadNegocioId}
-- **Descripción:** Este endpoint sincroniza y devuelve la lista de casas asociadas a servicios prestados de la unidad de negocio Limpiolux. Si no existen en la base local, se insertan; si existen, se actualizan.
+- **Descripción:** Este endpoint consume un servicio externo de Limpiolux (https://preventores.limpiolux.com.ar:44362/clientecasa/getallclientescasasLimpiolux), obtiene la lista de casas asociadas a servicios prestados y sincroniza la información con la base de datos local:
+  - Si las casas no existen en la base local, se insertan.
+  - Si ya existen, se actualizan sus datos.
+  - Solo se procesan los datos cuando la unidad de negocio corresponde a Limpiolux.
 - **Parámetros:**
 - `unidadNegocioId`: unidadNegocioId: ID de la unidad de negocio (debe ser 1 para Limpiolux).
 - **Respuestas:**
@@ -339,7 +342,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 
 - **Método HTTP:** GET
 - **Ruta:** /clientecasa/getallclientescasaFBM/{unidadNegocioId}
-- **Descripción:** Este endpoint sincroniza y devuelve la lista de casas asociadas a la unidad de negocio FBM. Si no existen en la base local, se insertan; si existen, se actualizan.
+- **Descripción:** Este endpoint consume un servicio externo alojado en https://preventores.limpiolux.com.ar:44362, específicamente el recurso /clientecasaFBM/sharepointclientescasaFBM, para sincronizar y devolver la lista de casas asociadas a la unidad de negocio FBM.   La información obtenida desde este servicio se compara con los datos locales: si una casa no existe, se inserta; si ya existe, se actualiza.
 - **Parámetros:**
 - `unidadNegocioId`: ID de la unidad de negocio (debe ser 2 para FBM).
 - **Respuestas:**
@@ -375,7 +378,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
  
 - **Método HTTP:** GET
 - **Ruta:** /clientecasa/getallservicioscasasCeiling/{unidadNegocioId}
-- **Descripción:** Este endpoint sincroniza y devuelve la lista de casas asociadas a servicios prestados de la unidad de negocio Ceiling. Si no existen en la base local, se insertan; si existen, se actualizan.
+- **Descripción:** Este endpoint consume un servicio externo alojado en https://serviciosceiling.limpiolux.com.ar:44303/, específicamente el recurso /clientecasa/getallclientescasasCeiling, para sincronizar y devolver la lista de casas asociadas a servicios prestados de la unidad de negocio Ceiling. Los datos obtenidos desde el servicio externo se comparan con los registros locales: si una casa no existe, se inserta; si ya existe, se actualiza.
 - **Parámetros:**
 - `unidadNegocioId`: ID de la unidad de negocio (debe ser 6 para Ceiling).
 - **Respuestas:**
