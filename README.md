@@ -244,7 +244,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 - 404 Not Found: No se encontraron supervisores.
 - 500 Internal Server Error: Error interno del servidor.
 
-## Controlador FormularioController
+## 📝 Controlador FormularioController
 
 ## Endpoints
 
@@ -287,7 +287,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 - 404 Not Found: Formulario no encontrado.
 - 500 Internal Server Error: Error interno del servidor.
  
-## Controlador ItemController
+## 📦 Controlador ItemController
 
 ## Endpoints
 
@@ -303,7 +303,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 - 404 Not Found: No se encontraron items para el formulario especificado.
 - 500 Internal Server Error: Error interno del servidor.
  
-## Controlador RespuestaController
+## ✅ Controlador RespuestaController
 
 ## Endpoints
 
@@ -319,7 +319,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 - 404 Not Found: No se encontraron respuestas para el item especificado.
 - 500 Internal Server Error: Error interno del servidor.
  
-## Controlador ServicioPrestadoController
+## 🏠 Controlador ServicioPrestadoController
 
 ## Endpoints
 
@@ -383,7 +383,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 - 404 Not Found: No se encontraron servicios o unidad de negocio inválida.
 - 500 Internal Server Error: Error interno del servidor.
 
-## Controlador SubItemController
+## 🔧 Controlador SubItemController
 
 ## Endpoints
 
@@ -399,7 +399,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 - 404 Not Found: No se encontraron subítems para el item especificado.
 - 500 Internal Server Error: Error interno del servidor.
 
-## Controlador UnidadNegocioController
+## 🏢 Controlador UnidadNegocioController
 
 ## Endpoints
 
@@ -413,7 +413,7 @@ Controlador encargado de gestionar los empleados del sistema, incluyendo prevent
 - 404 Not Found: No se encontraron unidades de negocio en el sistema
 - 500 Internal Server Error: Error interno del servidor.
   
- ## Controlador UserController
+ ## 👤 Controlador UserController
 
  ## Endpoints
 
@@ -566,7 +566,7 @@ Rol: se saca del select, se le pasaría el texto del select en este caso Adminis
 - 500 Internal Server Error: Error interno del servidor.
 
 
-## Controlador VisitaServicioController
+## 📋 Controlador VisitaServicioController
 
  ## Endpoints
 
@@ -715,7 +715,7 @@ Rol: se saca del select, se le pasaría el texto del select en este caso Adminis
 - 404 Not Found: No se encontró una visita con el ID proporcionado.
 - 500 Internal Server Error: Error interno del servidor.
 
-## Controlador VisitaServicioFormController
+## 🧾 Controlador VisitaServicioFormController
 
  ## Endpoints
 
