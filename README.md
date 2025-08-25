@@ -69,6 +69,7 @@ Es utilizada por la aplicación de Preventores del área de Cash, cuyo cliente e
 39. [Crear Formularios de Visita de Servicio](#39-crear-formularios-de-visita-de-servicio)
 40. [Obtener Formularios por ID de Visita](#40-obtener-formularios-por-id-de-visita)
 
+### ⚡ [Flujos Power Automate](#flujos-power-automate)
 
 ## 👥 EmpleadoController
 
@@ -779,25 +780,23 @@ Rol: se saca del select, se le pasaría el texto del select en este caso Adminis
 - 200 OK: Lista de formularios devuelta exitosamente.
 - 400 Bad Request: La visita con el ID especificado no existe.
 - 500 Internal Server Error: Error interno del servidor.
-  
 
+---
 
-  
+## ⚡ Flujos Power Automate
 
+Además de la API, existen flujos en **Power Automate** conectados a la lista **Oportunidades de Mejora V2** en **SharePoint**:  
+[🔗 Lista en SharePoint](https://limpiolux.sharepoint.com/sites/Preventores/Lists/Oportunidades%20de%20Mejora%20V2/AllItems.aspx?env=WebViewList)
 
+### 📌 Flujo 1: Actualizar Resuelto O. Mejora
+- **Condición:** Cuando cambie el estado del campo `Estado` a **Resuelto**.  
+- **Acción:** Se actualiza el campo `Resuelto` con la fecha actual.  
+- **Estado:** ✅ Activo.  
+- **Nombre del flujo:** `Actualizar Resuelto O. Mejora`.
 
-  
+### 📌 Flujo 2: Notificación de Asignación
+- **Condición:** Cuando se asigne una persona en el campo `Asignado`.  
+- **Acción:** Se envía una notificación por email a la persona o personas asignadas.  
+- **Estado:** ⛔ Detenido (debido a envío masivo de correos).  
+- **Nombre del flujo:** `Oportunidad Mejora Enviar Correo Cambie Campo Asignado`
 
-  
-
-
-
- 
-
-
- 
-    
- 
-  
- 
-  
