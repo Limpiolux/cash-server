@@ -69,8 +69,6 @@ Es utilizada por la aplicación de Preventores del área de Cash, cuyo cliente e
 39. [Crear Formularios de Visita de Servicio](#39-crear-formularios-de-visita-de-servicio)
 40. [Obtener Formularios por ID de Visita](#40-obtener-formularios-por-id-de-visita)
 
-### ⚡ [Flujos Power Automate](#flujos-power-automate)
-
 ## 👥 EmpleadoController
 
 Controlador encargado de gestionar los empleados del sistema, incluyendo preventores y supervisores asociados a distintas unidades de negocio.
